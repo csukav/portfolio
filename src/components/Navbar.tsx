@@ -32,7 +32,7 @@ export default function Navbar() {
           href="#"
           className="text-[17px] font-semibold tracking-tight text-[#1d1d1f] hover:text-[#0071e3] transition-colors"
         >
-          Portfolio
+          Csuka Viktor
         </Link>
 
         {/* Desktop links */}

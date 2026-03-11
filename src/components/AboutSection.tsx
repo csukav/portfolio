@@ -1,9 +1,9 @@
 import { Separator } from "@/components/ui/separator";
 
 const stats = [
-  { value: "5+", label: "Év tapasztalat" },
-  { value: "40+", label: "Projekt leszállítva" },
-  { value: "20+", label: "Elégedett ügyfél" },
+  { value: "2+", label: "Év tapasztalat" },
+  { value: "10+", label: "Projekt leszállítva" },
+  { value: "10+", label: "Elégedett ügyfél" },
   { value: "∞", label: "Kávé elfogyasztva" },
 ];
 
