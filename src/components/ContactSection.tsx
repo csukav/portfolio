@@ -13,12 +13,30 @@ const ParticlesBackground = dynamic(
 export default function ContactSection() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would send the form data to your backend / email service
-    setSent(true);
-    setForm({ name: "", email: "", message: "" });
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) throw new Error("Hiba történt.");
+
+      setSent(true);
+      setForm({ name: "", email: "", message: "" });
+    } catch {
+      setError("Az üzenet küldése sikertelen. Kérlek próbáld újra.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -143,10 +161,14 @@ export default function ContactSection() {
                 </div>
                 <button
                   type="submit"
-                  className="mt-2 w-full bg-[#0071e3] text-white text-[17px] font-normal py-3.5 rounded-full hover:bg-[#0077ed] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
+                  disabled={loading}
+                  className="mt-2 w-full bg-[#0071e3] text-white text-[17px] font-normal py-3.5 rounded-full hover:bg-[#0077ed] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
                 >
-                  Üzenet küldése
+                  {loading ? "Küldés..." : "Üzenet küldése"}
                 </button>
+                {error && (
+                  <p className="text-red-500 text-[13px] text-center">{error}</p>
+                )}
               </form>
             )}
           </div>
