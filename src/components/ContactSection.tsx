@@ -46,18 +46,18 @@ export default function ContactSection() {
               {[
                 {
                   label: "Email",
-                  value: "hello@pelda.hu",
-                  href: "mailto:hello@pelda.hu",
+                  value: "csukav@gmail.com",
+                  href: "mailto:csukav@gmail.com",
                 },
                 {
                   label: "LinkedIn",
-                  value: "linkedin.com/in/nevem",
-                  href: "https://linkedin.com",
+                  value: "linkedin.com/in/csukaviktor",
+                  href: "https://linkedin.com/in/csukaviktor",
                 },
                 {
                   label: "GitHub",
-                  value: "github.com/nevem",
-                  href: "https://github.com",
+                  value: "github.com/csukav",
+                  href: "https://github.com/csukav",
                 },
               ].map((item) => (
                 <div key={item.label} className="flex flex-col gap-0.5">

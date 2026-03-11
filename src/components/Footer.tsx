@@ -16,9 +16,6 @@ export default function Footer() {
         <Separator className="bg-[#3a3a3c] mb-10" />
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-[13px] text-[#6e6e73]">
-            © {year} Portfolio. Minden jog fenntartva.
-          </p>
 
           <div className="flex gap-6">
             {links.map((link) => (
@@ -35,9 +32,6 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="text-center text-[12px] text-[#48484a] mt-8">
-          Készült Next.js • Tailwind CSS • shadcn/ui — ❤︎ szenvedéllyel
-        </p>
       </div>
     </footer>
   );
