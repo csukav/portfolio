@@ -29,7 +29,7 @@ const projects = [
     number: "02",
   },
   {
-    title: "AI Content Tool",
+    title: "Spotify Clone",
     description:
       "GPT-4 alapú tartalomgeneráló alkalmazás marketing csapatok számára. Sablon-rendszer és exportálás.",
     tags: ["Next.js", "OpenAI", "Redis", "Tailwind"],

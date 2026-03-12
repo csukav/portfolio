@@ -15,8 +15,7 @@ const skillGroups = [
     skills: [
       { name: "Node.js / Express", level: 88 },
       { name: "PostgreSQL", level: 85 },
-      { name: "Prisma / Drizzle", level: 82 },
-      { name: "Redis", level: 75 },
+      { name: "Supabase", level: 80 },
     ],
   },
   {
@@ -24,8 +23,6 @@ const skillGroups = [
     color: "#bf5af2",
     skills: [
       { name: "Git / GitHub", level: 95 },
-      { name: "Docker", level: 78 },
-      { name: "Figma", level: 72 },
       { name: "AWS / Vercel", level: 80 },
     ],
   },
@@ -93,8 +90,8 @@ export default function SkillsSection() {
         <div className="mt-20 flex flex-wrap gap-2">
           {[
             "Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js",
-            "PostgreSQL", "Prisma", "Redis", "Docker", "AWS", "Vercel",
-            "Figma", "Git", "REST APIs", "GraphQL", "React Native",
+            "PostgreSQL", "Supabase", "AWS", "Vercel",
+            "Figma", "Git",
           ].map((tech) => (
             <span
               key={tech}
