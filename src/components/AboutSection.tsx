@@ -1,37 +1,31 @@
-import { Separator } from "@/components/ui/separator";
+"use client";
 
-const stats = [
-  { value: "2+", label: "Év tapasztalat" },
-  { value: "10+", label: "Projekt leszállítva" },
-  { value: "10+", label: "Elégedett ügyfél" },
-  { value: "∞", label: "Kávé elfogyasztva" },
-];
+import { Separator } from "@/components/ui/separator";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function AboutSection() {
+  const { t } = useLanguage();
+  const { stats, values } = t.about;
+
   return (
     <section id="about" className="py-32 bg-[#f5f5f7]">
       <div className="max-w-[980px] mx-auto px-6">
         {/* Section label */}
         <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">
-          Rólam
+          {t.about.label}
         </p>
 
         <div className="grid md:grid-cols-2 gap-16 items-start">
           {/* Left: text */}
           <div>
             <h2 className="section-headline mb-6">
-              Szenvedéllyel, precizitással.
+              {t.about.headline}
             </h2>
             <p className="section-subheadline mb-6">
-              Full-stack fejlesztőként hiszek abban, hogy a legjobb szoftver
-              ott születik, ahol a technikai kiválóság találkozik az esztétikai
-              érzékenységgel.
+              {t.about.subheadline}
             </p>
             <p className="text-[17px] text-[#6e6e73] leading-[1.7]">
-              React, Next.js, TypeScript és Node.js eszközökkel dolgozom nap
-              mint nap. Szeretem a tiszta kódot, az átgondolt UI-t és az olyan
-              megoldásokat, amelyek valóban megoldanak egy problémát — nem csak
-              komplikálják azt.
+              {t.about.body}
             </p>
           </div>
 
@@ -55,23 +49,7 @@ export default function AboutSection() {
 
         {/* Values row */}
         <div className="grid md:grid-cols-3 gap-12 pt-16">
-          {[
-            {
-              icon: "◈",
-              title: "Tiszta kód",
-              desc: "Olvasható, karbantartható és jól dokumentált. A kódom holnap is érthető legyen.",
-            },
-            {
-              icon: "◎",
-              title: "Teljesítmény",
-              desc: "Milliszekundumok számítanak. Minden projektet optimalizálva szállítok.",
-            },
-            {
-              icon: "◉",
-              title: "Részletek",
-              desc: "Az ördög a részletekben lakik — és a kiváló felhasználói élmény is.",
-            },
-          ].map((item) => (
+          {values.map((item) => (
             <div key={item.title}>
               <div className="text-3xl mb-4 text-[#0071e3]">{item.icon}</div>
               <h3 className="text-[19px] font-semibold text-[#1d1d1f] mb-2">

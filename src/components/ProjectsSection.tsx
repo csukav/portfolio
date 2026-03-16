@@ -2,27 +2,24 @@
 
 import { Badge } from "@/components/ui/badge";
 import dynamic from "next/dynamic";
+import { useLanguage } from "@/context/LanguageContext";
 
 const ParticlesBackground = dynamic(
   () => import("@/components/ParticlesBackground"),
   { ssr: false }
 );
 
-
-const projects = [
+const projectsMeta = [
   {
     title: "E-Commerce Platform",
-    description:
-      "Teljes körű webáruház Next.js, Stripe és Prisma alapokon. Adminisztrációs felület, termékkezelés, analitika.",
     tags: ["Next.js", "TypeScript", "Stripe", "Prisma"],
     color: "#0071e3",
     lightColor: "#e8f1fb",
     number: "01",
+    emoji: "🛒",
   },
   {
     title: "SaaS Dashboard",
-    description:
-      "Valós idejű adatvizualizáció és csapatkezelési eszközök enterprise ügyfeleknek. 50+ komponens.",
     tags: ["React", "D3.js", "Node.js", "PostgreSQL"],
     color: "#34c759",
     lightColor: "#eaf8ec",
@@ -30,8 +27,6 @@ const projects = [
   },
   {
     title: "Spotify Clone",
-    description:
-      "GPT-4 alapú tartalomgeneráló alkalmazás marketing csapatok számára. Sablon-rendszer és exportálás.",
     tags: ["Next.js", "OpenAI", "Redis", "Tailwind"],
     color: "#ff9f0a",
     lightColor: "#fff3e0",
@@ -39,28 +34,34 @@ const projects = [
   },
   {
     title: "Mobile Companion App",
-    description:
-      "React Native cross-platform alkalmazás 10 000+ aktív felhasználóval. Offline-first architektúra.",
     tags: ["React Native", "Expo", "SQLite", "Redux"],
     color: "#bf5af2",
     lightColor: "#f5eeff",
     number: "04",
   },
 ];
+
 export default function ProjectsSection() {
+  const { t } = useLanguage();
+
+  const projects = projectsMeta.map((meta, i) => ({
+    ...meta,
+    description: t.projects.items[i].description,
+  }));
+
   return (
     <section id="projects" className="relative py-32 bg-white overflow-hidden">
       <ParticlesBackground id="tsparticles-projects" />
       <div className="relative z-10 max-w-[980px] mx-auto px-6">
         <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">
-          Projektek
+          {t.projects.label}
         </p>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <h2 className="section-headline max-w-[480px]">
-            Munkák, amikre büszke vagyok.
+            {t.projects.headline}
           </h2>
           <p className="section-subheadline max-w-[320px] text-right hidden md:block">
-            Válogatott projektek az elmúlt évekből.
+            {t.projects.subheadline}
           </p>
         </div>
 

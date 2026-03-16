@@ -1,3 +1,7 @@
+"use client";
+
+import { useLanguage } from "@/context/LanguageContext";
+
 const skillGroups = [
   {
     category: "Frontend",
@@ -19,7 +23,7 @@ const skillGroups = [
     ],
   },
   {
-    category: "Eszközök & Egyéb",
+    category: "tools",
     color: "#bf5af2",
     skills: [
       { name: "Git / GitHub", level: 95 },
@@ -29,22 +33,23 @@ const skillGroups = [
 ];
 
 export default function SkillsSection() {
+  const { t } = useLanguage();
+
   return (
     <section id="skills" className="py-32 bg-[#1d1d1f]">
       <div className="max-w-[980px] mx-auto px-6">
         <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">
-          Képességek
+          {t.skills.label}
         </p>
         <h2
           className="mb-6 text-[56px] md:text-[72px] font-bold leading-[1.04] tracking-[-0.025em] text-white"
         >
-          A technológiai
+          {t.skills.headline1}
           <br />
-          <span className="text-[#6e6e73]">eszköztáram.</span>
+          <span className="text-[#6e6e73]">{t.skills.headline2}</span>
         </h2>
         <p className="text-[19px] text-[#6e6e73] max-w-[500px] mb-20">
-          Elsősorban a modern web ökoszisztémában dolgozom, de nem ijedek
-          meg az ismeretlen technológiáktól sem.
+          {t.skills.subheadline}
         </p>
 
         <div className="grid md:grid-cols-3 gap-10">
@@ -54,7 +59,7 @@ export default function SkillsSection() {
                 className="text-[13px] uppercase tracking-[0.12em] font-semibold mb-8"
                 style={{ color: group.color }}
               >
-                {group.category}
+                {group.category === "tools" ? t.skills.toolsCategory : group.category}
               </h3>
               <div className="flex flex-col gap-6">
                 {group.skills.map((skill) => (

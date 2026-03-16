@@ -4,6 +4,7 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useLanguage } from "@/context/LanguageContext";
 
 const ParticlesBackground = dynamic(
   () => import("@/components/ParticlesBackground"),
@@ -11,6 +12,9 @@ const ParticlesBackground = dynamic(
 );
 
 export default function ContactSection() {
+  const { t } = useLanguage();
+  const f = t.contact.form;
+
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -28,12 +32,12 @@ export default function ContactSection() {
         body: JSON.stringify(form),
       });
 
-      if (!res.ok) throw new Error("Hiba történt.");
+      if (!res.ok) throw new Error("Error");
 
       setSent(true);
       setForm({ name: "", email: "", message: "" });
     } catch {
-      setError("Az üzenet küldése sikertelen. Kérlek próbáld újra.");
+      setError(f.errorMsg);
     } finally {
       setLoading(false);
     }
@@ -44,20 +48,19 @@ export default function ContactSection() {
       <ParticlesBackground id="tsparticles-contact" />
       <div className="relative z-10 max-w-[980px] mx-auto px-6">
         <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">
-          Kapcsolat
+          {t.contact.label}
         </p>
 
         <div className="grid md:grid-cols-2 gap-20 items-start">
           {/* Left */}
           <div>
             <h2 className="section-headline mb-6">
-              Kezdjük el
+              {t.contact.headline1}
               <br />
-              együtt.
+              {t.contact.headline2}
             </h2>
             <p className="section-subheadline mb-10">
-              Legyen szó új projektről, együttműközésről vagy csak egy kávés
-              csevejről — szívesen hallom tőled.
+              {t.contact.subheadline}
             </p>
 
             <div className="flex flex-col gap-4">
@@ -101,29 +104,29 @@ export default function ContactSection() {
               <div className="flex flex-col items-center justify-center h-64 gap-4">
                 <div className="text-5xl">✅</div>
                 <p className="text-[22px] font-semibold text-[#1d1d1f] text-center">
-                  Üzenet elküldve!
+                  {f.successTitle}
                 </p>
                 <p className="text-[15px] text-[#6e6e73] text-center">
-                  Hamarosan visszajelzek.
+                  {f.successBody}
                 </p>
                 <button
                   onClick={() => setSent(false)}
                   className="mt-4 text-[#0071e3] text-[15px] hover:underline"
                 >
-                  Új üzenet küldése
+                  {f.newMessage}
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <div className="flex flex-col gap-1.5">
                   <label className="text-[13px] font-medium text-[#1d1d1f]">
-                    Neved
+                    {f.nameLabel}
                   </label>
                   <Input
-                    placeholder="Kis Péter"
+                    placeholder={f.namePlaceholder}
                     value={form.name}
                     onChange={(e) =>
-                      setForm((f) => ({ ...f, name: e.target.value }))
+                      setForm((prev) => ({ ...prev, name: e.target.value }))
                     }
                     required
                     className="rounded-xl border-[#d2d2d7] bg-[#f5f5f7] focus-visible:ring-[#0071e3] text-[15px] py-3 px-4 h-auto"
@@ -131,14 +134,14 @@ export default function ContactSection() {
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label className="text-[13px] font-medium text-[#1d1d1f]">
-                    Email cím
+                    {f.emailLabel}
                   </label>
                   <Input
                     type="email"
-                    placeholder="kis.peter@email.hu"
+                    placeholder={f.emailPlaceholder}
                     value={form.email}
                     onChange={(e) =>
-                      setForm((f) => ({ ...f, email: e.target.value }))
+                      setForm((prev) => ({ ...prev, email: e.target.value }))
                     }
                     required
                     className="rounded-xl border-[#d2d2d7] bg-[#f5f5f7] focus-visible:ring-[#0071e3] text-[15px] py-3 px-4 h-auto"
@@ -146,13 +149,13 @@ export default function ContactSection() {
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label className="text-[13px] font-medium text-[#1d1d1f]">
-                    Üzenet
+                    {f.messageLabel}
                   </label>
                   <Textarea
-                    placeholder="Szia! Szeretnék veled dolgozni..."
+                    placeholder={f.messagePlaceholder}
                     value={form.message}
                     onChange={(e) =>
-                      setForm((f) => ({ ...f, message: e.target.value }))
+                      setForm((prev) => ({ ...prev, message: e.target.value }))
                     }
                     required
                     rows={5}
@@ -164,7 +167,7 @@ export default function ContactSection() {
                   disabled={loading}
                   className="mt-2 w-full bg-[#0071e3] text-white text-[17px] font-normal py-3.5 rounded-full hover:bg-[#0077ed] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
                 >
-                  {loading ? "Küldés..." : "Üzenet küldése"}
+                  {loading ? f.sending : f.submit}
                 </button>
                 {error && (
                   <p className="text-red-500 text-[13px] text-center">{error}</p>

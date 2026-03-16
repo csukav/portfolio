@@ -2,17 +2,19 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-
-const navLinks = [
-  { label: "Rólam", href: "#about" },
-  { label: "Projektek", href: "#projects" },
-  { label: "Képességek", href: "#skills" },
-  { label: "Kapcsolat", href: "#contact" },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Navbar() {
+  const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const navLinks = [
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.projects, href: "#projects" },
+    { label: t.nav.skills, href: "#skills" },
+    { label: t.nav.contact, href: "#contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -54,14 +56,14 @@ export default function Navbar() {
           href="#contact"
           className="hidden md:inline-flex items-center justify-center bg-[#0071e3] text-white text-[13px] font-medium px-4 py-1.5 rounded-full hover:bg-[#0077ed] transition-colors"
         >
-          Felveszel?
+          {t.nav.cta}
         </a>
 
         {/* Mobile menu button */}
         <button
           className="md:hidden flex flex-col gap-1.5 p-2"
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Menü"
+          aria-label={t.nav.menuLabel}
         >
           <span
             className={`block w-5 h-0.5 bg-[#1d1d1f] transition-all duration-300 ${
@@ -99,7 +101,7 @@ export default function Navbar() {
             className="inline-flex items-center justify-center bg-[#0071e3] text-white text-[15px] font-medium px-5 py-2.5 rounded-full mt-2 hover:bg-[#0077ed] transition-colors"
             onClick={() => setMenuOpen(false)}
           >
-            Felveszel?
+            {t.nav.cta}
           </a>
         </div>
       )}
