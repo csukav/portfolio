@@ -99,9 +99,8 @@ const jsonLd = {
     "Web Development",
   ],
   sameAs: [
-    // Add your social media URLs here, e.g.:
-    // "https://github.com/csukaviktor",
-    // "https://linkedin.com/in/csukaviktor",
+    "https://github.com/csukaviktor",
+    "https://linkedin.com/in/csukaviktor",
   ],
 };
 
