@@ -6,7 +6,7 @@ import { useLanguage } from "@/context/LanguageContext";
 
 const ParticlesBackground = dynamic(
   () => import("@/components/ParticlesBackground"),
-  { ssr: false }
+  { ssr: false },
 );
 
 const projectsMeta = [
@@ -50,7 +50,11 @@ export default function ProjectsSection() {
   }));
 
   return (
-    <section id="projects" className="relative py-32 bg-white overflow-hidden">
+    <section
+      id="projects"
+      aria-label="Projektek"
+      className="relative py-32 bg-white overflow-hidden"
+    >
       <ParticlesBackground id="tsparticles-projects" />
       <div className="relative z-10 max-w-[980px] mx-auto px-6">
         <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">

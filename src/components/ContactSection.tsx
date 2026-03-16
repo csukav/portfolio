@@ -8,7 +8,7 @@ import { useLanguage } from "@/context/LanguageContext";
 
 const ParticlesBackground = dynamic(
   () => import("@/components/ParticlesBackground"),
-  { ssr: false }
+  { ssr: false },
 );
 
 export default function ContactSection() {
@@ -44,7 +44,11 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-32 bg-[#f5f5f7] overflow-hidden">
+    <section
+      id="contact"
+      aria-label="Kapcsolat"
+      className="relative py-32 bg-[#f5f5f7] overflow-hidden"
+    >
       <ParticlesBackground id="tsparticles-contact" />
       <div className="relative z-10 max-w-[980px] mx-auto px-6">
         <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">
@@ -59,9 +63,7 @@ export default function ContactSection() {
               <br />
               {t.contact.headline2}
             </h2>
-            <p className="section-subheadline mb-10">
-              {t.contact.subheadline}
-            </p>
+            <p className="section-subheadline mb-10">{t.contact.subheadline}</p>
 
             <div className="flex flex-col gap-4">
               {[
@@ -170,7 +172,9 @@ export default function ContactSection() {
                   {loading ? f.sending : f.submit}
                 </button>
                 {error && (
-                  <p className="text-red-500 text-[13px] text-center">{error}</p>
+                  <p className="text-red-500 text-[13px] text-center">
+                    {error}
+                  </p>
                 )}
               </form>
             )}
