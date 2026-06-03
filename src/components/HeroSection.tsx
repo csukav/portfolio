@@ -6,14 +6,18 @@ import { useLanguage } from "@/context/LanguageContext";
 
 const ParticlesBackground = dynamic(
   () => import("@/components/ParticlesBackground"),
-  { ssr: false }
+  { ssr: false },
 );
 
 export default function HeroSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden bg-white px-6">
+    <section
+      id="hero"
+      aria-label="Hero"
+      className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden bg-white px-6"
+    >
       {/* Interactive particle canvas */}
       <ParticlesBackground />
 

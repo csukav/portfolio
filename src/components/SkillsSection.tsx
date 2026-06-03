@@ -36,14 +36,12 @@ export default function SkillsSection() {
   const { t } = useLanguage();
 
   return (
-    <section id="skills" className="py-32 bg-[#1d1d1f]">
+    <section id="skills" aria-label="Képességek" className="py-32 bg-[#1d1d1f]">
       <div className="max-w-[980px] mx-auto px-6">
         <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">
           {t.skills.label}
         </p>
-        <h2
-          className="mb-6 text-[56px] md:text-[72px] font-bold leading-[1.04] tracking-[-0.025em] text-white"
-        >
+        <h2 className="mb-6 text-[56px] md:text-[72px] font-bold leading-[1.04] tracking-[-0.025em] text-white">
           {t.skills.headline1}
           <br />
           <span className="text-[#6e6e73]">{t.skills.headline2}</span>
@@ -59,7 +57,9 @@ export default function SkillsSection() {
                 className="text-[13px] uppercase tracking-[0.12em] font-semibold mb-8"
                 style={{ color: group.color }}
               >
-                {group.category === "tools" ? t.skills.toolsCategory : group.category}
+                {group.category === "tools"
+                  ? t.skills.toolsCategory
+                  : group.category}
               </h3>
               <div className="flex flex-col gap-6">
                 {group.skills.map((skill) => (
@@ -94,9 +94,17 @@ export default function SkillsSection() {
         {/* Tech pill row */}
         <div className="mt-20 flex flex-wrap gap-2">
           {[
-            "Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js",
-            "PostgreSQL", "Supabase", "AWS", "Vercel",
-            "Figma", "Git",
+            "Next.js",
+            "React",
+            "TypeScript",
+            "Tailwind CSS",
+            "Node.js",
+            "PostgreSQL",
+            "Supabase",
+            "AWS",
+            "Vercel",
+            "Figma",
+            "Git",
           ].map((tech) => (
             <span
               key={tech}

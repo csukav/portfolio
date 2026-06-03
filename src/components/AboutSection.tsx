@@ -8,7 +8,7 @@ export default function AboutSection() {
   const { stats, values } = t.about;
 
   return (
-    <section id="about" className="py-32 bg-[#f5f5f7]">
+    <section id="about" aria-label="Rólam" className="py-32 bg-[#f5f5f7]">
       <div className="max-w-[980px] mx-auto px-6">
         {/* Section label */}
         <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">
@@ -18,12 +18,8 @@ export default function AboutSection() {
         <div className="grid md:grid-cols-2 gap-16 items-start">
           {/* Left: text */}
           <div>
-            <h2 className="section-headline mb-6">
-              {t.about.headline}
-            </h2>
-            <p className="section-subheadline mb-6">
-              {t.about.subheadline}
-            </p>
+            <h2 className="section-headline mb-6">{t.about.headline}</h2>
+            <p className="section-subheadline mb-6">{t.about.subheadline}</p>
             <p className="text-[17px] text-[#6e6e73] leading-[1.7]">
               {t.about.body}
             </p>
