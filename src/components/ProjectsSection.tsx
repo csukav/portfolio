@@ -17,6 +17,7 @@ const projectsMeta = [
     lightColor: "#e8f1fb",
     number: "01",
     emoji: "🛒",
+    link: "https://www.hoodini.hu/",
   },
   {
     title: "SaaS Dashboard",
@@ -24,6 +25,7 @@ const projectsMeta = [
     color: "#34c759",
     lightColor: "#eaf8ec",
     number: "02",
+    link: "https://github.com",
   },
   {
     title: "Spotify Clone",
@@ -31,6 +33,7 @@ const projectsMeta = [
     color: "#ff9f0a",
     lightColor: "#fff3e0",
     number: "03",
+    link: "https://github.com",
   },
   {
     title: "Mobile Companion App",
@@ -38,6 +41,7 @@ const projectsMeta = [
     color: "#bf5af2",
     lightColor: "#f5eeff",
     number: "04",
+    link: "https://github.com",
   },
 ];
 
@@ -66,8 +70,11 @@ export default function ProjectsSection() {
         </div>
 
         {/* Featured project (large) */}
-        <div
-          className="apple-card p-10 mb-6 cursor-pointer"
+        <a
+          href={projects[0].link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="apple-card p-10 mb-6 cursor-pointer block"
           style={{ background: projects[0].lightColor }}
         >
           <div className="flex flex-col md:flex-row gap-10 items-start">
@@ -108,14 +115,17 @@ export default function ProjectsSection() {
               🛒
             </div>
           </div>
-        </div>
+        </a>
 
         {/* Other projects grid */}
         <div className="grid md:grid-cols-3 gap-6">
           {projects.slice(1).map((project) => (
-            <div
+            <a
               key={project.number}
-              className="apple-card p-8 cursor-pointer"
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="apple-card p-8 cursor-pointer block"
               style={{ background: project.lightColor }}
             >
               <span
@@ -145,7 +155,7 @@ export default function ProjectsSection() {
                   </Badge>
                 ))}
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>

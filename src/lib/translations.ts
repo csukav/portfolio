@@ -81,6 +81,45 @@ export const translations = {
         "Elsősorban a modern web ökoszisztémában dolgozom, de nem ijedek meg az ismeretlen technológiáktól sem.",
       toolsCategory: "Eszközök & Egyéb",
     },
+    services: {
+      label: "Szolgáltatások",
+      headline1: "Rendszergazdai",
+      headline2: "szolgáltatások.",
+      subheadline:
+        "Teljes körű IT-üzemeltetés és infrastruktúra-menedzsment megoldások a vállalat zavartalan működéséhez.",
+      items: [
+        {
+          title: "Szerver- és Cloud-menedzsment",
+          desc: "AWS, Azure és Vercel infrastruktúra kezelése, frissítés és optimalizálás.",
+          icon: "☁️",
+        },
+        {
+          title: "Biztonság és adatvédelem",
+          desc: "SSL/TLS tanúsítványok, tűzfal konfigurálás, hálózati biztonság és GDPR-kompatibilitás.",
+          icon: "🔐",
+        },
+        {
+          title: "Adatbázis-menedzsment",
+          desc: "PostgreSQL, MySQL, NoSQL adatbázisok üzemeltetése, biztonsági mentés és optimalizálás.",
+          icon: "🗄️",
+        },
+        {
+          title: "Monitoring és támogatás",
+          desc: "24/7 rendszer-monitoring, alerting, hibaelhárítás és proaktív karbantartás.",
+          icon: "📊",
+        },
+        {
+          title: "CI/CD pipeline felállítása",
+          desc: "Automatikus deployment, tesztelés és release menedzsment GitHub Actions és GitLab CI-vel.",
+          icon: "⚙️",
+        },
+        {
+          title: "Teljesítmény-optimalizálás",
+          desc: "Load balancing, caching stratégiák, CDN konfigurálás és alkalmazás-optimalizálás.",
+          icon: "⚡",
+        },
+      ],
+    },
     contact: {
       label: "Kapcsolat",
       headline1: "Kezdjük el",
@@ -182,6 +221,45 @@ export const translations = {
       subheadline:
         "I primarily work in the modern web ecosystem, but I am always ready to pick up new technologies.",
       toolsCategory: "Tools & Other",
+    },
+    services: {
+      label: "Services",
+      headline1: "System Administration",
+      headline2: "Services.",
+      subheadline:
+        "Comprehensive IT operations and infrastructure management solutions for seamless business continuity.",
+      items: [
+        {
+          title: "Server & Cloud Management",
+          desc: "AWS, Azure, and Vercel infrastructure management, updates, and optimization.",
+          icon: "☁️",
+        },
+        {
+          title: "Security & Data Protection",
+          desc: "SSL/TLS certificates, firewall configuration, network security, and GDPR compliance.",
+          icon: "🔐",
+        },
+        {
+          title: "Database Management",
+          desc: "PostgreSQL, MySQL, NoSQL database operations, backups, and optimization.",
+          icon: "🗄️",
+        },
+        {
+          title: "Monitoring & Support",
+          desc: "24/7 system monitoring, alerting, troubleshooting, and proactive maintenance.",
+          icon: "📊",
+        },
+        {
+          title: "CI/CD Pipeline Setup",
+          desc: "Automated deployment, testing, and release management with GitHub Actions and GitLab CI.",
+          icon: "⚙️",
+        },
+        {
+          title: "Performance Optimization",
+          desc: "Load balancing, caching strategies, CDN configuration, and application optimization.",
+          icon: "⚡",
+        },
+      ],
     },
     contact: {
       label: "Contact",
