@@ -11,13 +11,13 @@ export const translations = {
       menuLabel: "Menü",
     },
     hero: {
-      badge: "Teljes körű webfejlesztő",
-      headline1: "Kód, amit",
-      headline2: "érezni lehet.",
+      badge: "Teljes körű webfejlesztés és informatikai szolgáltatások",
+      headline1: "Szia, én vagyok",
+      headline2: "a fejlesztőd.",
       subheadline:
-        "Letisztult, gyors és intuitív digitális élményeket tervezek és fejlesztek — a koncepcióktól a kész termékig.",
-      cta1: "Projektjeim",
-      cta2: "Lépj kapcsolatba →",
+        "Szenvedéllyel készítek letisztult, gyors és intuitív webes élményeket — az ötlettől a kész projektekig.",
+      cta1: "Ismerj meg",
+      cta2: "Kezdjünk el együtt →",
       scroll: "Görgess",
     },
     about: {
@@ -91,31 +91,37 @@ export const translations = {
         {
           title: "Szerver- és Cloud-menedzsment",
           desc: "AWS, Azure és Vercel infrastruktúra kezelése, frissítés és optimalizálás.",
+          price: "Ár: 180 000 Ft-tól",
           icon: "☁️",
         },
         {
           title: "Biztonság és adatvédelem",
           desc: "SSL/TLS tanúsítványok, tűzfal konfigurálás, hálózati biztonság és GDPR-kompatibilitás.",
+          price: "Ár: 120 000 Ft-tól",
           icon: "🔐",
         },
         {
           title: "Adatbázis-menedzsment",
           desc: "PostgreSQL, MySQL, NoSQL adatbázisok üzemeltetése, biztonsági mentés és optimalizálás.",
+          price: "Ár: 110 000 Ft-tól",
           icon: "🗄️",
         },
         {
           title: "Monitoring és támogatás",
           desc: "24/7 rendszer-monitoring, alerting, hibaelhárítás és proaktív karbantartás.",
+          price: "Ár: 90 000 Ft-tól",
           icon: "📊",
         },
         {
           title: "CI/CD pipeline felállítása",
           desc: "Automatikus deployment, tesztelés és release menedzsment GitHub Actions és GitLab CI-vel.",
+          price: "Ár: 130 000 Ft-tól",
           icon: "⚙️",
         },
         {
           title: "Teljesítmény-optimalizálás",
           desc: "Load balancing, caching stratégiák, CDN konfigurálás és alkalmazás-optimalizálás.",
+          price: "Ár: 140 000 Ft-tól",
           icon: "⚡",
         },
       ],
@@ -153,12 +159,12 @@ export const translations = {
     },
     hero: {
       badge: "Full-Stack Web Developer",
-      headline1: "Code you can",
-      headline2: "feel.",
+      headline1: "Hi, I'm",
+      headline2: "your developer.",
       subheadline:
-        "I design and build clean, fast, and intuitive digital experiences — from concept to finished product.",
-      cta1: "My Projects",
-      cta2: "Get in touch →",
+        "I build clean, fast, and intuitive web experiences with a focus on quality, usability, and meaningful results.",
+      cta1: "Get to know me",
+      cta2: "Let's start together →",
       scroll: "Scroll",
     },
     about: {
@@ -232,31 +238,37 @@ export const translations = {
         {
           title: "Server & Cloud Management",
           desc: "AWS, Azure, and Vercel infrastructure management, updates, and optimization.",
+          price: "Price: from €450",
           icon: "☁️",
         },
         {
           title: "Security & Data Protection",
           desc: "SSL/TLS certificates, firewall configuration, network security, and GDPR compliance.",
+          price: "Price: from €350",
           icon: "🔐",
         },
         {
           title: "Database Management",
           desc: "PostgreSQL, MySQL, NoSQL database operations, backups, and optimization.",
+          price: "Price: from €320",
           icon: "🗄️",
         },
         {
           title: "Monitoring & Support",
           desc: "24/7 system monitoring, alerting, troubleshooting, and proactive maintenance.",
+          price: "Price: from €250",
           icon: "📊",
         },
         {
           title: "CI/CD Pipeline Setup",
           desc: "Automated deployment, testing, and release management with GitHub Actions and GitLab CI.",
+          price: "Price: from €400",
           icon: "⚙️",
         },
         {
           title: "Performance Optimization",
           desc: "Load balancing, caching strategies, CDN configuration, and application optimization.",
+          price: "Price: from €380",
           icon: "⚡",
         },
       ],

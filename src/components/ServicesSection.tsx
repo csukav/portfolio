@@ -32,6 +32,11 @@ export default function ServicesSection() {
               <h3 className="text-xl font-semibold text-white mb-3">
                 {service.title}
               </h3>
+              {service.price ? (
+                <p className="text-sm font-semibold text-[#07f] mb-4">
+                  {service.price}
+                </p>
+              ) : null}
               <p className="text-[15px] text-[#a1a1a6] leading-relaxed">
                 {service.desc}
               </p>
