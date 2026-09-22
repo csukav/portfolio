@@ -83,32 +83,32 @@ export const translations = {
     },
     services: {
       label: "Szolgáltatások",
-      headline1: "Rendszergazdai",
+      headline1: "Informatikai",
       headline2: "szolgáltatások.",
       subheadline:
-        "Teljes körű IT-üzemeltetés és infrastruktúra-menedzsment megoldások a vállalat zavartalan működéséhez.",
+        "Megbízható informatikai szolgáltatások és rendszergazdai támogatás kis- és középvállalkozásoknak — a szerverüzemeltetéstől a cloud-infrastruktúráig, hogy IT-rendszerei mindig zavartalanul működjenek.",
       items: [
         {
           title: "Szerver- és Cloud-menedzsment",
-          desc: "AWS, Azure és Vercel infrastruktúra kezelése, frissítés és optimalizálás.",
+          desc: "Informatikai szolgáltatásunk része az AWS, Azure és Vercel infrastruktúra kezelése, frissítése és optimalizálása.",
           price: "Ár: 180 000 Ft-tól",
           icon: "☁️",
         },
         {
           title: "Biztonság és adatvédelem",
-          desc: "SSL/TLS tanúsítványok, tűzfal konfigurálás, hálózati biztonság és GDPR-kompatibilitás.",
+          desc: "IT biztonsági szolgáltatás: SSL/TLS tanúsítványok, tűzfal konfigurálás, hálózati biztonság és GDPR-kompatibilitás.",
           price: "Ár: 120 000 Ft-tól",
           icon: "🔐",
         },
         {
           title: "Adatbázis-menedzsment",
-          desc: "PostgreSQL, MySQL, NoSQL adatbázisok üzemeltetése, biztonsági mentés és optimalizálás.",
+          desc: "PostgreSQL, MySQL, NoSQL adatbázisok üzemeltetése, biztonsági mentés és optimalizálás — megbízható informatikai háttérrel.",
           price: "Ár: 110 000 Ft-tól",
           icon: "🗄️",
         },
         {
-          title: "Monitoring és támogatás",
-          desc: "24/7 rendszer-monitoring, alerting, hibaelhárítás és proaktív karbantartás.",
+          title: "Monitoring és rendszergazdai támogatás",
+          desc: "24/7 rendszer-monitoring, alerting, hibaelhárítás és proaktív karbantartás — folyamatos informatikai támogatás.",
           price: "Ár: 90 000 Ft-tól",
           icon: "📊",
         },
@@ -120,7 +120,7 @@ export const translations = {
         },
         {
           title: "Teljesítmény-optimalizálás",
-          desc: "Load balancing, caching stratégiák, CDN konfigurálás és alkalmazás-optimalizálás.",
+          desc: "Load balancing, caching stratégiák, CDN konfigurálás és alkalmazás-optimalizálás vállalati rendszerekhez.",
           price: "Ár: 140 000 Ft-tól",
           icon: "⚡",
         },
@@ -230,10 +230,10 @@ export const translations = {
     },
     services: {
       label: "Services",
-      headline1: "System Administration",
+      headline1: "IT",
       headline2: "Services.",
       subheadline:
-        "Comprehensive IT operations and infrastructure management solutions for seamless business continuity.",
+        "Reliable IT services and system administration support for small and medium businesses — from server operations to cloud infrastructure, keeping your systems running smoothly.",
       items: [
         {
           title: "Server & Cloud Management",

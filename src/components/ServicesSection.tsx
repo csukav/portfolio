@@ -6,7 +6,7 @@ export default function ServicesSection() {
   const { t } = useLanguage();
 
   return (
-    <section id="services" className="py-32 bg-black">
+    <section id="services" aria-label={t.services.label} className="py-32 bg-black">
       <div className="max-w-[980px] mx-auto px-6">
         <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">
           {t.services.label}

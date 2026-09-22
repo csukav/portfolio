@@ -20,8 +20,15 @@ export const metadata: Metadata = {
     template: `%s | ${FULL_NAME}`,
   },
   description:
-    "Csuka Viktor full-stack webfejlesztő portfóliója. React, Next.js, TypeScript és Node.js projektekkel. Letisztult design, optimalizált teljesítmény.",
+    "Csuka Viktor full-stack webfejlesztő és informatikai szolgáltató. Webfejlesztés React, Next.js, TypeScript alapokon, valamint szerver- és cloud-menedzsment, rendszergazdai támogatás, biztonság és adatbázis-üzemeltetés vállalatoknak.",
   keywords: [
+    "informatikai szolgáltatások",
+    "IT szolgáltatások",
+    "rendszergazdai szolgáltatás",
+    "IT üzemeltetés",
+    "szerver menedzsment",
+    "cloud menedzsment",
+    "IT support vállalatoknak",
     "full-stack fejlesztő",
     "webfejlesztő",
     "React fejlesztő",
@@ -32,6 +39,7 @@ export const metadata: Metadata = {
     "Csuka Viktor",
     "full-stack developer",
     "web developer",
+    "IT services",
     "frontend",
     "backend",
   ],
@@ -45,7 +53,7 @@ export const metadata: Metadata = {
     siteName: `${FULL_NAME} — Portfólió`,
     title: `${FULL_NAME} — ${JOB_TITLE}`,
     description:
-      "Full-stack webfejlesztő portfóliója. React, Next.js, TypeScript és Node.js alapú modern webalkalmazások.",
+      "Full-stack webfejlesztő és informatikai szolgáltató. Webfejlesztés React, Next.js, TypeScript alapokon, valamint rendszergazdai, cloud- és szerverüzemeltetési szolgáltatások vállalatoknak.",
     images: [
       {
         url: "/og-image.png",
@@ -59,7 +67,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${FULL_NAME} — ${JOB_TITLE}`,
     description:
-      "Full-stack webfejlesztő portfóliója. React, Next.js, TypeScript és Node.js alapú modern webalkalmazások.",
+      "Full-stack webfejlesztő és informatikai szolgáltató. Webfejlesztés React, Next.js, TypeScript alapokon, valamint rendszergazdai, cloud- és szerverüzemeltetési szolgáltatások vállalatoknak.",
     images: ["/og-image.png"],
   },
   alternates: {
@@ -89,7 +97,7 @@ const jsonLd = {
   url: SITE_URL,
   jobTitle: JOB_TITLE,
   description:
-    "Full-stack webfejlesztő, aki React, Next.js, TypeScript és Node.js technológiákkal dolgozik.",
+    "Full-stack webfejlesztő és informatikai szolgáltató, aki React, Next.js, TypeScript és Node.js technológiákkal, valamint szerver-, cloud- és rendszergazdai szolgáltatásokkal dolgozik.",
   knowsAbout: [
     "React",
     "Next.js",
@@ -97,11 +105,30 @@ const jsonLd = {
     "Node.js",
     "Full-Stack Development",
     "Web Development",
+    "Informatikai szolgáltatások",
+    "IT szolgáltatások",
+    "Rendszergazdai szolgáltatások",
+    "Cloud menedzsment",
+    "Szerverüzemeltetés",
   ],
   sameAs: [
     "https://github.com/csukaviktor",
     "https://linkedin.com/in/csukaviktor",
   ],
+  makesOffer: {
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name: "Informatikai szolgáltatások",
+      serviceType: "IT szolgáltatás",
+      description:
+        "Szerver- és cloud-menedzsment, biztonság és adatvédelem, adatbázis-menedzsment, monitoring és támogatás, CI/CD pipeline felállítása, teljesítmény-optimalizálás.",
+      provider: {
+        "@type": "Person",
+        name: FULL_NAME,
+      },
+    },
+  },
 };
 
 export default async function RootLayout({
