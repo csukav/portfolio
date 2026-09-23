@@ -12,7 +12,7 @@ export const translations = {
     },
     hero: {
       badge: "Teljes körű webfejlesztés és informatikai szolgáltatások",
-      headline1: "Szia, én vagyok",
+      headline1: "Szia! Én vagyok",
       headline2: "a fejlesztőd.",
       subheadline:
         "Szenvedéllyel készítek letisztult, gyors és intuitív webes élményeket — az ötlettől a kész projektekig.",
