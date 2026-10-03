@@ -1,43 +1,115 @@
 import { blogPosts } from "@/lib/blog";
-import { headers } from "next/headers";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { SITE_URL, FULL_NAME, OG_IMAGE } from "@/lib/site";
+import {
+  isLocale,
+  localePath,
+  languageAlternates,
+  otherLocale,
+  ogLocale,
+  htmlLang,
+} from "@/lib/i18n";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
-const SITE_URL = "https://csukaviktor.com";
+interface Props {
+  params: Promise<{ lang: string }>;
+}
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description:
-    "Csuka Viktor cikkei full-stack webfejlesztésről: Next.js, React, Supabase, React Native és modern web technológiák.",
-  alternates: { canonical: `${SITE_URL}/blog` },
-  openGraph: {
-    url: `${SITE_URL}/blog`,
-    title: "Blog | Csuka Viktor",
-    description:
-      "Cikkek full-stack webfejlesztésről: Next.js, React, Supabase és modern web technológiák.",
-  },
+const DESCRIPTIONS = {
+  hu: "Csuka Viktor cikkei full-stack webfejlesztésről: Next.js, React, Supabase, React Native és modern web technológiák.",
+  en: "Articles by Csuka Viktor on full-stack web development: Next.js, React, Supabase, React Native and modern web technologies.",
 };
 
-export default async function BlogPage() {
-  const headersList = await headers();
-  const locale = headersList.get("x-locale") ?? "en";
-  const isHu = locale === "hu";
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang } = await params;
+  if (!isLocale(lang)) return {};
+  const description = DESCRIPTIONS[lang];
+  return {
+    title: "Blog",
+    description,
+    alternates: languageAlternates(lang, "/blog"),
+    openGraph: {
+      type: "website",
+      locale: ogLocale[lang],
+      url: localePath(lang, "/blog"),
+      siteName: FULL_NAME,
+      title: `Blog | ${FULL_NAME}`,
+      description,
+      images: [OG_IMAGE],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Blog | ${FULL_NAME}`,
+      description,
+      images: [OG_IMAGE.url],
+    },
+  };
+}
+
+export default async function BlogPage({ params }: Props) {
+  const { lang } = await params;
+  if (!isLocale(lang)) notFound();
+  const isHu = lang === "hu";
+  const blogUrl = `${SITE_URL}${localePath(lang, "/blog")}`;
 
   const sorted = [...blogPosts].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   );
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Blog",
+        "@id": `${blogUrl}#blog`,
+        url: blogUrl,
+        name: `Blog | ${FULL_NAME}`,
+        description: DESCRIPTIONS[lang],
+        inLanguage: htmlLang[lang],
+        author: { "@id": `${SITE_URL}/#person` },
+        blogPost: sorted.map((post) => ({
+          "@type": "BlogPosting",
+          headline: isHu ? post.titleHu : post.titleEn,
+          url: `${SITE_URL}${localePath(lang, `/blog/${post.slug}`)}`,
+          datePublished: post.date,
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: isHu ? "Főoldal" : "Home",
+            item: `${SITE_URL}${localePath(lang)}`,
+          },
+          { "@type": "ListItem", position: 2, name: "Blog", item: blogUrl },
+        ],
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="max-w-[780px] mx-auto px-6 py-32">
-        {/* Back link */}
-        <Link
-          href="/"
-          className="inline-flex items-center gap-1.5 text-[13px] text-[#0071e3] mb-12 hover:underline"
-        >
-          ← {isHu ? "Vissza a főoldalra" : "Back to home"}
-        </Link>
-
+        <div className="flex items-center justify-between mb-12">
+          <Link
+            href={localePath(lang)}
+            className="inline-flex items-center gap-1.5 text-[13px] text-[#0071e3] hover:underline"
+          >
+            ← {isHu ? "Vissza a főoldalra" : "Back to home"}
+          </Link>
+          <LanguageSwitcher
+            locale={lang}
+            href={localePath(otherLocale(lang), "/blog")}
+          />
+        </div>
         <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">
           Blog
         </p>
@@ -62,7 +134,7 @@ export default async function BlogPage() {
             return (
               <Link
                 key={post.slug}
-                href={`/blog/${post.slug}`}
+                href={localePath(lang, `/blog/${post.slug}`)}
                 className={`group block bg-white hover:bg-[#f5f5f7] transition-colors px-8 py-7 ${
                   i === 0 ? "" : "border-t border-black/8"
                 }`}
@@ -84,7 +156,7 @@ export default async function BlogPage() {
                   {summary}
                 </p>
                 <div className="flex items-center gap-4 text-[13px] text-[#86868b]">
-                  <span>{formattedDate}</span>
+                  <time dateTime={post.date}>{formattedDate}</time>
                   <span>·</span>
                   <span>
                     {post.readingTimeMin} {isHu ? "perc olvasás" : "min read"}

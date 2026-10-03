@@ -1,8 +1,9 @@
-  "use client";
+"use client";
 
 import { blogPosts } from "@/lib/blog";
 import { useLanguage } from "@/context/LanguageContext";
 import Link from "next/link";
+import { localePath } from "@/lib/i18n";
 
 const sorted = [...blogPosts].sort(
   (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
@@ -13,7 +14,7 @@ export default function BlogSection() {
   const isHu = locale === "hu";
 
   return (
-    <section id="blog" aria-label="Blog" className="py-32 bg-[#f5f5f7]">
+    <section id="blog" aria-label={t.nav.blog} className="py-32 bg-white">
       <div className="max-w-[980px] mx-auto px-6">
         <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">
           Blog
@@ -21,7 +22,7 @@ export default function BlogSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <h2 className="section-headline max-w-[480px]">{t.blog.headline}</h2>
           <Link
-            href="/blog"
+            href={localePath(locale, "/blog")}
             className="hidden md:inline-flex items-center gap-1 text-[15px] text-[#0071e3] hover:underline font-medium shrink-0"
           >
             {t.blog.seeAll} →
@@ -40,7 +41,7 @@ export default function BlogSection() {
             return (
               <Link
                 key={post.slug}
-                href={`/blog/${post.slug}`}
+                href={localePath(locale, `/blog/${post.slug}`)}
                 className="group apple-card p-7 flex flex-col bg-white hover:shadow-lg transition-shadow"
               >
                 <div className="flex flex-wrap gap-1.5 mb-4">
@@ -60,7 +61,7 @@ export default function BlogSection() {
                   {summary}
                 </p>
                 <div className="flex items-center gap-3 text-[12px] text-[#86868b]">
-                  <span>{formattedDate}</span>
+                  <time dateTime={post.date}>{formattedDate}</time>
                   <span>·</span>
                   <span>
                     {post.readingTimeMin} {isHu ? "perc" : "min read"}
@@ -73,7 +74,7 @@ export default function BlogSection() {
 
         <div className="mt-8 flex md:hidden">
           <Link
-            href="/blog"
+            href={localePath(locale, "/blog")}
             className="text-[15px] text-[#0071e3] hover:underline font-medium"
           >
             {t.blog.seeAll} →

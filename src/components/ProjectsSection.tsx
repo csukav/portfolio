@@ -56,7 +56,7 @@ export default function ProjectsSection() {
   return (
     <section
       id="projects"
-      aria-label="Projektek"
+      aria-label={t.nav.projects}
       className="relative py-32 bg-white overflow-hidden"
     >
       <ParticlesBackground id="tsparticles-projects" />

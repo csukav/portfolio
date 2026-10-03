@@ -46,7 +46,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      aria-label="Kapcsolat"
+      aria-label={t.nav.contact}
       className="relative py-32 bg-[#f5f5f7] overflow-hidden"
     >
       <ParticlesBackground id="tsparticles-contact" />
@@ -75,7 +75,7 @@ export default function ContactSection() {
                 {
                   label: "LinkedIn",
                   value: "linkedin.com/in/csukaviktor",
-                  href: "https://linkedin.com/in/csukaviktor",
+                  href: "https://www.linkedin.com/in/csukaviktor",
                 },
                 {
                   label: "GitHub",

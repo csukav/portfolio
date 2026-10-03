@@ -1,29 +1,54 @@
 import { NextRequest, NextResponse } from "next/server";
+import { LOCALE_COOKIE, defaultLocale } from "@/lib/i18n";
 
-export function middleware(request: NextRequest) {
-  const country = request.headers.get("x-vercel-ip-country") ?? "";
+// Crawlers and link-preview bots must always get the URL they asked for,
+// otherwise the Hungarian pages (US-based Googlebot) would never be indexed.
+const BOT_UA =
+  /bot|crawl|spider|slurp|preview|facebookexternalhit|lighthouse|embedly|whatsapp|telegram|discord|linkedin|vercel/i;
 
-  const locale = country === "HU" ? "hu" : "en";
+function prefersEnglish(request: NextRequest): boolean {
+  const chosen = request.cookies.get(LOCALE_COOKIE)?.value;
+  if (chosen) return chosen === "en";
 
-  // Forward locale via request header so server components (layout) can read it
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("x-locale", locale);
+  const ua = request.headers.get("user-agent") ?? "";
+  if (!ua || BOT_UA.test(ua)) return false;
 
-  const response = NextResponse.next({
-    request: { headers: requestHeaders },
-  });
+  const country = request.headers.get("x-vercel-ip-country");
+  return !!country && country !== "HU";
+}
 
-  // Also set a cookie so client components can read it
-  response.cookies.set("locale", locale, {
-    httpOnly: false,
-    sameSite: "lax",
-    maxAge: 60 * 60 * 24,
-    path: "/",
-  });
+export function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
 
-  return response;
+  // English lives under /en and is served as-is.
+  if (pathname === "/en" || pathname.startsWith("/en/")) {
+    return NextResponse.next();
+  }
+
+  const url = request.nextUrl.clone();
+
+  // /hu/... is a duplicate of the unprefixed Hungarian URL → permanent redirect.
+  if (pathname === `/${defaultLocale}` || pathname.startsWith(`/${defaultLocale}/`)) {
+    url.pathname = pathname.slice(defaultLocale.length + 1) || "/";
+    return NextResponse.redirect(url, 308);
+  }
+
+  // First visit from abroad (or explicit English choice): suggest /en.
+  // Temporary redirect, so search engines keep the Hungarian URL indexed.
+  if (prefersEnglish(request)) {
+    url.pathname = pathname === "/" ? "/en" : `/en${pathname}`;
+    const response = NextResponse.redirect(url, 307);
+    response.headers.set("Vary", "Cookie, User-Agent");
+    return response;
+  }
+
+  // Unprefixed URL → Hungarian page, internally.
+  url.pathname = pathname === "/" ? `/${defaultLocale}` : `/${defaultLocale}${pathname}`;
+  return NextResponse.rewrite(url);
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|api).*)"],
+  // Skip API routes, Next internals and any file with an extension
+  // (robots.txt, sitemap.xml, og-image.jpg, favicon.ico, ...).
+  matcher: ["/((?!api|_next/static|_next/image|.*\\..*).*)"],
 };
