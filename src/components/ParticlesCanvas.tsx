@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
-import type { ISourceOptions } from "@tsparticles/engine";
+import type { Container, ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
   fullScreen: { enable: false },
-  fpsLimit: 120,
+  fpsLimit: 60,
   interactivity: {
     events: {
       onHover: {
@@ -84,14 +84,38 @@ const options: ISourceOptions = {
   detectRetina: true,
 };
 
-export default function ParticlesBackground({ id = "tsparticles" }: { id?: string }) {
+// Shared by every instance: the engine is initialised only once per page.
+let enginePromise: Promise<void> | null = null;
+function initEngine() {
+  enginePromise ??= initParticlesEngine(async (engine) => {
+    await loadSlim(engine);
+  });
+  return enginePromise;
+}
+
+export default function ParticlesCanvas({
+  id,
+  active,
+}: {
+  id: string;
+  active: boolean;
+}) {
   const [engineReady, setEngineReady] = useState(false);
+  const containerRef = useRef<Container | undefined>(undefined);
+  const activeRef = useRef(active);
 
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => setEngineReady(true));
+    initEngine().then(() => setEngineReady(true));
   }, []);
+
+  // Pause the animation loop while the section is off-screen.
+  useEffect(() => {
+    activeRef.current = active;
+    const container = containerRef.current;
+    if (!container) return;
+    if (active) container.play();
+    else container.pause();
+  }, [active]);
 
   if (!engineReady) return null;
 
@@ -100,6 +124,10 @@ export default function ParticlesBackground({ id = "tsparticles" }: { id?: strin
       id={id}
       className="absolute inset-0 w-full h-full"
       options={options}
+      particlesLoaded={async (container) => {
+        containerRef.current = container;
+        if (!activeRef.current) container?.pause();
+      }}
     />
   );
 }

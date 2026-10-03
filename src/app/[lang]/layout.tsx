@@ -252,17 +252,24 @@ export default async function RootLayout({ children, params }: Props) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(buildJsonLd(lang)) }}
         />
         {children}
-        {/* Google tag (gtag.js) - AW-18115939358, loaded after hydration so it doesn't block rendering */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18115939358"
-          strategy="afterInteractive"
-        />
+        {/* Google tag (gtag.js) - AW-18115939358.
+            The queue is set up right away (tiny inline script); the ~150 KB library
+            loads only after the page has finished loading, so it doesn't compete
+            with rendering. Queued commands run in order once it arrives. */}
         <Script id="gtag-init" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'AW-18115939358');`}
+gtag('config', 'AW-18115939358');
+// Oldalmegtekintés conversion - homepage only
+if (location.pathname === '/' || location.pathname === '/en') {
+  gtag('event', 'conversion', {'send_to': 'AW-18115939358/ySUcCJH18aEcEJ6Yrb5D'});
+}`}
         </Script>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18115939358"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );

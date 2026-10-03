@@ -1,15 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import dynamic from "next/dynamic";
+import ParticlesBackground from "@/components/ParticlesBackground";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useLanguage } from "@/context/LanguageContext";
-
-const ParticlesBackground = dynamic(
-  () => import("@/components/ParticlesBackground"),
-  { ssr: false },
-);
 
 export default function ContactSection() {
   const { t } = useLanguage();

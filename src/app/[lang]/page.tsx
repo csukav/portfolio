@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -44,11 +43,6 @@ export default async function Home({ params }: Props) {
       <Footer locale={lang} />
       <Analytics />
       <SpeedInsights />
-      {/* Event snippet for Oldalmegtekintés conversion page - homepage only.
-          lazyOnload runs after the gtag config script from the root layout. */}
-      <Script id="gtag-conversion" strategy="lazyOnload">
-        {`window.gtag && gtag('event', 'conversion', {'send_to': 'AW-18115939358/ySUcCJH18aEcEJ6Yrb5D'});`}
-      </Script>
     </LanguageProvider>
   );
 }

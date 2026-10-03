@@ -1,13 +1,8 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import dynamic from "next/dynamic";
+import ParticlesBackground from "@/components/ParticlesBackground";
 import { useLanguage } from "@/context/LanguageContext";
-
-const ParticlesBackground = dynamic(
-  () => import("@/components/ParticlesBackground"),
-  { ssr: false },
-);
 
 const projectsMeta = [
   {
