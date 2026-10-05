@@ -1,13 +1,8 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import dynamic from "next/dynamic";
+import ParticlesBackground from "@/components/ParticlesBackground";
 import { useLanguage } from "@/context/LanguageContext";
-
-const ParticlesBackground = dynamic(
-  () => import("@/components/ParticlesBackground"),
-  { ssr: false },
-);
 
 const projectsMeta = [
   {
@@ -56,7 +51,7 @@ export default function ProjectsSection() {
   return (
     <section
       id="projects"
-      aria-label="Projektek"
+      aria-label={t.nav.projects}
       className="relative py-32 bg-white overflow-hidden"
     >
       <ParticlesBackground id="tsparticles-projects" />

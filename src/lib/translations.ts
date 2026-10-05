@@ -9,6 +9,7 @@ export const translations = {
       contact: "Kapcsolat",
       cta: "Felveszel?",
       menuLabel: "Menü",
+      blog: "Blog",
     },
     hero: {
       badge: "Teljes körű webfejlesztés és informatikai szolgáltatások",
@@ -126,6 +127,10 @@ export const translations = {
         },
       ],
     },
+    blog: {
+      headline: "Friss cikkek a blogról.",
+      seeAll: "Összes cikk",
+    },
     contact: {
       label: "Kapcsolat",
       headline1: "Kezdjük el",
@@ -156,6 +161,7 @@ export const translations = {
       contact: "Contact",
       cta: "Hire me?",
       menuLabel: "Menu",
+      blog: "Blog",
     },
     hero: {
       badge: "Full-Stack Web Developer",
@@ -272,6 +278,10 @@ export const translations = {
           icon: "⚡",
         },
       ],
+    },
+    blog: {
+      headline: "Latest from the blog.",
+      seeAll: "All articles",
     },
     contact: {
       label: "Contact",

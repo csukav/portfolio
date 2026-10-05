@@ -3,9 +3,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
+import { localePath, otherLocale } from "@/lib/i18n";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function Navbar() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -14,6 +16,7 @@ export default function Navbar() {
     { label: t.nav.projects, href: "#projects" },
     { label: t.nav.skills, href: "#skills" },
     { label: t.services.label, href: "#services" },
+    { label: t.nav.blog, href: localePath(locale, "/blog") },
     { label: t.nav.contact, href: "#contact" },
   ];
 
@@ -32,7 +35,7 @@ export default function Navbar() {
       <nav className="max-w-[980px] mx-auto px-6 flex items-center justify-between h-12">
         {/* Logo */}
         <Link
-          href="#"
+          href={localePath(locale)}
           className="text-[17px] font-semibold tracking-tight text-[#1d1d1f] hover:text-[#0071e3] transition-colors"
         >
           Csuka Viktor
@@ -52,13 +55,19 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* CTA */}
-        <a
-          href="#contact"
-          className="hidden md:inline-flex items-center justify-center bg-[#0071e3] text-white text-[13px] font-medium px-4 py-1.5 rounded-full hover:bg-[#0077ed] transition-colors"
-        >
-          {t.nav.cta}
-        </a>
+        {/* Language + CTA */}
+        <div className="hidden md:flex items-center gap-5">
+          <LanguageSwitcher
+            locale={locale}
+            href={localePath(otherLocale(locale))}
+          />
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center bg-[#0071e3] text-white text-[13px] font-medium px-4 py-1.5 rounded-full hover:bg-[#0077ed] transition-colors"
+          >
+            {t.nav.cta}
+          </a>
+        </div>
 
         {/* Mobile menu button */}
         <button
@@ -104,6 +113,11 @@ export default function Navbar() {
           >
             {t.nav.cta}
           </a>
+          <LanguageSwitcher
+            locale={locale}
+            href={localePath(otherLocale(locale))}
+            className="text-[17px]"
+          />
         </div>
       )}
     </header>

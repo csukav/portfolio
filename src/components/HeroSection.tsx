@@ -1,13 +1,8 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import dynamic from "next/dynamic";
+import ParticlesBackground from "@/components/ParticlesBackground";
 import { useLanguage } from "@/context/LanguageContext";
-
-const ParticlesBackground = dynamic(
-  () => import("@/components/ParticlesBackground"),
-  { ssr: false },
-);
 
 export default function HeroSection() {
   const { t } = useLanguage();
@@ -15,7 +10,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      aria-label="Hero"
+      aria-label={t.hero.badge}
       className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden bg-white px-6"
     >
       {/* Interactive particle canvas */}
