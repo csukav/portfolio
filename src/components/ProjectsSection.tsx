@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import { useLanguage } from "@/context/LanguageContext";
@@ -13,6 +14,7 @@ const projectsMeta = [
     number: "01",
     emoji: "🛒",
     link: "https://www.hoodini.hu/",
+    preview: true,
   },
   {
     title: "SaaS Dashboard",
@@ -21,6 +23,7 @@ const projectsMeta = [
     lightColor: "#eaf8ec",
     number: "02",
     link: "https://github.com",
+    preview: false,
   },
   {
     title: "Spotify Clone",
@@ -29,6 +32,7 @@ const projectsMeta = [
     lightColor: "#fff3e0",
     number: "03",
     link: "https://github.com",
+    preview: false,
   },
   {
     title: "Mobile Companion App",
@@ -37,8 +41,59 @@ const projectsMeta = [
     lightColor: "#f5eeff",
     number: "04",
     link: "https://github.com",
+    preview: false,
   },
 ];
+
+/** Screenshot of the linked site's homepage, rendered by Microlink. */
+function screenshotUrl(link: string) {
+  const params = new URLSearchParams({
+    url: link,
+    screenshot: "true",
+    "screenshot.type": "jpeg",
+    meta: "false",
+    embed: "screenshot.url",
+    "viewport.width": "1280",
+    "viewport.height": "800",
+  });
+  return `https://api.microlink.io/?${params}`;
+}
+
+function ProjectPreview({
+  link,
+  title,
+  color,
+  fallback,
+  className,
+}: {
+  link: string;
+  title: string;
+  color: string;
+  fallback?: string;
+  className: string;
+}) {
+  const [failed, setFailed] = useState(false);
+
+  return (
+    <div
+      className={`${className} rounded-2xl overflow-hidden flex items-center justify-center text-6xl`}
+      style={{ background: `${color}22` }}
+    >
+      {failed ? (
+        fallback
+      ) : (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={screenshotUrl(link)}
+          alt={`${title} preview`}
+          loading="lazy"
+          onError={() => setFailed(true)}
+          className="w-full h-full object-cover object-top"
+        />
+      )}
+    </div>
+  );
+}
 
 export default function ProjectsSection() {
   const { t } = useLanguage();
@@ -106,13 +161,13 @@ export default function ProjectsSection() {
                 ))}
               </div>
             </div>
-            {/* Placeholder visual */}
-            <div
-              className="w-full md:w-64 h-40 md:h-48 rounded-2xl flex items-center justify-center text-6xl"
-              style={{ background: `${projects[0].color}22` }}
-            >
-              🛒
-            </div>
+            <ProjectPreview
+              link={projects[0].link}
+              title={projects[0].title}
+              color={projects[0].color}
+              fallback={projects[0].emoji}
+              className="w-full md:w-80 h-48 md:h-52 shrink-0"
+            />
           </div>
         </a>
 
@@ -127,6 +182,14 @@ export default function ProjectsSection() {
               className="apple-card p-8 cursor-pointer block"
               style={{ background: project.lightColor }}
             >
+              {project.preview && (
+                <ProjectPreview
+                  link={project.link}
+                  title={project.title}
+                  color={project.color}
+                  className="w-full h-40 mb-6"
+                />
+              )}
               <span
                 className="text-[11px] font-semibold tracking-widest uppercase mb-3 block"
                 style={{ color: project.color }}
