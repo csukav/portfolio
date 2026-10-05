@@ -26,7 +26,7 @@ export default function HeroSection() {
         }}
       />
 
-      <div className="relative z-10 max-w-[780px] mx-auto animate-fade-up">
+      <div className="relative z-10 max-w-195 mx-auto animate-fade-up">
         <Badge
           variant="secondary"
           className="mb-6 px-3 py-1 text-[13px] font-medium bg-[#f5f5f7] text-[#6e6e73] border-0 rounded-full"
@@ -39,7 +39,7 @@ export default function HeroSection() {
           <span className="apple-blue-gradient-text">{t.hero.headline2}</span>
         </h1>
 
-        <p className="text-[19px] md:text-[21px] leading-[1.5] text-[#6e6e73] font-light max-w-[580px] mx-auto mb-10">
+        <p className="text-[19px] md:text-[21px] leading-normal text-[#6e6e73] font-light max-w-145 mx-auto mb-10">
           {t.hero.subheadline}
         </p>
 
@@ -64,7 +64,7 @@ export default function HeroSection() {
         <span className="text-[11px] tracking-widest uppercase text-[#6e6e73]">
           {t.hero.scroll}
         </span>
-        <div className="w-px h-12 bg-gradient-to-b from-[#6e6e73] to-transparent" />
+        <div className="w-px h-12 bg-linear-to-b from-[#6e6e73] to-transparent" />
       </div>
     </section>
   );
