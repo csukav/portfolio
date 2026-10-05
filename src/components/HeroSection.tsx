@@ -29,7 +29,7 @@ export default function HeroSection() {
       <div className="relative z-10 w-full max-w-195 mx-auto animate-fade-up">
         <Badge
           variant="secondary"
-          className="mb-6 px-3 py-1 text-[13px] font-medium bg-[#f5f5f7] text-[#6e6e73] border-0 rounded-full"
+          className="justify-center mb-6 px-3 py-1 text-[13px] font-medium bg-[#f5f5f7] text-[#6e6e73] border-0 rounded-full"
         >
           {t.hero.badge}
         </Badge>
