@@ -36,25 +36,25 @@ export const homeHu = {
         route: "webdev",
         h3: "Weboldal készítés",
         text: "Bemutatkozó oldal vállalkozásoknak, amit a Google is megtalál. Mobilbarát, gyors, könnyen frissíthető.",
-        price: "[ÁR] Ft-tól",
+        price: "19999 Ft-tól",
       },
       {
         route: "webshop",
         h3: "Webshop készítés",
         text: "Online bolt bankkártyás fizetéssel, számlázással és egyszerű termékkezeléssel.",
-        price: "[ÁR] Ft-tól",
+        price: "49999 Ft-tól",
       },
       {
         route: "ads",
         h3: "Google és Facebook hirdetések",
         text: "Hirdetések beállítása és kezelése, hogy a weboldalad mielőbb érdeklődőket hozzon.",
-        price: "[ÁR] Ft/hó-tól",
+        price: "4999 Ft/hó-tól",
       },
       {
         route: "it",
         h3: "Üzemeltetés és karbantartás",
         text: "Tárhely, domain, biztonsági mentés, frissítések – hogy ne neked kelljen ezzel foglalkoznod.",
-        price: "[ÁR] Ft/hó-tól",
+        price: "19999 Ft/hó-tól",
       },
     ],
   },
@@ -67,7 +67,7 @@ export const homeHu = {
       {
         name: "Hoodini – streetwear webshop",
         url: "https://www.hoodini.hu/",
-        text: "Teljes webshop fejlesztés Next.js-sel, online fizetéssel és saját admin felülettel. [Eredmény: pl. X% gyorsabb betöltés / Y rendelés havonta – ha van mérhető adat.]",
+        text: "Teljes webshop fejlesztés Next.js-sel, online fizetéssel és saját admin felülettel. [Eredmény: pl. 20% gyorsabb betöltés / 20-25 rendelés havonta – ha van mérhető adat.]",
       },
     ],
   },
@@ -95,11 +95,11 @@ export const homeHu = {
   faq: [
     {
       q: "Mennyibe kerül egy weboldal?",
-      a: "Egy bemutatkozó weboldal [ÁR] Ft-tól, egy webshop [ÁR] Ft-tól készül. A pontos ár az oldalak számától és a funkcióktól függ – az első egyeztetés után fix ajánlatot adok.",
+      a: "Egy bemutatkozó weboldal 29999 Ft-tól, egy webshop 49999 Ft-tól készül. A pontos ár az oldalak számától és a funkcióktól függ – az első egyeztetés után fix ajánlatot adok.",
     },
     {
       q: "Mennyi idő alatt készül el?",
-      a: "Egy bemutatkozó oldal általában [X] hét, egy webshop [X] hét alatt készül el, attól függően, mikor állnak rendelkezésre a szövegek és képek.",
+      a: "Egy bemutatkozó oldal általában 1 hét, egy webshop 2 hét alatt készül el, attól függően, mikor állnak rendelkezésre a szövegek és képek.",
     },
     {
       q: "Személyesen is találkozhatunk?",
@@ -151,7 +151,7 @@ export const pagesHu: Record<"webdev" | "webshop" | "ads" | "it", PageContent> =
       },
       {
         h2: "Árak",
-        body: "Bemutatkozó weboldal [ÁR] Ft-tól. Az első egyeztetés ingyenes, utána fix árajánlatot kapsz, rejtett költségek nélkül.",
+        body: "Bemutatkozó weboldal 19999 Ft-tól. Az első egyeztetés ingyenes, utána fix árajánlatot kapsz, rejtett költségek nélkül.",
       },
     ],
     faq: [
@@ -193,7 +193,7 @@ export const pagesHu: Record<"webdev" | "webshop" | "ads" | "it", PageContent> =
       },
       {
         h2: "Árak",
-        body: "Webshop [ÁR] Ft-tól. A pontos ár a termékek számától és a szükséges integrációktól függ.",
+        body: "Webshop 49999 Ft-tól. A pontos ár a termékek számától és a szükséges integrációktól függ.",
       },
     ],
     faq: [
@@ -226,7 +226,7 @@ export const pagesHu: Record<"webdev" | "webshop" | "ads" | "it", PageContent> =
       },
       {
         h2: "Árak",
-        body: "Hirdetéskezelés [ÁR] Ft/hó-tól + a hirdetési keret, amit közvetlenül a Google-nek / Metának fizetsz.",
+        body: "Hirdetéskezelés 9999 Ft/hó-tól + a hirdetési keret, amit közvetlenül a Google-nek / Metának fizetsz.",
       },
     ],
     faq: [
@@ -259,7 +259,7 @@ export const pagesHu: Record<"webdev" | "webshop" | "ads" | "it", PageContent> =
       },
       {
         h2: "Árak",
-        body: "Üzemeltetési csomag [ÁR] Ft/hó-tól. Egyedi infrastruktúrához egyedi ajánlatot adok.",
+        body: "Üzemeltetési csomag 9999 Ft/hó-tól. Egyedi infrastruktúrához egyedi ajánlatot adok.",
       },
     ],
     faq: [
