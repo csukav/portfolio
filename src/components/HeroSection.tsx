@@ -26,7 +26,7 @@ export default function HeroSection() {
         }}
       />
 
-      <div className="relative z-10 max-w-195 mx-auto animate-fade-up">
+      <div className="relative z-10 w-full max-w-195 mx-auto animate-fade-up">
         <Badge
           variant="secondary"
           className="mb-6 px-3 py-1 text-[13px] font-medium bg-[#f5f5f7] text-[#6e6e73] border-0 rounded-full"
@@ -43,16 +43,16 @@ export default function HeroSection() {
           {t.hero.subheadline}
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 items-center justify-center w-full">
           <a
             href="#projects"
-            className="inline-flex items-center justify-center bg-[#0071e3] text-white text-[17px] font-normal px-6 py-3.5 rounded-full hover:bg-[#0077ed] transition-all duration-200 hover:scale-[1.02]"
+            className="inline-flex w-full max-w-70 sm:w-auto sm:max-w-none items-center justify-center bg-[#0071e3] text-white text-[17px] font-normal px-6 py-3.5 rounded-full hover:bg-[#0077ed] transition-all duration-200 hover:scale-[1.02]"
           >
             {t.hero.cta1}
           </a>
           <a
             href="#contact"
-            className="inline-flex items-center justify-center text-[#0071e3] text-[17px] font-normal px-6 py-3.5 rounded-full border border-[#0071e3]/30 hover:bg-[#f5f5f7] transition-all duration-200 hover:scale-[1.02]"
+            className="inline-flex w-full max-w-70 sm:w-auto sm:max-w-none items-center justify-center text-[#0071e3] text-[17px] font-normal px-6 py-3.5 rounded-full border border-[#0071e3]/30 hover:bg-[#f5f5f7] transition-all duration-200 hover:scale-[1.02]"
           >
             {t.hero.cta2}
           </a>
