@@ -1,29 +1,22 @@
-import { NextRequest, NextResponse } from "next/server";
-
-export function middleware(request: NextRequest) {
-  const country = request.headers.get("x-vercel-ip-country") ?? "";
-
-  const locale = country === "HU" ? "hu" : "en";
-
-  // Forward locale via request header so server components (layout) can read it
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("x-locale", locale);
-
-  const response = NextResponse.next({
-    request: { headers: requestHeaders },
-  });
-
-  // Also set a cookie so client components can read it
-  response.cookies.set("locale", locale, {
-    httpOnly: false,
-    sameSite: "lax",
-    maxAge: 60 * 60 * 24,
-    path: "/",
-  });
-
-  return response;
-}
-
+import createMiddleware from "next-intl/middleware";
+ 
+export default createMiddleware({
+  locales: ["hu", "en"],
+  defaultLocale: "hu",
+  localePrefix: "as-needed",
+  localeDetection: false,
+  // Ha az angol oldalaknak saját slugjuk van (lásd ROUTES a seo.ts-ben):
+  pathnames: {
+    "/": "/",
+    "/weboldal-keszites": { hu: "/weboldal-keszites", en: "/web-development" },
+    "/webshop-keszites": { hu: "/webshop-keszites", en: "/ecommerce-development" },
+    "/online-hirdetes": { hu: "/online-hirdetes", en: "/online-advertising" },
+    "/it-uzemeltetes": { hu: "/it-uzemeltetes", en: "/it-services" },
+    "/blog": "/blog",
+    "/blog/[slug]": "/blog/[slug]",
+  },
+});
+ 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|api).*)"],
+  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
 };

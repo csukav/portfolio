@@ -112,7 +112,7 @@ const jsonLd = {
     "Szerverüzemeltetés",
   ],
   sameAs: [
-    "https://github.com/csukaviktor",
+    "https://github.com/csukav",
     "https://linkedin.com/in/csukaviktor",
   ],
   makesOffer: {
