@@ -14,7 +14,7 @@ export default function ServicesSection() {
         <h2 className="mb-6 text-[56px] md:text-[72px] font-bold leading-[1.04] tracking-[-0.025em] text-white">
           {t.services.headline1}
           <br />
-          <span className="text-[40px] text-[#6e6e73]">{t.services.headline2}</span>
+          <span className="text-[48px] text-[#6e6e73]">{t.services.headline2}</span>
         </h2>
         <p className="text-[19px] text-[#6e6e73] max-w-125 mb-20">
           {t.services.subheadline}
