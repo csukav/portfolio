@@ -37,7 +37,7 @@ export default function SkillsSection() {
 
   return (
     <section id="skills" aria-label={t.nav.skills} className="py-32 bg-[#1d1d1f]">
-      <div className="max-w-[980px] mx-auto px-6">
+      <div className="max-w-245 mx-auto px-6">
         <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">
           {t.skills.label}
         </p>
@@ -46,7 +46,7 @@ export default function SkillsSection() {
           <br />
           <span className="text-[#6e6e73]">{t.skills.headline2}</span>
         </h2>
-        <p className="text-[19px] text-[#6e6e73] max-w-[500px] mb-20">
+        <p className="text-[19px] text-[#6e6e73] max-w-125 mb-20">
           {t.skills.subheadline}
         </p>
 

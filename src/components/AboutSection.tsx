@@ -9,7 +9,7 @@ export default function AboutSection() {
 
   return (
     <section id="about" aria-label={t.nav.about} className="py-32 bg-[#f5f5f7]">
-      <div className="max-w-[980px] mx-auto px-6">
+      <div className="max-w-245 mx-auto px-6">
         {/* Section label */}
         <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">
           {t.about.label}

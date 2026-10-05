@@ -7,7 +7,7 @@ export default function ServicesSection() {
 
   return (
     <section id="services" aria-label={t.services.label} className="py-32 bg-black">
-      <div className="max-w-[980px] mx-auto px-6">
+      <div className="max-w-245 mx-auto px-6">
         <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">
           {t.services.label}
         </p>
@@ -16,7 +16,7 @@ export default function ServicesSection() {
           <br />
           <span className="text-[#6e6e73]">{t.services.headline2}</span>
         </h2>
-        <p className="text-[19px] text-[#6e6e73] max-w-[500px] mb-20">
+        <p className="text-[19px] text-[#6e6e73] max-w-125 mb-20">
           {t.services.subheadline}
         </p>
 

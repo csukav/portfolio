@@ -45,7 +45,7 @@ export default function ContactSection() {
       className="relative py-32 bg-[#f5f5f7] overflow-hidden"
     >
       <ParticlesBackground id="tsparticles-contact" />
-      <div className="relative z-10 max-w-[980px] mx-auto px-6">
+      <div className="relative z-10 max-w-245 mx-auto px-6">
         <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">
           {t.contact.label}
         </p>

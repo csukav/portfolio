@@ -15,12 +15,12 @@ export default function BlogSection() {
 
   return (
     <section id="blog" aria-label={t.nav.blog} className="py-32 bg-white">
-      <div className="max-w-[980px] mx-auto px-6">
+      <div className="max-w-245] mx-auto px-6">
         <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">
           Blog
         </p>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-          <h2 className="section-headline max-w-[480px]">{t.blog.headline}</h2>
+          <h2 className="section-headline max-w-120">{t.blog.headline}</h2>
           <Link
             href={localePath(locale, "/blog")}
             className="hidden md:inline-flex items-center gap-1 text-[15px] text-[#0071e3] hover:underline font-medium shrink-0"

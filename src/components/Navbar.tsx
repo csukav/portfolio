@@ -32,7 +32,7 @@ export default function Navbar() {
         scrolled ? "apple-glass" : "bg-transparent"
       }`}
     >
-      <nav className="max-w-[980px] mx-auto px-6 flex items-center justify-between h-12">
+      <nav className="max-w-245 mx-auto px-6 flex items-center justify-between h-12">
         {/* Logo */}
         <Link
           href={localePath(locale)}

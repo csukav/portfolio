@@ -15,7 +15,7 @@ export default function Footer({ locale }: { locale: Locale }) {
 
   return (
     <footer className="bg-[#1d1d1f] py-12 px-6">
-      <div className="max-w-[980px] mx-auto">
+      <div className="max-w-245 mx-auto">
         <Separator className="bg-[#3a3a3c] mb-10" />
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">

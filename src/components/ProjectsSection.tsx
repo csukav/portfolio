@@ -55,12 +55,12 @@ export default function ProjectsSection() {
       className="relative py-32 bg-white overflow-hidden"
     >
       <ParticlesBackground id="tsparticles-projects" />
-      <div className="relative z-10 max-w-[980px] mx-auto px-6">
+      <div className="relative z-10 max-w-245 mx-auto px-6">
         <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">
           {t.projects.label}
         </p>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-          <h2 className="section-headline max-w-[480px]">
+          <h2 className="section-headline max-w-120">
             {t.projects.headline}
           </h2>
           <p className="section-subheadline max-w-[320px] text-right hidden md:block">
