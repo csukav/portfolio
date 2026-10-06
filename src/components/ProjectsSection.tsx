@@ -31,8 +31,8 @@ const projectsMeta = [
     color: "#ff9f0a",
     lightColor: "#fff3e0",
     number: "03",
-    link: "https://github.com",
-    preview: false,
+    link: "https://github.com/csukav/spotify-clone-master",
+    preview: true,
   },
   {
     title: "Mobile Companion App",
