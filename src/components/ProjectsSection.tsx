@@ -31,7 +31,7 @@ const projectsMeta = [
     color: "#ff9f0a",
     lightColor: "#fff3e0",
     number: "03",
-    link: "https://github.com/csukav/spotify-clone-master",
+    link: "https://csukaviktor.vercel.app/",
     preview: true,
   },
   {
