@@ -252,8 +252,8 @@ export default async function RootLayout({ children, params }: Props) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(buildJsonLd(lang)) }}
         />
         {children}
-        {/* Google tag (gtag.js) - AW-18115939358.
-            The queue is set up right away (tiny inline script); the ~150 KB library
+        {/* Google tag (gtag.js) - Google Ads AW-18115939358 + Analytics G-0SDNKH1DK4.
+            One gtag.js load serves both IDs. The queue is set up right away (tiny inline script); the ~150 KB library
             loads only after the page has finished loading, so it doesn't compete
             with rendering. Queued commands run in order once it arrives. */}
         <Script id="gtag-init" strategy="afterInteractive">
@@ -261,6 +261,7 @@ export default async function RootLayout({ children, params }: Props) {
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'AW-18115939358');
+gtag('config', 'G-0SDNKH1DK4');
 // Oldalmegtekintés conversion - homepage only
 if (location.pathname === '/' || location.pathname === '/en') {
   gtag('event', 'conversion', {'send_to': 'AW-18115939358/ySUcCJH18aEcEJ6Yrb5D'});
