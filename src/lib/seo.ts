@@ -1,143 +1,111 @@
-// seo.ts – központi SEO-beállítások (pl. src/lib/seo.ts)
-//
-// Felépítés:
-//   - A MAGYAR verzió a gyökérben él:  https://www.csukaviktor.com/
-//   - Az ANGOL verzió /en alatt:        https://www.csukaviktor.com/en
-//   - Nincs automatikus nyelvfelismerés/átirányítás (lásd middleware.ts),
-//     így a Googlebot mindkét nyelvet látja és indexeli.
-//   - Egy kanonikus host: www.csukaviktor.com (a csupasz domain 301/308-cal ide irányít).
-
 import type { Metadata } from "next";
 
+/**
+ * Egyetlen, végleges domain – minden canonical, og:url és JSON-LD erre mutat.
+ * A www nélküli címet 301-gyel irányítsd ide (Vercel → Domains → Redirect).
+ */
 export const SITE_URL = "https://www.csukaviktor.com";
-export const LOCALES = ["hu", "en"] as const;
-export type Locale = (typeof LOCALES)[number];
-export const DEFAULT_LOCALE: Locale = "hu";
 
-// Oldalpárok: melyik magyar oldal melyik angolnak felel meg (hreflang-hoz).
-// Ha egy oldalnak még nincs angol párja, az "en" kulcsot hagyd ki – akkor
-// az angol alternate sem kerül be.
-export const ROUTES = {
-  home: { hu: "/", en: "/en" },
-  webdev: { hu: "/weboldal-keszites", en: "/en/web-development" },
-  webshop: { hu: "/webshop-keszites", en: "/en/ecommerce-development" },
-  ads: { hu: "/online-hirdetes", en: "/en/online-advertising" },
-  it: { hu: "/it-uzemeltetes", en: "/en/it-services" },
-  blog: { hu: "/blog", en: "/en/blog" },
-} satisfies Record<string, { hu: string; en?: string }>;
+export const locales = ["hu", "en"] as const;
+export type Locale = (typeof locales)[number];
+export const defaultLocale: Locale = "hu";
 
-export type RouteKey = keyof typeof ROUTES;
-
-const abs = (path: string) => (path === "/" ? `${SITE_URL}/` : `${SITE_URL}${path}`);
+const copy = {
+  hu: {
+    // 48 karakter
+    title: "Csuka Viktor — Webfejlesztő és IT szolgáltatások",
+    // 138 karakter
+    description:
+      "Full-stack webfejlesztő és IT szolgáltató: gyors React és Next.js weboldalak, szerver- és felhőüzemeltetés kkv-knak. Kérj ajánlatot még ma!",
+    ogLocale: "hu_HU",
+    ogImageAlt: "Csuka Viktor — webfejlesztő és IT szolgáltatások",
+  },
+  en: {
+    // 53 karakter
+    title: "Csuka Viktor — Full-Stack Web Developer & IT Services",
+    // 140 karakter
+    description:
+      "Full-stack web developer & IT services: fast React and Next.js websites, server and cloud management for small businesses. Request a quote!",
+    ogLocale: "en_US",
+    ogImageAlt: "Csuka Viktor — Full-Stack Web Developer",
+  },
+} satisfies Record<Locale, Record<string, string>>;
 
 type BuildMetadataArgs = {
-  route?: RouteKey;
-  /** Ha nem fix útvonal (pl. blogposzt), add meg közvetlenül. */
-  paths?: { hu: string; en?: string };
   locale: Locale;
-  title: string;
-  description: string;
+  /** Az oldal útvonala nyelvi előtag nélkül, pl. "" a főoldalhoz, "/blog/nextjs-stripe-ecommerce" egy cikkhez */
+  path?: string;
+  title?: string;
+  description?: string;
   image?: string;
+  type?: "website" | "article";
+  /** Csak cikkeknél – ha az adott cikknek nincs fordítása, add meg false-szal */
+  hasTranslation?: boolean;
 };
 
 /**
- * Használat egy page.tsx-ben:
- *
- *   import { buildMetadata } from "@/lib/seo";
- *   import { pagesHu } from "@/content/content-hu";
- *
- *   export const metadata = buildMetadata({
- *     route: "webdev",
- *     locale: "hu",
- *     title: pagesHu.webdev.title,
- *     description: pagesHu.webdev.description,
- *   });
+ * Közös metadata-építő: önmagára mutató canonical + hreflang minden oldalon.
+ * Főoldal:  buildMetadata({ locale })
+ * Blogcikk: buildMetadata({ locale, path: `/blog/${slug}`, title, description, type: "article" })
  */
 export function buildMetadata({
-  route,
-  paths,
   locale,
+  path = "",
   title,
   description,
   image = "/og-image.jpg",
+  type = "website",
+  hasTranslation = true,
 }: BuildMetadataArgs): Metadata {
-  const p = paths ?? (route ? ROUTES[route] : undefined);
-  if (!p) throw new Error("buildMetadata: route vagy paths kötelező");
+  const t = copy[locale];
+  const other: Locale = locale === "hu" ? "en" : "hu";
+  const url = `/${locale}${path}`;
 
-  const ownPath = locale === "en" && p.en ? p.en : p.hu;
-  const url = abs(ownPath);
+  const languages: Record<string, string> = { [locale]: url };
+  if (hasTranslation) {
+    languages[other] = `/${other}${path}`;
+    languages["x-default"] = `/${defaultLocale}${path}`;
+  }
 
-  const languages: Record<string, string> = { hu: abs(p.hu), "x-default": abs(p.hu) };
-  if (p.en) languages.en = abs(p.en);
+  const finalTitle = title ?? t.title;
+  const finalDescription = description ?? t.description;
 
   return {
     metadataBase: new URL(SITE_URL),
-    title,
-    description,
+    title: finalTitle,
+    description: finalDescription,
     alternates: {
-      canonical: url, // mindig az oldal SAJÁT címe, sosem a másik nyelvé
+      canonical: url,
       languages,
     },
     openGraph: {
-      type: "website",
+      type,
       url,
       siteName: "Csuka Viktor",
-      title,
-      description,
-      locale: locale === "hu" ? "hu_HU" : "en_US",
-      alternateLocale: locale === "hu" ? ["en_US"] : ["hu_HU"],
-      images: [{ url: image, width: 1200, height: 630, alt: title }],
+      title: finalTitle,
+      description: finalDescription,
+      locale: t.ogLocale,
+      alternateLocale: hasTranslation ? [copy[other].ogLocale] : undefined,
+      images: [{ url: image, width: 1200, height: 630, alt: t.ogImageAlt }],
     },
-    twitter: { card: "summary_large_image", title, description, images: [image] },
-    robots: { index: true, follow: true },
-  };
-}
-
-/**
- * Strukturált adat a főoldalra (a magyar layoutba vagy a főoldalba):
- *
- *   <script
- *     type="application/ld+json"
- *     dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd()) }}
- *   />
- */
-export function businessJsonLd() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: "Csuka Viktor – Weboldal és webshop készítés",
-    url: `${SITE_URL}/`,
-    image: `${SITE_URL}/og-image.jpg`,
-    email: "csukav@gmail.com",
-    // telephone: "+36 XX XXX XXXX",           // ← töltsd ki, ugyanúgy, mint a Cégprofilban
-    priceRange: "$$",
-    areaServed: [
-      { "@type": "City", name: "Debrecen" },
-      { "@type": "AdministrativeArea", name: "Hajdú-Bihar vármegye" },
-      { "@type": "Country", name: "Magyarország" },
-    ],
-    knowsLanguage: ["hu", "en"],
-    founder: {
-      "@type": "Person",
-      name: "Csuka Viktor",
-      jobTitle: "Webfejlesztő",
+    twitter: {
+      card: "summary_large_image",
+      title: finalTitle,
+      description: finalDescription,
+      images: [image],
     },
-    sameAs: ["https://www.linkedin.com/in/csukaviktor", "https://github.com/csukav"],
-  };
-}
-
-/**
- * GYIK strukturált adat a szolgáltatásoldalakra. A Google ma már ritkán ad
- * belőle külön találati megjelenést, de segít megérteni a tartalmat – nem árt.
- */
-export function faqJsonLd(faq: { q: string; a: string }[]) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faq.map(({ q, a }) => ({
-      "@type": "Question",
-      name: q,
-      acceptedAnswer: { "@type": "Answer", text: a },
-    })),
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
+    authors: [{ name: "Csuka Viktor", url: SITE_URL }],
+    creator: "Csuka Viktor",
   };
 }

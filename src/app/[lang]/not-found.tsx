@@ -13,7 +13,7 @@ export default function NotFound() {
           <span className="text-[#6e6e73]">Page not found.</span>
         </h1>
         <div className="flex gap-6 justify-center text-[15px] font-medium">
-          <Link href="/" hrefLang="hu" className="text-[#0071e3] hover:underline">
+          <Link href="/hu" hrefLang="hu" className="text-[#0071e3] hover:underline">
             ← Főoldal
           </Link>
           <Link href="/en" hrefLang="en" className="text-[#0071e3] hover:underline">
