@@ -34,10 +34,15 @@ export default function HeroSection() {
           {t.hero.badge}
         </Badge>
 
-        <h1 className="text-[56px] md:text-[80px] font-bold leading-[1.04] tracking-[-0.025em] text-[#1d1d1f] mb-6">
+        <h1 className="text-[40px] md:text-[64px] font-bold leading-[1.06] tracking-[-0.025em] text-[#1d1d1f] mb-5">
+          {t.hero.title1}{" "}
+          <span className="apple-blue-gradient-text">{t.hero.title2}</span>
+        </h1>
+
+        <p className="text-[24px] md:text-[32px] font-semibold leading-[1.15] tracking-[-0.015em] text-[#1d1d1f] mb-6">
           {t.hero.headline1}{" "}
           <span className="apple-blue-gradient-text">{t.hero.headline2}</span>
-        </h1>
+        </p>
 
         <p className="text-[19px] md:text-[21px] leading-normal text-[#6e6e73] font-light max-w-145 mx-auto mb-10">
           {t.hero.subheadline}

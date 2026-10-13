@@ -1,4 +1,5 @@
-export const SITE_URL = "https://csukaviktor.com";
+/** The only canonical host: the bare domain 301s here (Vercel → Domains). */
+export const SITE_URL = "https://www.csukaviktor.com";
 export const FULL_NAME = "Csuka Viktor";
 export const JOB_TITLE = "Full-Stack Web Developer";
 export const EMAIL = "csukav@gmail.com";

@@ -19,6 +19,7 @@ import {
   htmlLang,
   type Locale,
 } from "@/lib/i18n";
+import { translations } from "@/lib/translations";
 
 // Inter is a variable font: one file covers every weight.
 // latin-ext is required for Hungarian characters (ő, ű).
@@ -33,33 +34,24 @@ const META: Record<
   {
     title: string;
     description: string;
-    shortDescription: string;
     jobTitle: string;
     personDescription: string;
     serviceName: string;
-    offers: string[];
+    /** The priced IT services come from translations.services. */
+    webService: string;
     keywords: string[];
   }
 > = {
   hu: {
-    title: `${FULL_NAME} — Full-Stack webfejlesztő és IT szolgáltató`,
+    title: `${FULL_NAME} — Webfejlesztő és IT szolgáltatások kkv-knak`,
+    // ~150 characters, ends with a CTA (same text for og:description).
     description:
-      "Csuka Viktor full-stack webfejlesztő és informatikai szolgáltató. Webfejlesztés React, Next.js, TypeScript alapokon, valamint szerver- és cloud-menedzsment, rendszergazdai támogatás, biztonság és adatbázis-üzemeltetés vállalatoknak.",
-    shortDescription:
-      "Full-stack webfejlesztő és informatikai szolgáltató. Webfejlesztés React, Next.js, TypeScript alapokon, valamint rendszergazdai, cloud- és szerverüzemeltetési szolgáltatások vállalatoknak.",
+      "Full-stack webfejlesztő – React, Next.js, TypeScript. Gyors weboldalak, szerver- és felhőüzemeltetés kis- és középvállalkozásoknak. Kérj ajánlatot!",
     jobTitle: "Full-Stack webfejlesztő",
     personDescription:
       "Full-stack webfejlesztő és informatikai szolgáltató, aki React, Next.js, TypeScript és Node.js technológiákkal, valamint szerver-, cloud- és rendszergazdai szolgáltatásokkal dolgozik.",
     serviceName: `${FULL_NAME} — Webfejlesztés és IT szolgáltatások`,
-    offers: [
-      "Webfejlesztés (React, Next.js, TypeScript)",
-      "Szerver- és cloud-menedzsment",
-      "Biztonság és adatvédelem",
-      "Adatbázis-menedzsment",
-      "Monitoring és támogatás",
-      "CI/CD pipeline felállítása",
-      "Teljesítmény-optimalizálás",
-    ],
+    webService: "Webfejlesztés (React, Next.js, TypeScript)",
     keywords: [
       "informatikai szolgáltatások",
       "IT szolgáltatások",
@@ -81,22 +73,12 @@ const META: Record<
   en: {
     title: `${FULL_NAME} — Full-Stack Web Developer & IT Services`,
     description:
-      "Csuka Viktor is a full-stack web developer and IT service provider. Web development with React, Next.js and TypeScript, plus server and cloud management, sysadmin support, security and database operations for businesses.",
-    shortDescription:
-      "Full-stack web developer and IT service provider. React, Next.js and TypeScript web development, plus sysadmin, cloud and server operations for businesses.",
+      "Full-stack web developer – React, Next.js, TypeScript. Fast websites plus server and cloud management for small businesses. Request a free quote!",
     jobTitle: "Full-Stack Web Developer",
     personDescription:
       "Full-stack web developer and IT service provider working with React, Next.js, TypeScript and Node.js, plus server, cloud and sysadmin services.",
     serviceName: `${FULL_NAME} — Web Development & IT Services`,
-    offers: [
-      "Web development (React, Next.js, TypeScript)",
-      "Server & cloud management",
-      "Security & data protection",
-      "Database management",
-      "Monitoring & support",
-      "CI/CD pipeline setup",
-      "Performance optimization",
-    ],
+    webService: "Web development (React, Next.js, TypeScript)",
     keywords: [
       "full-stack developer",
       "web developer",
@@ -155,13 +137,13 @@ export async function generateMetadata({
       url: localePath(lang),
       siteName: FULL_NAME,
       title: m.title,
-      description: m.shortDescription,
+      description: m.description,
       images: [OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title: m.title,
-      description: m.shortDescription,
+      description: m.description,
       images: [OG_IMAGE.url],
     },
     robots: {
@@ -180,6 +162,7 @@ export async function generateMetadata({
 
 function buildJsonLd(lang: Locale) {
   const m = META[lang];
+  const { services } = translations[lang];
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -195,7 +178,7 @@ function buildJsonLd(lang: Locale) {
         "@type": "Person",
         "@id": `${SITE_URL}/#person`,
         name: FULL_NAME,
-        url: SITE_URL,
+        url: `${SITE_URL}${localePath(lang)}`,
         email: `mailto:${EMAIL}`,
         image: `${SITE_URL}${OG_IMAGE.url}`,
         jobTitle: m.jobTitle,
@@ -228,10 +211,22 @@ function buildJsonLd(lang: Locale) {
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: lang === "hu" ? "Szolgáltatások" : "Services",
-          itemListElement: m.offers.map((name) => ({
-            "@type": "Offer",
-            itemOffered: { "@type": "Service", name },
-          })),
+          itemListElement: [
+            {
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: m.webService },
+            },
+            // Same services and "from" prices as the visible Services section.
+            ...services.items.map((s) => ({
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: s.title, description: s.desc },
+              priceSpecification: {
+                "@type": "PriceSpecification",
+                minPrice: s.minPrice,
+                priceCurrency: services.currency,
+              },
+            })),
+          ],
         },
       },
     ],
@@ -249,7 +244,9 @@ export default async function RootLayout({ children, params }: Props) {
       >
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(buildJsonLd(lang)) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(buildJsonLd(lang)).replace(/</g, "\\u003c"),
+          }}
         />
         {children}
         {/* Google tag (gtag.js) - Google Ads AW-18115939358 + Analytics G-0SDNKH1DK4.

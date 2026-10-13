@@ -13,6 +13,8 @@ export const translations = {
     },
     hero: {
       badge: "Teljes körű webfejlesztés és informatikai szolgáltatások",
+      title1: "Webfejlesztő és IT szolgáltatások",
+      title2: "kkv-knak.",
       headline1: "Szia! Én vagyok",
       headline2: "a fejlesztőd.",
       subheadline:
@@ -53,24 +55,28 @@ export const translations = {
     },
     projects: {
       label: "Projektek",
-      headline: "Munkák, amikre büszke vagyok.",
+      headline: "Webfejlesztési projektek, amikre büszke vagyok.",
       subheadline: "Válogatott projektek az elmúlt évekből.",
       items: [
         {
           description:
             "Teljes körű webáruház Next.js, Stripe és Prisma alapokon. Adminisztrációs felület, termékkezelés, analitika.",
+          alt: "Hoodini webshop – Next.js e-commerce admin felület",
         },
         {
           description:
             "Valós idejű adatvizualizáció és csapatkezelési eszközök enterprise ügyfeleknek. 50+ komponens.",
+          alt: "SaaS Dashboard – React és D3.js adatvizualizációs felület",
         },
         {
           description:
-            "GPT-4 alapú tartalomgeneráló alkalmazás marketing csapatok számára. Sablon-rendszer és exportálás.",
+            "Zenelejátszó webalkalmazás Next.js és Supabase alapokon: bejelentkezés, saját dalok feltöltése, kedvencek és Stripe-os prémium előfizetés.",
+          alt: "Spotify Clone – Next.js és Supabase zenelejátszó webalkalmazás",
         },
         {
           description:
             "React Native cross-platform alkalmazás 10 000+ aktív felhasználóval. Offline-first architektúra.",
+          alt: "Mobile Companion App – React Native mobilalkalmazás",
         },
       ],
     },
@@ -84,8 +90,9 @@ export const translations = {
     },
     services: {
       label: "Szolgáltatások",
-      headline1: "Informatikai",
-      headline2: "szolgáltatások.",
+      currency: "HUF",
+      headline1: "IT üzemeltetési",
+      headline2: "szolgáltatások kkv-knak.",
       subheadline:
         "Megbízható informatikai szolgáltatások és rendszergazdai támogatás kis- és középvállalkozásoknak — a szerverüzemeltetéstől a cloud-infrastruktúráig, hogy IT-rendszerei mindig zavartalanul működjenek.",
       items: [
@@ -93,36 +100,42 @@ export const translations = {
           title: "Szerver- és Cloud-menedzsment",
           desc: "Informatikai szolgáltatásunk része az AWS, Azure és Vercel infrastruktúra kezelése, frissítése és optimalizálása.",
           price: "Ár: 180 000 Ft-tól",
+          minPrice: 180_000,
           icon: "☁️",
         },
         {
           title: "Biztonság és adatvédelem",
           desc: "IT biztonsági szolgáltatás: SSL/TLS tanúsítványok, tűzfal konfigurálás, hálózati biztonság és GDPR-kompatibilitás.",
           price: "Ár: 120 000 Ft-tól",
+          minPrice: 120_000,
           icon: "🔐",
         },
         {
           title: "Adatbázis-menedzsment",
           desc: "PostgreSQL, MySQL, NoSQL adatbázisok üzemeltetése, biztonsági mentés és optimalizálás — megbízható informatikai háttérrel.",
           price: "Ár: 110 000 Ft-tól",
+          minPrice: 110_000,
           icon: "🗄️",
         },
         {
           title: "Monitoring és rendszergazdai támogatás",
           desc: "24/7 rendszer-monitoring, alerting, hibaelhárítás és proaktív karbantartás — folyamatos informatikai támogatás.",
           price: "Ár: 90 000 Ft-tól",
+          minPrice: 90_000,
           icon: "📊",
         },
         {
           title: "CI/CD pipeline felállítása",
           desc: "Automatikus deployment, tesztelés és release menedzsment GitHub Actions és GitLab CI-vel.",
           price: "Ár: 130 000 Ft-tól",
+          minPrice: 130_000,
           icon: "⚙️",
         },
         {
           title: "Teljesítmény-optimalizálás",
           desc: "Load balancing, caching stratégiák, CDN konfigurálás és alkalmazás-optimalizálás vállalati rendszerekhez.",
           price: "Ár: 140 000 Ft-tól",
+          minPrice: 140_000,
           icon: "⚡",
         },
       ],
@@ -165,6 +178,8 @@ export const translations = {
     },
     hero: {
       badge: "Full-Stack Web Developer",
+      title1: "Web Developer & IT Services",
+      title2: "for Small Businesses.",
       headline1: "Hi, I'm",
       headline2: "your developer.",
       subheadline:
@@ -205,24 +220,28 @@ export const translations = {
     },
     projects: {
       label: "Projects",
-      headline: "Work I am proud of.",
+      headline: "Web development projects I am proud of.",
       subheadline: "Selected projects from the past years.",
       items: [
         {
           description:
             "Full-stack e-commerce store built with Next.js, Stripe, and Prisma. Admin panel, product management, analytics.",
+          alt: "Hoodini web shop – Next.js e-commerce admin panel",
         },
         {
           description:
             "Real-time data visualization and team management tools for enterprise clients. 50+ components.",
+          alt: "SaaS Dashboard – React and D3.js data visualization interface",
         },
         {
           description:
-            "GPT-4 powered content generation app for marketing teams. Template system and export functionality.",
+            "Music streaming web app built with Next.js and Supabase: authentication, song uploads, liked songs and a Stripe premium subscription.",
+          alt: "Spotify Clone – Next.js and Supabase music streaming web app",
         },
         {
           description:
             "React Native cross-platform app with 10,000+ active users. Offline-first architecture.",
+          alt: "Mobile Companion App – React Native mobile app",
         },
       ],
     },
@@ -236,8 +255,9 @@ export const translations = {
     },
     services: {
       label: "Services",
-      headline1: "IT",
-      headline2: "Services.",
+      currency: "EUR",
+      headline1: "IT operations",
+      headline2: "services.",
       subheadline:
         "Reliable IT services and system administration support for small and medium businesses — from server operations to cloud infrastructure, keeping your systems running smoothly.",
       items: [
@@ -245,36 +265,42 @@ export const translations = {
           title: "Server & Cloud Management",
           desc: "AWS, Azure, and Vercel infrastructure management, updates, and optimization.",
           price: "Price: from €450",
+          minPrice: 450,
           icon: "☁️",
         },
         {
           title: "Security & Data Protection",
           desc: "SSL/TLS certificates, firewall configuration, network security, and GDPR compliance.",
           price: "Price: from €350",
+          minPrice: 350,
           icon: "🔐",
         },
         {
           title: "Database Management",
           desc: "PostgreSQL, MySQL, NoSQL database operations, backups, and optimization.",
           price: "Price: from €320",
+          minPrice: 320,
           icon: "🗄️",
         },
         {
           title: "Monitoring & Support",
           desc: "24/7 system monitoring, alerting, troubleshooting, and proactive maintenance.",
           price: "Price: from €250",
+          minPrice: 250,
           icon: "📊",
         },
         {
           title: "CI/CD Pipeline Setup",
           desc: "Automated deployment, testing, and release management with GitHub Actions and GitLab CI.",
           price: "Price: from €400",
+          minPrice: 400,
           icon: "⚙️",
         },
         {
           title: "Performance Optimization",
           desc: "Load balancing, caching strategies, CDN configuration, and application optimization.",
           price: "Price: from €380",
+          minPrice: 380,
           icon: "⚡",
         },
       ],

@@ -5,7 +5,17 @@ import { Badge } from "@/components/ui/badge";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import { useLanguage } from "@/context/LanguageContext";
 
-const projectsMeta = [
+// `link: null` → no public demo or repo; the card is rendered without a link.
+const projectsMeta: {
+  title: string;
+  tags: string[];
+  color: string;
+  lightColor: string;
+  number: string;
+  emoji?: string;
+  link: string | null;
+  preview: boolean;
+}[] = [
   {
     title: "E-Commerce Platform",
     tags: ["Next.js", "TypeScript", "Stripe", "Prisma"],
@@ -22,12 +32,12 @@ const projectsMeta = [
     color: "#34c759",
     lightColor: "#eaf8ec",
     number: "02",
-    link: "https://github.com",
+    link: null,
     preview: false,
   },
   {
     title: "Spotify Clone",
-    tags: ["Next.js", "OpenAI", "Redis", "Tailwind"],
+    tags: ["Next.js", "Supabase", "Stripe", "Tailwind"],
     color: "#ff9f0a",
     lightColor: "#fff3e0",
     number: "03",
@@ -40,7 +50,7 @@ const projectsMeta = [
     color: "#bf5af2",
     lightColor: "#f5eeff",
     number: "04",
-    link: "https://github.com",
+    link: null,
     preview: false,
   },
 ];
@@ -61,13 +71,13 @@ function screenshotUrl(link: string) {
 
 function ProjectPreview({
   link,
-  title,
+  alt,
   color,
   fallback,
   className,
 }: {
   link: string;
-  title: string;
+  alt: string;
   color: string;
   fallback?: string;
   className: string;
@@ -85,7 +95,7 @@ function ProjectPreview({
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={screenshotUrl(link)}
-          alt={`${title} preview`}
+          alt={alt}
           loading="lazy"
           onError={() => setFailed(true)}
           className="w-full h-full object-cover object-top"
@@ -101,6 +111,7 @@ export default function ProjectsSection() {
   const projects = projectsMeta.map((meta, i) => ({
     ...meta,
     description: t.projects.items[i].description,
+    alt: t.projects.items[i].alt,
   }));
 
   return (
@@ -115,9 +126,7 @@ export default function ProjectsSection() {
           {t.projects.label}
         </p>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-          <h2 className="section-headline max-w-120">
-            {t.projects.headline}
-          </h2>
+          <h2 className="section-headline max-w-120">{t.projects.headline}</h2>
           <p className="section-subheadline max-w-[320px] text-right hidden md:block">
             {t.projects.subheadline}
           </p>
@@ -125,7 +134,7 @@ export default function ProjectsSection() {
 
         {/* Featured project (large) */}
         <a
-          href={projects[0].link}
+          href={projects[0].link!}
           target="_blank"
           rel="noopener noreferrer"
           className="apple-card p-10 mb-6 cursor-pointer block"
@@ -162,8 +171,8 @@ export default function ProjectsSection() {
               </div>
             </div>
             <ProjectPreview
-              link={projects[0].link}
-              title={projects[0].title}
+              link={projects[0].link!}
+              alt={projects[0].alt}
               color={projects[0].color}
               fallback={projects[0].emoji}
               className="w-full md:w-80 h-48 md:h-52 shrink-0"
@@ -173,52 +182,57 @@ export default function ProjectsSection() {
 
         {/* Other projects grid */}
         <div className="grid md:grid-cols-3 gap-6">
-          {projects.slice(1).map((project) => (
-            <a
-              key={project.number}
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="apple-card p-8 cursor-pointer block"
-              style={{ background: project.lightColor }}
-            >
-              {project.preview && (
-                <ProjectPreview
-                  link={project.link}
-                  title={project.title}
-                  color={project.color}
-                  className="w-full h-40 mb-6"
-                />
-              )}
-              <span
-                className="text-[11px] font-semibold tracking-widest uppercase mb-3 block"
-                style={{ color: project.color }}
+          {projects.slice(1).map((project) => {
+            const Card = project.link ? "a" : "div";
+            return (
+              <Card
+                key={project.number}
+                {...(project.link && {
+                  href: project.link,
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                })}
+                className={`apple-card p-8 block ${project.link ? "cursor-pointer" : ""}`}
+                style={{ background: project.lightColor }}
               >
-                {project.number}
-              </span>
-              <h3 className="text-[22px] font-bold tracking-tight text-[#1d1d1f] mb-3">
-                {project.title}
-              </h3>
-              <p className="text-[15px] text-[#6e6e73] leading-[1.6] mb-5">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {project.tags.map((tag) => (
-                  <Badge
-                    key={tag}
-                    variant="secondary"
-                    className="text-[12px] font-medium px-2.5 py-0.5 rounded-full border-0"
-                    style={{
-                      background: `${project.color}18`,
-                      color: project.color,
-                    }}
-                  >
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-            </a>
-          ))}
+                {project.preview && project.link && (
+                  <ProjectPreview
+                    link={project.link}
+                    alt={project.alt}
+                    color={project.color}
+                    className="w-full h-40 mb-6"
+                  />
+                )}
+                <span
+                  className="text-[11px] font-semibold tracking-widest uppercase mb-3 block"
+                  style={{ color: project.color }}
+                >
+                  {project.number}
+                </span>
+                <h3 className="text-[22px] font-bold tracking-tight text-[#1d1d1f] mb-3">
+                  {project.title}
+                </h3>
+                <p className="text-[15px] text-[#6e6e73] leading-[1.6] mb-5">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {project.tags.map((tag) => (
+                    <Badge
+                      key={tag}
+                      variant="secondary"
+                      className="text-[12px] font-medium px-2.5 py-0.5 rounded-full border-0"
+                      style={{
+                        background: `${project.color}18`,
+                        color: project.color,
+                      }}
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>
