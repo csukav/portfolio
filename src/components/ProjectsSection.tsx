@@ -96,6 +96,12 @@ export default function ProjectsSection() {
     alt: t.projects.items[i].alt,
   }));
 
+  // With exactly two projects, show them side by side as equal cards
+  // instead of one featured card plus a grid.
+  const sideBySide = projects.length === 2;
+  const featured = sideBySide ? null : projects[0];
+  const gridProjects = sideBySide ? projects : projects.slice(1);
+
   return (
     <section
       id="projects"
@@ -115,56 +121,60 @@ export default function ProjectsSection() {
         </div>
 
         {/* Featured project (large) */}
-        <a
-          href={projects[0].link!}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="apple-card p-10 mb-6 cursor-pointer block"
-          style={{ background: projects[0].lightColor }}
-        >
-          <div className="flex flex-col md:flex-row gap-10 items-start">
-            <div className="flex-1">
-              <span
-                className="text-[11px] font-semibold tracking-widest uppercase mb-3 block"
-                style={{ color: projects[0].color }}
-              >
-                {projects[0].number}
-              </span>
-              <h3 className="text-[32px] font-bold tracking-tight text-[#1d1d1f] mb-4">
-                {projects[0].title}
-              </h3>
-              <p className="text-[17px] text-[#6e6e73] leading-[1.6] mb-6">
-                {projects[0].description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {projects[0].tags.map((tag) => (
-                  <Badge
-                    key={tag}
-                    variant="secondary"
-                    className="text-[13px] font-medium px-3 py-1 rounded-full border-0"
-                    style={{
-                      background: `${projects[0].color}18`,
-                      color: projects[0].color,
-                    }}
-                  >
-                    {tag}
-                  </Badge>
-                ))}
+        {featured && (
+          <a
+            href={featured.link!}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="apple-card p-10 mb-6 cursor-pointer block"
+            style={{ background: featured.lightColor }}
+          >
+            <div className="flex flex-col md:flex-row gap-10 items-start">
+              <div className="flex-1">
+                <span
+                  className="text-[11px] font-semibold tracking-widest uppercase mb-3 block"
+                  style={{ color: featured.color }}
+                >
+                  {featured.number}
+                </span>
+                <h3 className="text-[32px] font-bold tracking-tight text-[#1d1d1f] mb-4">
+                  {featured.title}
+                </h3>
+                <p className="text-[17px] text-[#6e6e73] leading-[1.6] mb-6">
+                  {featured.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {featured.tags.map((tag) => (
+                    <Badge
+                      key={tag}
+                      variant="secondary"
+                      className="text-[13px] font-medium px-3 py-1 rounded-full border-0"
+                      style={{
+                        background: `${featured.color}18`,
+                        color: featured.color,
+                      }}
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
               </div>
+              <ProjectPreview
+                link={featured.link!}
+                alt={featured.alt}
+                color={featured.color}
+                fallback={featured.emoji}
+                className="w-full md:w-80 h-48 md:h-52 shrink-0"
+              />
             </div>
-            <ProjectPreview
-              link={projects[0].link!}
-              alt={projects[0].alt}
-              color={projects[0].color}
-              fallback={projects[0].emoji}
-              className="w-full md:w-80 h-48 md:h-52 shrink-0"
-            />
-          </div>
-        </a>
+          </a>
+        )}
 
         {/* Other projects grid */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {projects.slice(1).map((project) => {
+        <div
+          className={`grid gap-6 ${sideBySide ? "md:grid-cols-2" : "md:grid-cols-3"}`}
+        >
+          {gridProjects.map((project) => {
             const Card = project.link ? "a" : "div";
             return (
               <Card
@@ -182,7 +192,8 @@ export default function ProjectsSection() {
                     link={project.link}
                     alt={project.alt}
                     color={project.color}
-                    className="w-full h-40 mb-6"
+                    fallback={project.emoji}
+                    className={`w-full mb-6 ${sideBySide ? "h-56" : "h-40"}`}
                   />
                 )}
                 <span
