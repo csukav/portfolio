@@ -27,15 +27,6 @@ const projectsMeta: {
     preview: true,
   },
   {
-    title: "SaaS Dashboard",
-    tags: ["React", "D3.js", "Node.js", "PostgreSQL"],
-    color: "#34c759",
-    lightColor: "#eaf8ec",
-    number: "02",
-    link: null,
-    preview: false,
-  },
-  {
     title: "Spotify Clone",
     tags: ["Next.js", "Supabase", "Stripe", "Tailwind"],
     color: "#ff9f0a",
@@ -43,15 +34,6 @@ const projectsMeta: {
     number: "03",
     link: "https://csukaviktor.vercel.app/",
     preview: true,
-  },
-  {
-    title: "Mobile Companion App",
-    tags: ["React Native", "Expo", "SQLite", "Redux"],
-    color: "#bf5af2",
-    lightColor: "#f5eeff",
-    number: "04",
-    link: null,
-    preview: false,
   },
 ];
 
