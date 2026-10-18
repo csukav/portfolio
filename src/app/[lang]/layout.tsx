@@ -250,9 +250,9 @@ export default async function RootLayout({ children, params }: Props) {
         />
         {children}
         {/* Google tag (gtag.js) - Google Ads AW-18115939358 + Analytics G-0SDNKH1DK4.
-            One gtag.js load serves both IDs. The queue is set up right away (tiny inline script); the ~150 KB library
-            loads only after the page has finished loading, so it doesn't compete
-            with rendering. Queued commands run in order once it arrives. */}
+            One gtag.js load serves both IDs. The queue is set up right away (tiny inline script); the library
+            loads right after hydration (not lazyOnload), so Google Ads' tag checker reliably detects it.
+            Queued commands run in order once it arrives. */}
         <Script id="gtag-init" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -262,7 +262,7 @@ gtag('config', 'G-0SDNKH1DK4');`}
         </Script>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-18115939358"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
         />
       </body>
     </html>
