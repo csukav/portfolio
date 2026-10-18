@@ -2,8 +2,13 @@ import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 import { EMAIL, FULL_NAME, GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
 import { localePath, type Locale } from "@/lib/i18n";
+import { pagesHu, serviceKeys } from "@/content/content-hu";
 
 const getLinks = (locale: Locale) => [
+  // Service pages exist in Hungarian only.
+  ...(locale === "hu"
+    ? serviceKeys.map((k) => ({ label: pagesHu[k].label, href: localePath("hu", pagesHu[k].slug) }))
+    : []),
   { label: "Blog", href: localePath(locale, "/blog") },
   { label: "GitHub", href: GITHUB_URL },
   { label: "LinkedIn", href: LINKEDIN_URL },
@@ -23,7 +28,7 @@ export default function Footer({ locale }: { locale: Locale }) {
             © {year} {FULL_NAME}
           </p>
 
-          <nav className="flex gap-6">
+          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
             {getLinks(locale).map((link) =>
               link.href.startsWith("/") ? (
                 <Link

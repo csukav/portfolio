@@ -8,6 +8,7 @@
 export type Faq = { q: string; a: string };
 export type PageContent = {
   slug: string;
+  label: string;        // rövid név: belső linkek, breadcrumb, Google Ads sitelink (max. 25 karakter)
   title: string;        // <title>, ~50–60 karakter
   description: string;  // meta description, ~140–160 karakter
   h1: string;
@@ -48,13 +49,13 @@ export const homeHu = {
         route: "ads",
         h3: "Google és Facebook hirdetések",
         text: "Hirdetések beállítása és kezelése, hogy a weboldalad mielőbb érdeklődőket hozzon.",
-        price: "4999 Ft/hó-tól",
+        price: "9999 Ft/hó-tól",
       },
       {
         route: "it",
         h3: "Üzemeltetés és karbantartás",
         text: "Tárhely, domain, biztonsági mentés, frissítések – hogy ne neked kelljen ezzel foglalkoznod.",
-        price: "19999 Ft/hó-tól",
+        price: "9999 Ft/hó-tól",
       },
     ],
   },
@@ -95,7 +96,7 @@ export const homeHu = {
   faq: [
     {
       q: "Mennyibe kerül egy weboldal?",
-      a: "Egy bemutatkozó weboldal 29999 Ft-tól, egy webshop 49999 Ft-tól készül. A pontos ár az oldalak számától és a funkcióktól függ – az első egyeztetés után fix ajánlatot adok.",
+      a: "Egy bemutatkozó weboldal 19999 Ft-tól, egy webshop 49999 Ft-tól készül. A pontos ár az oldalak számától és a funkcióktól függ – az első egyeztetés után fix ajánlatot adok.",
     },
     {
       q: "Mennyi idő alatt készül el?",
@@ -122,9 +123,12 @@ export const homeHu = {
 };
 
 // ─────────────────── SZOLGÁLTATÁSOLDALAK ───────────────────
-export const pagesHu: Record<"webdev" | "webshop" | "ads" | "it", PageContent> = {
+export type ServiceKey = "webdev" | "webshop" | "ads" | "it";
+
+export const pagesHu: Record<ServiceKey, PageContent> = {
   webdev: {
     slug: "/weboldal-keszites",
+    label: "Weboldal készítés",
     title: "Weboldal készítés Debrecenben, vállalkozásoknak | Csuka Viktor",
     description:
       "Egyedi, mobilbarát weboldal készítés kis- és középvállalkozásoknak Debrecenben és Hajdú-Biharban. Gyors betöltés, Google-optimalizálás, fix ár. Kérj ajánlatot!",
@@ -164,6 +168,7 @@ export const pagesHu: Record<"webdev" | "webshop" | "ads" | "it", PageContent> =
 
   webshop: {
     slug: "/webshop-keszites",
+    label: "Webshop készítés",
     title: "Webshop készítés kis- és középvállalkozásoknak | Csuka Viktor",
     description:
       "Gyors, biztonságos webshop készítés bankkártyás fizetéssel, számlázással és könnyű termékkezeléssel. Debrecen és Hajdú-Bihar. Kérj ajánlatot!",
@@ -206,6 +211,7 @@ export const pagesHu: Record<"webdev" | "webshop" | "ads" | "it", PageContent> =
 
   ads: {
     slug: "/online-hirdetes",
+    label: "Online hirdetéskezelés",
     title: "Google és Facebook hirdetéskezelés | Csuka Viktor",
     description:
       "Google Ads és Facebook/Instagram hirdetések beállítása és kezelése helyi vállalkozásoknak. Átlátható riportok, mérhető eredmények. Kérj ajánlatot!",
@@ -230,7 +236,6 @@ export const pagesHu: Record<"webdev" | "webshop" | "ads" | "it", PageContent> =
       },
     ],
     faq: [
-      { q: "Mekkora hirdetési keret kell?", a: "Helyi vállalkozásnál már havi [ÁR] Ft-ból is lehet érdemben indulni. A keretet közösen határozzuk meg." },
       { q: "Mikor jönnek az első eredmények?", a: "A hirdetések pár napon belül futnak. Az optimalizáláshoz általában néhány hét adatgyűjtés kell." },
     ],
     cta: { text: "Nézzük meg, hogyan hozhatnál több érdeklődőt.", button: "Ingyenes konzultáció" },
@@ -238,6 +243,7 @@ export const pagesHu: Record<"webdev" | "webshop" | "ads" | "it", PageContent> =
 
   it: {
     slug: "/it-uzemeltetes",
+    label: "IT üzemeltetés",
     title: "Weboldal üzemeltetés és IT támogatás | Csuka Viktor",
     description:
       "Tárhely, domain, biztonsági mentés, frissítések és szerverüzemeltetés kis- és középvállalkozásoknak. Megbízható IT támogatás havidíjas csomagban.",
@@ -264,11 +270,18 @@ export const pagesHu: Record<"webdev" | "webshop" | "ads" | "it", PageContent> =
     ],
     faq: [
       { q: "Más által készített oldalt is üzemeltetsz?", a: "Igen, átvizsgálás után átveszem a meglévő oldal üzemeltetését is." },
-      { q: "Mi történik, ha leáll az oldal?", a: "A felügyelet riaszt, és munkaidőben [X] órán belül megkezdem a hibaelhárítást." },
     ],
     cta: { text: "Bízd rám a technikát, te foglalkozz a vállalkozásoddal.", button: "Ajánlatkérés" },
   },
 };
+
+export const serviceKeys = Object.keys(pagesHu) as ServiceKey[];
+
+/** "weboldal-keszites" → a hozzá tartozó oldal (vagy undefined). */
+export function getServiceBySlug(slug: string) {
+  const key = serviceKeys.find((k) => pagesHu[k].slug === `/${slug}`);
+  return key ? { key, page: pagesHu[key] } : undefined;
+}
 
 // ─────────────────── BLOGTÉMÁK (magyarul) ───────────────────
 // Ezekre keresnek a leendő ügyfelek. Havonta 1–2 cikk is elég, 800–1500 szóval.

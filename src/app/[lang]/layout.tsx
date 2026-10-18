@@ -258,11 +258,7 @@ export default async function RootLayout({ children, params }: Props) {
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'AW-18115939358');
-gtag('config', 'G-0SDNKH1DK4');
-// Oldalmegtekintés conversion - homepage only
-if (location.pathname === '/hu' || location.pathname === '/en') {
-  gtag('event', 'conversion', {'send_to': 'AW-18115939358/ySUcCJH18aEcEJ6Yrb5D'});
-}`}
+gtag('config', 'G-0SDNKH1DK4');`}
         </Script>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-18115939358"

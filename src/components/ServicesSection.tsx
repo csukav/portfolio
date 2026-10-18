@@ -1,9 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
+import { localePath } from "@/lib/i18n";
+import { pagesHu, serviceKeys } from "@/content/content-hu";
 
 export default function ServicesSection() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
 
   return (
     <section id="services" aria-label={t.services.label} className="py-32 bg-black">
@@ -43,6 +46,24 @@ export default function ServicesSection() {
             </div>
           ))}
         </div>
+
+        {/* Links to the Hungarian service pages (also the Google Ads sitelink targets). */}
+        {locale === "hu" ? (
+          <nav aria-label="Szolgáltatásoldalak" className="mt-16">
+            <ul className="flex flex-wrap gap-3">
+              {serviceKeys.map((k) => (
+                <li key={k}>
+                  <Link
+                    href={localePath("hu", pagesHu[k].slug)}
+                    className="inline-flex items-center rounded-full border border-[#424245] px-5 py-2 text-[15px] text-white hover:border-[#0071e3] hover:text-[#0071e3] transition-colors"
+                  >
+                    {pagesHu[k].label} →
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ) : null}
       </div>
     </section>
   );

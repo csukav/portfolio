@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { blogPosts } from "@/lib/blog";
 import { SITE_URL } from "@/lib/site";
 import { locales, localePath, htmlLang } from "@/lib/i18n";
+import { pagesHu, serviceKeys } from "@/content/content-hu";
 
 type Entry = MetadataRoute.Sitemap[number];
 
@@ -32,6 +33,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 1,
     }),
+    // Hungarian-only service pages: no hreflang alternates.
+    ...serviceKeys.map((k) => ({
+      url: `${SITE_URL}${localePath("hu", pagesHu[k].slug)}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    })),
     ...localized("/blog", {
       lastModified: latestPost ? new Date(latestPost) : new Date(),
       changeFrequency: "weekly",
