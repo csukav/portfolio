@@ -70,8 +70,8 @@ export const translations = {
         },
         {
           description:
-            "Közösségi eseményplatform Budapestre: kis létszámú gasztro-, workshop-, kulturális és sportprogramok böngészése kategóriák szerint, regisztráció és saját esemény szervezése.",
-          alt: "közös – budapesti közösségi eseményplatform Next.js alapokon",
+            "Közösségi eseményplatform: kis létszámú gasztro-, workshop-, kulturális és sportprogramok böngészése kategóriák szerint, regisztráció és saját esemény szervezése.",
+          alt: "közös – közösségi eseményplatform Next.js alapokon",
         },
       ],
     },
