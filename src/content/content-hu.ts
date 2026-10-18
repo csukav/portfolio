@@ -131,13 +131,13 @@ export const pagesHu: Record<ServiceKey, PageContent> = {
     label: "Weboldal készítés",
     title: "Weboldal készítés Debrecenben, vállalkozásoknak | Csuka Viktor",
     description:
-      "Egyedi, mobilbarát weboldal készítés kis- és középvállalkozásoknak Debrecenben és Hajdú-Biharban. Gyors betöltés, Google-optimalizálás, fix ár. Kérj ajánlatot!",
+      "Weboldal készítés 19999 Ft-tól: egyedi, mobilbarát céges weboldal kisvállalkozásoknak és egyéni vállalkozóknak Debrecenben és Hajdú-Biharban. Kérj ajánlatot!",
     h1: "Weboldal készítés vállalkozásoknak Debrecenben",
     intro:
       "A weboldal sokszor az első benyomás, amit egy leendő ügyfél kap rólad. Olyan oldalt készítek, ami gyorsan betölt telefonon, megtalálható a Google-ben, és egyértelművé teszi, mit kínálsz és hogyan érnek el.",
     sections: [
       {
-        h2: "Mit tartalmaz a weboldal?",
+        h2: "Mit tartalmaz egy céges weboldal?",
         body: "Minden weboldal alapból tartalmazza, ami egy vállalkozásnak kell:",
         bullets: [
           "Egyedi design, sablonok nélkül",
@@ -150,15 +150,32 @@ export const pagesHu: Record<ServiceKey, PageContent> = {
         ],
       },
       {
-        h2: "Kinek ajánlom?",
-        body: "Helyi vállalkozásoknak – szolgáltatóknak, kereskedőknek, vendéglátóhelyeknek, szakembereknek –, akiknek még nincs weboldaluk, vagy a mostani elavult, lassú, és nem hoz érdeklődőt.",
+        h2: "Weboldal készítés kisvállalkozásoknak és egyéni vállalkozóknak",
+        body: "Helyi vállalkozásoknak – szolgáltatóknak, kereskedőknek, vendéglátóhelyeknek, szakembereknek –, akiknek még nincs weboldaluk, vagy a mostani elavult, lassú, és nem hoz érdeklődőt. Egyoldalas bemutatkozó oldalt és többoldalas céges weboldalt is készítek.",
       },
       {
-        h2: "Árak",
-        body: "Bemutatkozó weboldal 19999 Ft-tól. Az első egyeztetés ingyenes, utána fix árajánlatot kapsz, rejtett költségek nélkül.",
+        h2: "Weboldal készítés árak – mennyibe kerül egy weboldal?",
+        body: "Bemutatkozó weboldal 19999 Ft-tól. A pontos ár az oldalak számától és a funkcióktól függ. Az első egyeztetés ingyenes, utána fix árajánlatot kapsz, rejtett költségek nélkül.",
+      },
+      {
+        h2: "Hogyan készül a weboldal?",
+        body: "",
+        bullets: [
+          "Egyeztetés: megbeszéljük, mit szeretnél elérni, kik az ügyfeleid, és mire van szükséged – ingyenes",
+          "Árajánlat: fix árat és határidőt kapsz, rejtett költségek nélkül",
+          "Tervezés és fejlesztés: menet közben látod, hogyan halad az oldal, és bármikor jelezhetsz",
+          "Átadás és támogatás: megmutatom, hogyan frissítheted, és az átadás után is elérsz",
+        ],
+      },
+      {
+        h2: "Weboldal készítés Debrecenben és környékén",
+        body: "Debrecenben és Hajdú-Bihar vármegyében személyesen is szívesen egyeztetek, az ország más részeiről online dolgozunk együtt. Végig egy emberrel beszélsz: azzal, aki az oldalt építi.",
       },
     ],
     faq: [
+      { q: "Mennyibe kerül egy weboldal?", a: "Egy bemutatkozó weboldal 19999 Ft-tól készül. A pontos ár az oldalak számától és a funkcióktól függ – az első egyeztetés után fix ajánlatot adok." },
+      { q: "Mennyi idő alatt készül el egy weboldal?", a: "Egy bemutatkozó oldal általában 1 hét alatt elkészül, attól függően, mikor állnak rendelkezésre a szövegek és képek." },
+      { q: "Segítesz abban, hogy megtaláljanak a Google-ben?", a: "Igen. Minden oldalt keresőoptimalizáltan adok át, és segítek beállítani a Google Cégprofilt és a Search Console-t is." },
       { q: "Mi kell tőlem a weboldalhoz?", a: "A logód, néhány fotó és a szolgáltatásaid leírása. Ha nincs kész szöveged, segítek megírni." },
       { q: "Ki fizeti a domaint és a tárhelyet?", a: "A domain a te nevedre kerül. A tárhely és a karbantartás havidíjas csomagban is kérhető tőlem." },
       { q: "A régi oldalamat át tudod alakítani?", a: "Igen, a meglévő tartalmat átköltöztetem, és beállítom az átirányításokat, hogy a Google-helyezésed ne vesszen el." },
@@ -171,13 +188,13 @@ export const pagesHu: Record<ServiceKey, PageContent> = {
     label: "Webshop készítés",
     title: "Webshop készítés kis- és középvállalkozásoknak | Csuka Viktor",
     description:
-      "Gyors, biztonságos webshop készítés bankkártyás fizetéssel, számlázással és könnyű termékkezeléssel. Debrecen és Hajdú-Bihar. Kérj ajánlatot!",
-    h1: "Webshop készítés kis- és középvállalkozásoknak",
+      "Webshop készítés 49999 Ft-tól: egyedi webáruház bankkártyás fizetéssel, számlázással és könnyű termékkezeléssel. Debrecen és Hajdú-Bihar. Kérj ajánlatot!",
+    h1: "Webshop és webáruház készítés kis- és középvállalkozásoknak",
     intro:
       "Nemcsak fejlesztek webshopot, hanem üzemeltetek is egyet – ezért tudom, mi kell ahhoz, hogy a látogatóból vásárló legyen: gyors oldal, egyszerű kosár, megbízható fizetés.",
     sections: [
       {
-        h2: "Mit tud a webshop?",
+        h2: "Mit tud az egyedi webshop?",
         body: "",
         bullets: [
           "Bankkártyás fizetés (pl. Stripe, Barion, SimplePay) és utánvét",
@@ -197,11 +214,17 @@ export const pagesHu: Record<ServiceKey, PageContent> = {
         body: "Hoodini – streetwear webshop (hoodini.hu): teljes fejlesztés online fizetéssel és saját admin felülettel.",
       },
       {
-        h2: "Árak",
-        body: "Webshop 49999 Ft-tól. A pontos ár a termékek számától és a szükséges integrációktól függ.",
+        h2: "Webshop készítés árak – mennyibe kerül egy webshop?",
+        body: "Webshop 49999 Ft-tól. A pontos ár a termékek számától és a szükséges integrációktól függ. Az első egyeztetés ingyenes, utána fix árajánlatot kapsz.",
+      },
+      {
+        h2: "Webshop készítés Debrecenben és környékén",
+        body: "Debrecenben és Hajdú-Bihar vármegyében személyesen is szívesen egyeztetek, az ország más részeiről online dolgozunk együtt. Végig egy emberrel beszélsz: azzal, aki az oldalt építi.",
       },
     ],
     faq: [
+      { q: "Mennyibe kerül egy webshop?", a: "Egy webshop 49999 Ft-tól készül. A pontos ár a termékek számától és a szükséges integrációktól függ – az első egyeztetés után fix ajánlatot adok." },
+      { q: "Mennyi idő alatt készül el a webshop?", a: "Egy webshop általában 2 hét alatt elkészül, attól függően, mikor állnak rendelkezésre a termékadatok, szövegek és képek." },
       { q: "Hány termékkel indulhat a webshop?", a: "Akár néhány termékkel is. A rendszer később több ezer termékig bővíthető." },
       { q: "Tudom magam feltölteni a termékeket?", a: "Igen, egyszerű admin felületen te kezeled a termékeket, árakat és rendeléseket." },
       { q: "Segítesz a forgalom beindításában is?", a: "Igen, Google és Facebook hirdetések beállításában és kezelésében is tudok segíteni." },
@@ -212,15 +235,15 @@ export const pagesHu: Record<ServiceKey, PageContent> = {
   ads: {
     slug: "/online-hirdetes",
     label: "Online hirdetéskezelés",
-    title: "Google és Facebook hirdetéskezelés | Csuka Viktor",
+    title: "Google Ads és Facebook hirdetéskezelés | Csuka Viktor",
     description:
-      "Google Ads és Facebook/Instagram hirdetések beállítása és kezelése helyi vállalkozásoknak. Átlátható riportok, mérhető eredmények. Kérj ajánlatot!",
+      "Google Ads és Facebook/Instagram hirdetéskezelés helyi vállalkozásoknak, 9999 Ft/hó-tól. Konverziómérés, havi riport, mérhető eredmények. Kérj ajánlatot!",
     h1: "Google és Facebook hirdetéskezelés helyi vállalkozásoknak",
     intro:
       "A jó weboldal akkor hoz ügyfelet, ha látják. Hirdetésekkel már az első naptól megjelenhetsz azoknál, akik éppen a szolgáltatásodat keresik a környéken.",
     sections: [
       {
-        h2: "Mit csinálok?",
+        h2: "Mit tartalmaz a Google Ads és Facebook hirdetéskezelés?",
         body: "",
         bullets: [
           "Hirdetési fiókok és konverziómérés beállítása",
@@ -231,11 +254,12 @@ export const pagesHu: Record<ServiceKey, PageContent> = {
         ],
       },
       {
-        h2: "Árak",
+        h2: "Hirdetéskezelés árak",
         body: "Hirdetéskezelés 9999 Ft/hó-tól + a hirdetési keret, amit közvetlenül a Google-nek / Metának fizetsz.",
       },
     ],
     faq: [
+      { q: "Mennyibe kerül a hirdetéskezelés?", a: "A hirdetéskezelés 9999 Ft/hó-tól indul, ehhez jön a hirdetési keret, amit közvetlenül a Google-nek vagy a Metának fizetsz." },
       { q: "Mikor jönnek az első eredmények?", a: "A hirdetések pár napon belül futnak. Az optimalizáláshoz általában néhány hét adatgyűjtés kell." },
     ],
     cta: { text: "Nézzük meg, hogyan hozhatnál több érdeklődőt.", button: "Ingyenes konzultáció" },
@@ -244,15 +268,15 @@ export const pagesHu: Record<ServiceKey, PageContent> = {
   it: {
     slug: "/it-uzemeltetes",
     label: "IT üzemeltetés",
-    title: "Weboldal üzemeltetés és IT támogatás | Csuka Viktor",
+    title: "Weboldal üzemeltetés, karbantartás és IT támogatás | Csuka Viktor",
     description:
-      "Tárhely, domain, biztonsági mentés, frissítések és szerverüzemeltetés kis- és középvállalkozásoknak. Megbízható IT támogatás havidíjas csomagban.",
+      "Havidíjas weboldal üzemeltetés és karbantartás 9999 Ft/hó-tól: tárhely, domain, mentés, frissítések, szerver- és felhőüzemeltetés kis- és középvállalkozásoknak.",
     h1: "Weboldal üzemeltetés és IT támogatás vállalkozásoknak",
     intro:
       "Hogy a weboldalad és a rendszereid mindig működjenek – és ne neked kelljen tárhellyel, frissítésekkel és mentésekkel foglalkoznod.",
     sections: [
       {
-        h2: "Szolgáltatások",
+        h2: "Weboldal üzemeltetés és karbantartás – mit tartalmaz?",
         body: "",
         bullets: [
           "Tárhely és domain kezelés",
@@ -264,11 +288,13 @@ export const pagesHu: Record<ServiceKey, PageContent> = {
         ],
       },
       {
-        h2: "Árak",
+        h2: "Havidíjas üzemeltetés árak",
         body: "Üzemeltetési csomag 9999 Ft/hó-tól. Egyedi infrastruktúrához egyedi ajánlatot adok.",
       },
     ],
     faq: [
+      { q: "Mennyibe kerül a weboldal üzemeltetés?", a: "Az üzemeltetési csomag 9999 Ft/hó-tól indul. Egyedi infrastruktúrához egyedi ajánlatot adok." },
+      { q: "Szervert és felhőt is üzemeltetsz?", a: "Igen, a weboldalakon túl szerver- és felhőüzemeltetést (AWS, Azure, Vercel, Proxmox) és adatbázis-kezelést is vállalok." },
       { q: "Más által készített oldalt is üzemeltetsz?", a: "Igen, átvizsgálás után átveszem a meglévő oldal üzemeltetését is." },
     ],
     cta: { text: "Bízd rám a technikát, te foglalkozz a vállalkozásoddal.", button: "Ajánlatkérés" },
