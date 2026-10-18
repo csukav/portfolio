@@ -35,9 +35,9 @@ export default function ContactSection() {
 
       if (!res.ok) throw new Error("Error");
 
-      // Google Ads "Ajánlatkérés" conversion - only after the message was actually sent
+      // Google Ads "Ajánlatkérés – űrlap" conversion - only after the message was actually sent
       window.gtag?.("event", "conversion", {
-        send_to: "AW-18115939358/f6nVCJPRq4IdEJ6Yrb5D",
+        send_to: "AW-18115939358/IJqwCPyorKEdEJ6Yrb5D",
       });
       // GA4 lead event
       window.gtag?.("event", "generate_lead");
