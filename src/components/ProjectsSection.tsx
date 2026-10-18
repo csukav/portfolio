@@ -31,8 +31,18 @@ const projectsMeta: {
     tags: ["Next.js", "Supabase", "Stripe", "Tailwind"],
     color: "#ff9f0a",
     lightColor: "#fff3e0",
-    number: "03",
+    number: "02",
     link: "https://csukaviktor.vercel.app/",
+    preview: true,
+  },
+  {
+    title: "közös – Közösségi események",
+    tags: ["Next.js", "TypeScript", "Vercel"],
+    color: "#34c759",
+    lightColor: "#e9f8ee",
+    number: "03",
+    emoji: "🤝",
+    link: "https://kozoselmeny.vercel.app/",
     preview: true,
   },
 ];
@@ -101,6 +111,8 @@ export default function ProjectsSection() {
   const sideBySide = projects.length === 2;
   const featured = sideBySide ? null : projects[0];
   const gridProjects = sideBySide ? projects : projects.slice(1);
+  // Two cards in the grid get the wider two-column layout.
+  const twoColumnGrid = gridProjects.length === 2;
 
   return (
     <section
@@ -172,7 +184,7 @@ export default function ProjectsSection() {
 
         {/* Other projects grid */}
         <div
-          className={`grid gap-6 ${sideBySide ? "md:grid-cols-2" : "md:grid-cols-3"}`}
+          className={`grid gap-6 ${twoColumnGrid ? "md:grid-cols-2" : "md:grid-cols-3"}`}
         >
           {gridProjects.map((project) => {
             const Card = project.link ? "a" : "div";
@@ -193,7 +205,7 @@ export default function ProjectsSection() {
                     alt={project.alt}
                     color={project.color}
                     fallback={project.emoji}
-                    className={`w-full mb-6 ${sideBySide ? "h-56" : "h-40"}`}
+                    className={`w-full mb-6 ${twoColumnGrid ? "h-56" : "h-40"}`}
                   />
                 )}
                 <span

@@ -65,18 +65,13 @@ export const translations = {
         },
         {
           description:
-            "Valós idejű adatvizualizáció és csapatkezelési eszközök enterprise ügyfeleknek. 50+ komponens.",
-          alt: "SaaS Dashboard – React és D3.js adatvizualizációs felület",
-        },
-        {
-          description:
             "Zenelejátszó webalkalmazás Next.js és Supabase alapokon: bejelentkezés, saját dalok feltöltése, kedvencek és Stripe-os prémium előfizetés.",
           alt: "Spotify Clone – Next.js és Supabase zenelejátszó webalkalmazás",
         },
         {
           description:
-            "React Native cross-platform alkalmazás 10 000+ aktív felhasználóval. Offline-first architektúra.",
-          alt: "Mobile Companion App – React Native mobilalkalmazás",
+            "Közösségi eseményplatform Budapestre: kis létszámú gasztro-, workshop-, kulturális és sportprogramok böngészése kategóriák szerint, regisztráció és saját esemény szervezése.",
+          alt: "közös – budapesti közösségi eseményplatform Next.js alapokon",
         },
       ],
     },
@@ -230,18 +225,13 @@ export const translations = {
         },
         {
           description:
-            "Real-time data visualization and team management tools for enterprise clients. 50+ components.",
-          alt: "SaaS Dashboard – React and D3.js data visualization interface",
-        },
-        {
-          description:
             "Music streaming web app built with Next.js and Supabase: authentication, song uploads, liked songs and a Stripe premium subscription.",
           alt: "Spotify Clone – Next.js and Supabase music streaming web app",
         },
         {
           description:
-            "React Native cross-platform app with 10,000+ active users. Offline-first architecture.",
-          alt: "Mobile Companion App – React Native mobile app",
+            "Community event platform for Budapest: browse small food, workshop, culture and sports events by category, sign up, and organize your own gatherings.",
+          alt: "közös – Budapest community event platform built with Next.js",
         },
       ],
     },
