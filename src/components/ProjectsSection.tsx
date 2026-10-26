@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import { useLanguage } from "@/context/LanguageContext";
@@ -14,7 +14,8 @@ const projectsMeta: {
   number: string;
   emoji?: string;
   link: string | null;
-  preview: boolean;
+  /** Homepage screenshot in /public/projects (null → no preview). */
+  image: string | null;
 }[] = [
   {
     title: "E-Commerce Platform",
@@ -24,7 +25,7 @@ const projectsMeta: {
     number: "01",
     emoji: "🛒",
     link: "https://www.hoodini.hu/",
-    preview: true,
+    image: "/projects/hoodini.jpg",
   },
   {
     title: "Spotify Clone",
@@ -33,7 +34,7 @@ const projectsMeta: {
     lightColor: "#fff3e0",
     number: "02",
     link: "https://csukaviktor.vercel.app/",
-    preview: true,
+    image: "/projects/spotify-clone.jpg",
   },
   {
     title: "közös – Közösségi események",
@@ -43,56 +44,30 @@ const projectsMeta: {
     number: "03",
     emoji: "🤝",
     link: "https://kozoselmeny.vercel.app/",
-    preview: true,
+    image: "/projects/kozos.jpg",
   },
 ];
 
-/** Screenshot of the linked site's homepage, rendered by Microlink. */
-function screenshotUrl(link: string) {
-  const params = new URLSearchParams({
-    url: link,
-    screenshot: "true",
-    "screenshot.type": "jpeg",
-    meta: "false",
-    embed: "screenshot.url",
-    "viewport.width": "1280",
-    "viewport.height": "800",
-  });
-  return `https://api.microlink.io/?${params}`;
-}
-
+/** Static screenshot of the project's homepage (saved locally, served via next/image). */
 function ProjectPreview({
-  link,
+  src,
   alt,
   color,
-  fallback,
   className,
+  sizes,
 }: {
-  link: string;
+  src: string;
   alt: string;
   color: string;
-  fallback?: string;
   className: string;
+  sizes: string;
 }) {
-  const [failed, setFailed] = useState(false);
-
   return (
     <div
-      className={`${className} rounded-2xl overflow-hidden flex items-center justify-center text-6xl`}
+      className={`${className} relative rounded-2xl overflow-hidden`}
       style={{ background: `${color}22` }}
     >
-      {failed ? (
-        fallback
-      ) : (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={screenshotUrl(link)}
-          alt={alt}
-          loading="lazy"
-          onError={() => setFailed(true)}
-          className="w-full h-full object-cover object-top"
-        />
-      )}
+      <Image src={src} alt={alt} fill sizes={sizes} className="object-cover object-top" />
     </div>
   );
 }
@@ -172,10 +147,10 @@ export default function ProjectsSection() {
                 </div>
               </div>
               <ProjectPreview
-                link={featured.link!}
+                src={featured.image!}
                 alt={featured.alt}
                 color={featured.color}
-                fallback={featured.emoji}
+                sizes="(min-width: 768px) 320px, 100vw"
                 className="w-full md:w-80 h-48 md:h-52 shrink-0"
               />
             </div>
@@ -199,12 +174,12 @@ export default function ProjectsSection() {
                 className={`apple-card p-8 block ${project.link ? "cursor-pointer" : ""}`}
                 style={{ background: project.lightColor }}
               >
-                {project.preview && project.link && (
+                {project.image && (
                   <ProjectPreview
-                    link={project.link}
+                    src={project.image}
                     alt={project.alt}
                     color={project.color}
-                    fallback={project.emoji}
+                    sizes={twoColumnGrid ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 33vw, 100vw"}
                     className={`w-full mb-6 ${twoColumnGrid ? "h-56" : "h-40"}`}
                   />
                 )}

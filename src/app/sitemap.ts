@@ -6,6 +6,10 @@ import { pagesHu, serviceKeys } from "@/content/content-hu";
 
 type Entry = MetadataRoute.Sitemap[number];
 
+/** Last real content change of the homepages and service pages – bump it when
+ *  you edit their text (a build timestamp would make Google ignore lastmod). */
+const PAGES_UPDATED = new Date("2026-10-26");
+
 /** One sitemap entry per locale, each listing every language version (hreflang). */
 function localized(
   path: string,
@@ -29,14 +33,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...localized("/", {
-      lastModified: new Date(),
+      lastModified: PAGES_UPDATED,
       changeFrequency: "monthly",
       priority: 1,
     }),
     // Hungarian-only service pages: no hreflang alternates.
     ...serviceKeys.map((k) => ({
       url: `${SITE_URL}${localePath("hu", pagesHu[k].slug)}`,
-      lastModified: new Date(),
+      lastModified: PAGES_UPDATED,
       changeFrequency: "monthly" as const,
       priority: 0.9,
     })),

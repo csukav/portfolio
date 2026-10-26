@@ -7,7 +7,7 @@ export const translations = {
       projects: "Projektek",
       skills: "Képességek",
       contact: "Kapcsolat",
-      cta: "Felveszel?",
+      cta: "Kérj ajánlatot",
       menuLabel: "Menü",
       blog: "Blog",
     },
@@ -65,7 +65,7 @@ export const translations = {
         },
         {
           description:
-            "Zenelejátszó webalkalmazás Next.js és Supabase alapokon: bejelentkezés, saját dalok feltöltése, kedvencek és Stripe-os prémium előfizetés.",
+            "Zenelejátszó webalkalmazás Next.js és Supabase alapokon: bejelentkezés, saját dalok feltöltése, kedvencek.",
           alt: "Spotify Clone – Next.js és Supabase zenelejátszó webalkalmazás",
         },
         {
@@ -93,7 +93,7 @@ export const translations = {
       items: [
         {
           title: "Szerver- és Cloud-menedzsment",
-          desc: "Informatikai szolgáltatásunk része az AWS, Azure és Vercel infrastruktúra kezelése, frissítése és optimalizálása.",
+          desc: "AWS, Azure és Vercel infrastruktúra kezelése, frissítése és optimalizálása.",
           price: "Ár: 180 000 Ft-tól",
           minPrice: 180_000,
           icon: "☁️",
@@ -167,7 +167,7 @@ export const translations = {
       projects: "Projects",
       skills: "Skills",
       contact: "Contact",
-      cta: "Hire me?",
+      cta: "Get a quote",
       menuLabel: "Menu",
       blog: "Blog",
     },
@@ -225,7 +225,7 @@ export const translations = {
         },
         {
           description:
-            "Music streaming web app built with Next.js and Supabase: authentication, song uploads, liked songs and a Stripe premium subscription.",
+            "Music streaming web app built with Next.js and Supabase: authentication, song uploads, liked songs.",
           alt: "Spotify Clone – Next.js and Supabase music streaming web app",
         },
         {

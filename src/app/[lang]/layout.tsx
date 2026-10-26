@@ -39,7 +39,6 @@ const META: Record<
     serviceName: string;
     /** The priced IT services come from translations.services. */
     webService: string;
-    keywords: string[];
   }
 > = {
   hu: {
@@ -52,23 +51,6 @@ const META: Record<
       "Full-stack webfejlesztő és informatikai szolgáltató, aki React, Next.js, TypeScript és Node.js technológiákkal, valamint szerver-, cloud- és rendszergazdai szolgáltatásokkal dolgozik.",
     serviceName: `${FULL_NAME} — Webfejlesztés és IT szolgáltatások`,
     webService: "Webfejlesztés (React, Next.js, TypeScript)",
-    keywords: [
-      "informatikai szolgáltatások",
-      "IT szolgáltatások",
-      "rendszergazdai szolgáltatás",
-      "IT üzemeltetés",
-      "szerver menedzsment",
-      "cloud menedzsment",
-      "IT support vállalatoknak",
-      "full-stack fejlesztő",
-      "webfejlesztő",
-      "weboldal készítés",
-      "React fejlesztő",
-      "Next.js fejlesztő",
-      "TypeScript",
-      "Node.js",
-      "Csuka Viktor",
-    ],
   },
   en: {
     title: `${FULL_NAME} — Full-Stack Web Developer & IT Services`,
@@ -79,20 +61,6 @@ const META: Record<
       "Full-stack web developer and IT service provider working with React, Next.js, TypeScript and Node.js, plus server, cloud and sysadmin services.",
     serviceName: `${FULL_NAME} — Web Development & IT Services`,
     webService: "Web development (React, Next.js, TypeScript)",
-    keywords: [
-      "full-stack developer",
-      "web developer",
-      "freelance web developer",
-      "React developer",
-      "Next.js developer",
-      "TypeScript",
-      "Node.js",
-      "IT services",
-      "server management",
-      "cloud management",
-      "sysadmin services",
-      "Csuka Viktor",
-    ],
   },
 };
 
@@ -125,7 +93,6 @@ export async function generateMetadata({
       template: `%s | ${FULL_NAME}`,
     },
     description: m.description,
-    keywords: m.keywords,
     authors: [{ name: FULL_NAME, url: SITE_URL }],
     creator: FULL_NAME,
     publisher: FULL_NAME,
@@ -146,16 +113,12 @@ export async function generateMetadata({
       description: m.description,
       images: [OG_IMAGE.url],
     },
+    // index/follow is the default; leaving it out lets the 404 page's
+    // automatic "noindex" stand alone instead of contradicting it.
     robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-      },
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   };
 }
@@ -206,7 +169,19 @@ function buildJsonLd(lang: Locale) {
         image: `${SITE_URL}${OG_IMAGE.url}`,
         email: EMAIL,
         founder: { "@id": `${SITE_URL}/#person` },
-        areaServed: { "@type": "Country", name: "Hungary" },
+        // Service-area business: locality only, no street address.
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Debrecen",
+          addressRegion: "Hajdú-Bihar",
+          addressCountry: "HU",
+        },
+        areaServed: [
+          { "@type": "City", name: "Debrecen" },
+          { "@type": "AdministrativeArea", name: "Hajdú-Bihar" },
+          { "@type": "Country", name: "Hungary" },
+        ],
+        priceRange: lang === "hu" ? "19 999 Ft-tól" : "From HUF 19,999",
         knowsLanguage: ["hu", "en"],
         hasOfferCatalog: {
           "@type": "OfferCatalog",

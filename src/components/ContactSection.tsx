@@ -90,6 +90,10 @@ export default function ContactSection() {
                   value: "github.com/csukav",
                   href: "https://github.com/csukav",
                 },
+                {
+                  label: "Telefonszám",
+                  value: "+36209539379",
+                }
               ].map((item) => (
                 <div key={item.label} className="flex flex-col gap-0.5">
                   <span className="text-[11px] uppercase tracking-widest text-[#6e6e73] font-medium">

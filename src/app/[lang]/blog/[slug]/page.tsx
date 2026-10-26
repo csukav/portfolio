@@ -12,6 +12,7 @@ import {
   htmlLang,
 } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { pagesHu } from "@/content/content-hu";
 
 interface Props {
   params: Promise<{ lang: string; slug: string }>;
@@ -28,12 +29,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const isHu = lang === "hu";
   const title = isHu ? post.titleHu : post.titleEn;
+  const seoTitle = (isHu ? post.seoTitleHu : post.seoTitleEn) ?? title;
   const description = isHu ? post.summaryHu : post.summaryEn;
 
   return {
-    title,
+    title: seoTitle,
     description,
-    keywords: post.tags,
     authors: [{ name: FULL_NAME, url: SITE_URL }],
     alternates: languageAlternates(lang, `/blog/${slug}`),
     openGraph: {
@@ -70,6 +71,8 @@ export default async function BlogPostPage({ params }: Props) {
   const content = isHu ? post.contentHu : post.contentEn;
   const url = `${SITE_URL}${localePath(lang, `/blog/${slug}`)}`;
   const blogUrl = `${SITE_URL}${localePath(lang, "/blog")}`;
+  // Service pages exist only in Hungarian.
+  const service = isHu && post.relatedService ? pagesHu[post.relatedService] : null;
   const formattedDate = new Date(post.date).toLocaleDateString(
     isHu ? "hu-HU" : "en-US",
     { year: "numeric", month: "long", day: "numeric" },
@@ -190,6 +193,18 @@ export default async function BlogPostPage({ params }: Props) {
             dangerouslySetInnerHTML={{ __html: content }}
           />
         </article>
+
+        {service && (
+          <aside className="mt-12 rounded-2xl bg-[#f5f5f7] px-8 py-8 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+            <p className="text-[19px] font-semibold text-[#1d1d1f] leading-snug">{service.cta.text}</p>
+            <Link
+              href={localePath(lang, service.slug)}
+              className="shrink-0 inline-flex items-center justify-center bg-[#0071e3] text-white text-[15px] px-6 py-2.5 rounded-full hover:bg-[#0077ed] transition-colors"
+            >
+              {service.label} →
+            </Link>
+          </aside>
+        )}
 
         {/* Bottom nav */}
         <div className="mt-16 pt-8 border-t border-black/8">
