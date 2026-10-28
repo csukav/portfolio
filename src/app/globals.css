@@ -209,18 +209,24 @@
     letter-spacing: -0.01em;
   }
 
+  /* Slide only, no fade: the hero H1 is the LCP element, and text that starts
+     at opacity 0 isn't counted as painted until it fades in (later LCP). */
   .animate-fade-up {
-    animation: fadeUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+    animation: fadeUp 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) both;
   }
 
   @keyframes fadeUp {
     from {
-      opacity: 0;
       transform: translateY(30px);
     }
     to {
-      opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-up {
+      animation: none;
     }
   }
 }

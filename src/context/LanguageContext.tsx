@@ -1,37 +1,40 @@
 "use client";
 
 import { createContext, useContext } from "react";
-import { translations, Locale, Translations } from "@/lib/translations";
+import type { Locale, Translations } from "@/lib/translations";
+
+/** Only the strings the client components (Navbar, ContactSection) render. */
+export type ClientTranslations = Pick<Translations, "nav" | "contact"> & {
+  services: Pick<Translations["services"], "label">;
+};
 
 interface LanguageContextType {
   locale: Locale;
-  t: Translations;
+  t: ClientTranslations;
 }
 
-const LanguageContext = createContext<LanguageContextType>({
-  locale: "en",
-  t: translations["en"],
-});
+const LanguageContext = createContext<LanguageContextType | null>(null);
 
-// The locale is resolved on the server (middleware → x-locale header) and
-// passed in, so the server-rendered HTML is already in the right language
-// (no English → Hungarian flash after hydration).
-export function LanguageProvider({
+// Filled by the server-side LanguageProvider, so the full translations
+// module (both languages) never ships in the client bundle.
+export function LanguageContextProvider({
   children,
-  initialLocale,
+  locale,
+  t,
 }: {
   children: React.ReactNode;
-  initialLocale: Locale;
+  locale: Locale;
+  t: ClientTranslations;
 }) {
   return (
-    <LanguageContext.Provider
-      value={{ locale: initialLocale, t: translations[initialLocale] }}
-    >
+    <LanguageContext.Provider value={{ locale, t }}>
       {children}
     </LanguageContext.Provider>
   );
 }
 
 export function useLanguage() {
-  return useContext(LanguageContext);
+  const ctx = useContext(LanguageContext);
+  if (!ctx) throw new Error("useLanguage must be used inside LanguageProvider");
+  return ctx;
 }

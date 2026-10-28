@@ -1,9 +1,7 @@
-"use client";
-
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import ParticlesBackground from "@/components/ParticlesBackground";
-import { useLanguage } from "@/context/LanguageContext";
+import type { Translations } from "@/lib/translations";
 
 // `link: null` → no public demo or repo; the card is rendered without a link.
 const projectsMeta: {
@@ -72,9 +70,7 @@ function ProjectPreview({
   );
 }
 
-export default function ProjectsSection() {
-  const { t } = useLanguage();
-
+export default function ProjectsSection({ t }: { t: Translations }) {
   const projects = projectsMeta.map((meta, i) => ({
     ...meta,
     description: t.projects.items[i].description,

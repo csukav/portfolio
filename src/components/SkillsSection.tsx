@@ -1,6 +1,4 @@
-"use client";
-
-import { useLanguage } from "@/context/LanguageContext";
+import type { Translations } from "@/lib/translations";
 
 const skillGroups = [
   {
@@ -32,9 +30,7 @@ const skillGroups = [
   },
 ];
 
-export default function SkillsSection() {
-  const { t } = useLanguage();
-
+export default function SkillsSection({ t }: { t: Translations }) {
   return (
     <section id="skills" aria-label={t.nav.skills} className="py-32 bg-[#1d1d1f]">
       <div className="max-w-245 mx-auto px-6">

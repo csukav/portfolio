@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import { LanguageProvider } from "@/context/LanguageContext";
+import { LanguageProvider } from "@/context/LanguageProvider";
 import { SITE_URL, FULL_NAME, OG_IMAGE } from "@/lib/site";
 import { isLocale, localePath, ogLocale, htmlLang } from "@/lib/i18n";
 import { getServiceBySlug, pagesHu, serviceKeys } from "@/content/content-hu";

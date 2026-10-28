@@ -1,12 +1,8 @@
-"use client";
-
 import { Badge } from "@/components/ui/badge";
 import ParticlesBackground from "@/components/ParticlesBackground";
-import { useLanguage } from "@/context/LanguageContext";
+import type { Translations } from "@/lib/translations";
 
-export default function HeroSection() {
-  const { t } = useLanguage();
-
+export default function HeroSection({ t }: { t: Translations }) {
   return (
     <section
       id="hero"

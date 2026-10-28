@@ -1,7 +1,5 @@
-"use client";
-
 import { blogPosts } from "@/lib/blog";
-import { useLanguage } from "@/context/LanguageContext";
+import type { Locale, Translations } from "@/lib/translations";
 import Link from "next/link";
 import { localePath } from "@/lib/i18n";
 
@@ -9,13 +7,18 @@ const sorted = [...blogPosts].sort(
   (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
 );
 
-export default function BlogSection() {
-  const { t, locale } = useLanguage();
+export default function BlogSection({
+  t,
+  locale,
+}: {
+  t: Translations;
+  locale: Locale;
+}) {
   const isHu = locale === "hu";
 
   return (
     <section id="blog" aria-label={t.nav.blog} className="py-32 bg-white">
-      <div className="max-w-245] mx-auto px-6">
+      <div className="max-w-245 mx-auto px-6">
         <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">
           Blog
         </p>

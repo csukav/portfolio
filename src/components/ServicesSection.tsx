@@ -1,13 +1,15 @@
-"use client";
-
 import Link from "next/link";
-import { useLanguage } from "@/context/LanguageContext";
+import type { Locale, Translations } from "@/lib/translations";
 import { localePath } from "@/lib/i18n";
 import { pagesHu, serviceKeys } from "@/content/content-hu";
 
-export default function ServicesSection() {
-  const { t, locale } = useLanguage();
-
+export default function ServicesSection({
+  t,
+  locale,
+}: {
+  t: Translations;
+  locale: Locale;
+}) {
   return (
     <section id="services" aria-label={t.services.label} className="py-32 bg-black">
       <div className="max-w-245 mx-auto px-6">

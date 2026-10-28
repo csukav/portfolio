@@ -1,10 +1,7 @@
-"use client";
-
 import { Separator } from "@/components/ui/separator";
-import { useLanguage } from "@/context/LanguageContext";
+import type { Translations } from "@/lib/translations";
 
-export default function AboutSection() {
-  const { t } = useLanguage();
+export default function AboutSection({ t }: { t: Translations }) {
   const { stats, values } = t.about;
 
   return (

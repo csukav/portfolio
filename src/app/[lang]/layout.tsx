@@ -225,20 +225,32 @@ export default async function RootLayout({ children, params }: Props) {
         />
         {children}
         {/* Google tag (gtag.js) - Google Ads AW-18115939358 + Analytics G-0SDNKH1DK4.
-            One gtag.js load serves both IDs. The queue is set up right away (tiny inline script); the library
-            loads right after hydration (not lazyOnload), so Google Ads' tag checker reliably detects it.
+            The queue is set up right away (tiny inline script), so no command is lost. The library itself
+            (~1 s of main-thread work on mobile, it pulls a second container for the G- ID) loads on the
+            first user interaction, or 4 s after the load event at the latest, so it stays out of the
+            initial render (PageSpeed TBT/LCP) while Google Ads' tag checker still finds it.
             Queued commands run in order once it arrives. */}
         <Script id="gtag-init" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'AW-18115939358');
-gtag('config', 'G-0SDNKH1DK4');`}
+gtag('config', 'G-0SDNKH1DK4');
+(function(){
+  var done = false, events = ['pointerdown', 'keydown', 'touchstart', 'scroll'];
+  function load(){
+    if (done) return; done = true;
+    events.forEach(function(e){ removeEventListener(e, load, true); });
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18115939358';
+    document.head.appendChild(s);
+  }
+  events.forEach(function(e){ addEventListener(e, load, { once: true, passive: true, capture: true }); });
+  function later(){ setTimeout(load, 4000); }
+  if (document.readyState === 'complete') later(); else addEventListener('load', later, { once: true });
+})();`}
         </Script>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18115939358"
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   );

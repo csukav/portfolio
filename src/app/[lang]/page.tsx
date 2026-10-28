@@ -10,8 +10,9 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
-import { LanguageProvider } from "@/context/LanguageContext";
+import { LanguageProvider } from "@/context/LanguageProvider";
 import { isLocale, languageAlternates } from "@/lib/i18n";
+import { translations } from "@/lib/translations";
 import { notFound } from "next/navigation";
 
 interface Props {
@@ -27,17 +28,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Home({ params }: Props) {
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
+  const t = translations[lang];
 
   return (
     <LanguageProvider initialLocale={lang}>
       <Navbar />
       <main>
-        <HeroSection />
-        <AboutSection />
-        <ProjectsSection />
-        <SkillsSection />
-        <ServicesSection />
-        <BlogSection />
+        <HeroSection t={t} />
+        <AboutSection t={t} />
+        <ProjectsSection t={t} />
+        <SkillsSection t={t} />
+        <ServicesSection t={t} locale={lang} />
+        <BlogSection t={t} locale={lang} />
         <ContactSection />
       </main>
       <Footer locale={lang} />
