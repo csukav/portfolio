@@ -93,6 +93,7 @@ export default function ContactSection() {
                 {
                   label: "Telefonszám",
                   value: "+36209539379",
+                  href: "+36209539379"
                 }
               ].map((item) => (
                 <div key={item.label} className="flex flex-col gap-0.5">
