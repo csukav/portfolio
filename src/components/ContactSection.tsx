@@ -5,6 +5,7 @@ import ParticlesBackground from "@/components/ParticlesBackground";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useLanguage } from "@/context/LanguageContext";
+import { EMAIL, GITHUB_URL, LINKEDIN_URL, PHONE, PHONE_DISPLAY } from "@/lib/site";
 
 declare global {
   interface Window {
@@ -13,7 +14,7 @@ declare global {
 }
 
 export default function ContactSection() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const f = t.contact.form;
 
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -76,25 +77,25 @@ export default function ContactSection() {
             <div className="flex flex-col gap-4">
               {[
                 {
+                  label: locale === "hu" ? "Telefon" : "Phone",
+                  value: PHONE_DISPLAY,
+                  href: `tel:${PHONE}`,
+                },
+                {
                   label: "Email",
-                  value: "csukav@gmail.com",
-                  href: "mailto:csukav@gmail.com",
+                  value: EMAIL,
+                  href: `mailto:${EMAIL}`,
                 },
                 {
                   label: "LinkedIn",
                   value: "linkedin.com/in/csukaviktor",
-                  href: "https://www.linkedin.com/in/csukaviktor",
+                  href: LINKEDIN_URL,
                 },
                 {
                   label: "GitHub",
                   value: "github.com/csukav",
-                  href: "https://github.com/csukav",
+                  href: GITHUB_URL,
                 },
-                {
-                  label: "Telefonszám",
-                  value: "+36209539379",
-                  href: "+36209539379"
-                }
               ].map((item) => (
                 <div key={item.label} className="flex flex-col gap-0.5">
                   <span className="text-[11px] uppercase tracking-widest text-[#6e6e73] font-medium">
@@ -103,8 +104,10 @@ export default function ContactSection() {
                   <a
                     href={item.href}
                     className="text-[17px] text-[#0071e3] hover:underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    {...(item.href.startsWith("http") && {
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    })}
                   >
                     {item.value}
                   </a>

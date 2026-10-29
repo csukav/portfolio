@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/context/LanguageProvider";
-import { SITE_URL, FULL_NAME, OG_IMAGE } from "@/lib/site";
+import { SITE_URL, FULL_NAME, OG_IMAGE, PHONE, PHONE_DISPLAY } from "@/lib/site";
 import { isLocale, localePath, ogLocale, htmlLang } from "@/lib/i18n";
 import { getServiceBySlug, pagesHu, serviceKeys } from "@/content/content-hu";
 
@@ -124,12 +124,17 @@ export default async function ServicePage({ params }: Props) {
               {page.h1}
             </h1>
             <p className="text-[19px] text-[#6e6e73] leading-[1.55]">{page.intro}</p>
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center mt-8 bg-[#0071e3] text-white text-[17px] px-7 py-3 rounded-full hover:bg-[#0077ed] transition-colors"
-            >
-              {page.cta.button}
-            </a>
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center bg-[#0071e3] text-white text-[17px] px-7 py-3 rounded-full hover:bg-[#0077ed] transition-colors"
+              >
+                {page.cta.button}
+              </a>
+              <a href={`tel:${PHONE}`} className="text-[17px] text-[#0071e3] hover:underline">
+                vagy hívj: {PHONE_DISPLAY}
+              </a>
+            </div>
           </header>
 
           {page.sections.map((section) => (
@@ -175,7 +180,12 @@ export default async function ServicePage({ params }: Props) {
           </section>
 
           <div className="mb-16 rounded-2xl bg-[#f5f5f7] px-8 py-8 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
-            <p className="text-[19px] font-semibold text-[#1d1d1f] leading-snug">{page.cta.text}</p>
+            <div>
+              <p className="text-[19px] font-semibold text-[#1d1d1f] leading-snug">{page.cta.text}</p>
+              <a href={`tel:${PHONE}`} className="mt-1 inline-block text-[15px] text-[#0071e3] hover:underline">
+                Telefon: {PHONE_DISPLAY}
+              </a>
+            </div>
             <a
               href="#contact"
               className="shrink-0 inline-flex items-center justify-center bg-[#0071e3] text-white text-[15px] px-6 py-2.5 rounded-full hover:bg-[#0077ed] transition-colors"

@@ -7,6 +7,7 @@ import {
   SITE_URL,
   FULL_NAME,
   EMAIL,
+  PHONE,
   GITHUB_URL,
   LINKEDIN_URL,
   OG_IMAGE,
@@ -143,6 +144,7 @@ function buildJsonLd(lang: Locale) {
         name: FULL_NAME,
         url: `${SITE_URL}${localePath(lang)}`,
         email: `mailto:${EMAIL}`,
+        telephone: PHONE,
         image: `${SITE_URL}${OG_IMAGE.url}`,
         jobTitle: m.jobTitle,
         description: m.personDescription,
@@ -168,6 +170,7 @@ function buildJsonLd(lang: Locale) {
         url: `${SITE_URL}${localePath(lang)}`,
         image: `${SITE_URL}${OG_IMAGE.url}`,
         email: EMAIL,
+        telephone: PHONE,
         founder: { "@id": `${SITE_URL}/#person` },
         // Service-area business: locality only, no street address.
         address: {

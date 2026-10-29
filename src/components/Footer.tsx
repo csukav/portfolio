@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
-import { EMAIL, FULL_NAME, GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
+import { EMAIL, FULL_NAME, GITHUB_URL, LINKEDIN_URL, PHONE, PHONE_DISPLAY } from "@/lib/site";
 import { localePath, type Locale } from "@/lib/i18n";
 import { pagesHu, serviceKeys } from "@/content/content-hu";
 
@@ -13,6 +13,7 @@ const getLinks = (locale: Locale) => [
   { label: "GitHub", href: GITHUB_URL },
   { label: "LinkedIn", href: LINKEDIN_URL },
   { label: "Email", href: `mailto:${EMAIL}` },
+  { label: PHONE_DISPLAY, href: `tel:${PHONE}` },
 ];
 
 export default function Footer({ locale }: { locale: Locale }) {

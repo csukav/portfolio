@@ -154,6 +154,14 @@ export const pagesHu: Record<ServiceKey, PageContent> = {
         body: "Helyi vállalkozásoknak – szolgáltatóknak, kereskedőknek, vendéglátóhelyeknek, szakembereknek –, akiknek még nincs weboldaluk, vagy a mostani elavult, lassú, és nem hoz érdeklődőt. Egyoldalas bemutatkozó oldalt és többoldalas céges weboldalt is készítek.",
       },
       {
+        h2: "Egyoldalas vagy többoldalas weboldal?",
+        body: "Ha néhány szolgáltatásod van, és a cél az, hogy gyorsan elérjenek, sokszor elég egy jól felépített egyoldalas bemutatkozó oldal: ki vagy, mit kínálsz, mennyibe kerül, hogyan érnek el. Ha több szolgáltatásod van, vagy több keresésre szeretnél megjelenni a Google-ben, a többoldalas weboldal a jobb választás – ott minden szolgáltatás saját aloldalt kap, amit külön meg lehet találni. Az első egyeztetésen segítek eldönteni, melyikre van szükséged.",
+      },
+      {
+        h2: "Miért számít, hogy gyors legyen a weboldal?",
+        body: "A látogatók nagy része telefonról érkezik, és nem vár: ha az oldal lassan tölt be, továbblép a következő találatra. A Google is figyeli a betöltési sebességet, és a gyors, mobilbarát oldalakat előnyben részesíti. Ezért modern technológiával (React, Next.js) építek, optimalizált képekkel, felesleges bővítmények nélkül – így az oldal gyors marad akkor is, amikor később bővül.",
+      },
+      {
         h2: "Weboldal készítés árak – mennyibe kerül egy weboldal?",
         body: "Bemutatkozó weboldal 19999 Ft-tól. A pontos ár az oldalak számától és a funkcióktól függ. Az első egyeztetés ingyenes, utána fix árajánlatot kapsz, rejtett költségek nélkül.",
       },
@@ -179,6 +187,8 @@ export const pagesHu: Record<ServiceKey, PageContent> = {
       { q: "Mi kell tőlem a weboldalhoz?", a: "A logód, néhány fotó és a szolgáltatásaid leírása. Ha nincs kész szöveged, segítek megírni." },
       { q: "Ki fizeti a domaint és a tárhelyet?", a: "A domain a te nevedre kerül. A tárhely és a karbantartás havidíjas csomagban is kérhető tőlem." },
       { q: "A régi oldalamat át tudod alakítani?", a: "Igen, a meglévő tartalmat átköltöztetem, és beállítom az átirányításokat, hogy a Google-helyezésed ne vesszen el." },
+      { q: "Kell havidíjat fizetnem?", a: "A weboldal elkészítése egyszeri díj. A domainnek és a tárhelynek van éves vagy havi költsége, az üzemeltetést és a karbantartást pedig havidíjas csomagban kérheted tőlem, de ez nem kötelező." },
+      { q: "Telefonon is egyeztethetünk?", a: "Persze. Hívj fel nyugodtan, vagy írj az ajánlatkérő űrlapon, és visszahívlak." },
     ],
     cta: { text: "Beszéljük meg, milyen weboldal kell a vállalkozásodnak.", button: "Ingyenes ajánlatkérés" },
   },
@@ -210,6 +220,29 @@ export const pagesHu: Record<ServiceKey, PageContent> = {
         body: "A lassú webshop pénzbe kerül: minden plusz másodperc betöltési idő elveszített vásárlókat jelent. Modern technológiával építek, hogy az oldal mobilon is azonnal betöltsön.",
       },
       {
+        h2: "Kinek ajánlom az egyedi webshopot?",
+        body: "Kis- és középvállalkozásoknak, akik online is szeretnének eladni: termékgyártóknak, kereskedőknek, üzleteknek, akiknek már van vásárlóközönségük, és most a webre is kilépnének. Akkor is, ha egy bérelt webshoprendszerből kinőttél, mert lassú, korlátozott, vagy a havidíjak és jutalékok túl sokba kerülnek.",
+      },
+      {
+        h2: "Egyedi webshop vagy bérelt webshoprendszer?",
+        body: "A bérelt rendszerekkel (pl. Shopify, Shoprenter, UNAS) gyorsan el lehet indulni, cserébe havidíjat fizetsz, és a lehetőségeidet a rendszer szabja meg. Az egyedi webshop a tiéd: gyorsabb, a saját folyamataidhoz igazítható, és nem függsz egy szolgáltató árazásától. Nem minden vállalkozásnak az egyedi a jó megoldás – az első egyeztetésen őszintén megmondom, nálad melyik éri meg jobban.",
+      },
+      {
+        h2: "Hogyan készül a webshop?",
+        body: "",
+        bullets: [
+          "Egyeztetés: megbeszéljük a termékeket, a fizetési és szállítási módokat, és hogy mit szeretnél elérni – ingyenes",
+          "Árajánlat: fix árat és határidőt kapsz, rejtett költségek nélkül",
+          "Fejlesztés: menet közben látod, hogyan halad a webshop, és bármikor jelezhetsz",
+          "Tesztvásárlás: indulás előtt végigpróbáljuk a teljes folyamatot a kosártól a számláig",
+          "Átadás és támogatás: megmutatom a termék- és rendeléskezelést, és az indulás után is elérsz",
+        ],
+      },
+      {
+        h2: "Mi kell tőled az induláshoz?",
+        body: "A termékek adatai (név, ár, leírás, fotók), a szállítási és fizetési feltételeid, valamint az ÁSZF és az adatkezelési tájékoztató. Ez utóbbiakat érdemes jogásszal vagy online generátorral elkészíteni – én beépítem őket a webshopba, és a pénztárnál elfogadtatom a vásárlókkal.",
+      },
+      {
         h2: "Referencia",
         body: "Hoodini – streetwear webshop (hoodini.hu): teljes fejlesztés online fizetéssel és saját admin felülettel.",
       },
@@ -228,6 +261,8 @@ export const pagesHu: Record<ServiceKey, PageContent> = {
       { q: "Hány termékkel indulhat a webshop?", a: "Akár néhány termékkel is. A rendszer később több ezer termékig bővíthető." },
       { q: "Tudom magam feltölteni a termékeket?", a: "Igen, egyszerű admin felületen te kezeled a termékeket, árakat és rendeléseket." },
       { q: "Segítesz a forgalom beindításában is?", a: "Igen, Google és Facebook hirdetések beállításában és kezelésében is tudok segíteni." },
+      { q: "Át tudod költöztetni a meglévő webshopomat?", a: "Igen. A termékeket és a fontos adatokat átviszem, és beállítom az átirányításokat, hogy a régi linkek és a Google-helyezések ne vesszenek el." },
+      { q: "Ki üzemelteti a webshopot az indulás után?", a: "Kérheted tőlem havidíjas üzemeltetésként: mentések, frissítések, felügyelet és hibaelhárítás. Így neked csak az eladással kell foglalkoznod." },
     ],
     cta: { text: "Indítsd el a webshopodat – kérj ajánlatot.", button: "Webshop ajánlatkérés" },
   },
@@ -240,27 +275,63 @@ export const pagesHu: Record<ServiceKey, PageContent> = {
       "Google Ads és Facebook/Instagram hirdetéskezelés helyi vállalkozásoknak, 9999 Ft/hó-tól. Konverziómérés, havi riport, mérhető eredmények. Kérj ajánlatot!",
     h1: "Google és Facebook hirdetéskezelés helyi vállalkozásoknak",
     intro:
-      "A jó weboldal akkor hoz ügyfelet, ha látják. Hirdetésekkel már az első naptól megjelenhetsz azoknál, akik éppen a szolgáltatásodat keresik a környéken.",
+      "A jó weboldal akkor hoz ügyfelet, ha látják. Hirdetésekkel már az első naptól megjelenhetsz azoknál, akik éppen a szolgáltatásodat keresik a környéken – és pontosan látod, mennyi pénzből hány érdeklődő lett.",
     sections: [
       {
         h2: "Mit tartalmaz a Google Ads és Facebook hirdetéskezelés?",
+        body: "A hirdetéskezelés nem csak annyi, hogy elindítok egy kampányt. A teljes folyamatot átvállalom, a beállítástól a havi kiértékelésig:",
+        bullets: [
+          "Hirdetési fiókok létrehozása vagy átvétele – a fiók a te tulajdonodban marad",
+          "Konverziómérés beállítása: ajánlatkérés, telefonhívás, vásárlás",
+          "Kulcsszó- és célcsoport-kutatás a szolgáltatásodra és a területedre",
+          "Hirdetésszövegek és kreatívok elkészítése",
+          "Folyamatos optimalizálás: rossz kulcsszavak kizárása, licitek és költségkeret finomítása",
+          "Havi riport közérthető nyelven: mennyit költöttél, hány érdeklődő jött, mi a következő lépés",
+        ],
+      },
+      {
+        h2: "Kinek ajánlom a hirdetéskezelést?",
+        body: "Helyi szolgáltatóknak, szakembereknek, üzleteknek és webshopoknak, akik gyorsan szeretnének érdeklődőket, és nem akarnak hónapokat várni arra, hogy a Google organikus találatai között előrébb kerüljenek. Akkor is érdemes, ha már próbálkoztál hirdetéssel, de nem láttad, mit hozott – ilyenkor először a mérést rakom rendbe.",
+      },
+      {
+        h2: "Google Ads vagy Facebook hirdetés – melyik kell neked?",
+        body: "A kettő mást tud, és sokszor együtt működik a legjobban:",
+        bullets: [
+          "Google Ads: akkor jelensz meg, amikor valaki éppen rád keres (pl. „vízszerelő Debrecen”). Kész vásárlási szándék, gyorsan hoz ajánlatkérést.",
+          "Facebook és Instagram: ott érsz el embereket, ahol idejük nagy részét töltik. Jó ismertség építésére, akciókra, új termék bevezetésére és újracélzásra.",
+          "Az első egyeztetésen megnézzük, a te szolgáltatásodnál melyik hozhat többet, és ehhez igazítjuk a keretet.",
+        ],
+      },
+      {
+        h2: "Hogyan zajlik az együttműködés?",
         body: "",
         bullets: [
-          "Hirdetési fiókok és konverziómérés beállítása",
-          "Kulcsszó- és célcsoport-kutatás",
-          "Hirdetésszövegek és kreatívok elkészítése",
-          "Folyamatos optimalizálás a költségkeret alapján",
-          "Havi riport közérthető nyelven",
+          "Egyeztetés: megbeszéljük, mit szeretnél elérni, kik az ügyfeleid, és mekkora havi keretben gondolkodsz – ingyenes",
+          "Beállítás: mérés, fiókok, kampányok és hirdetések elkészítése; indulás előtt jóváhagyod",
+          "Indulás és tanulási időszak: az első hetekben gyűjtjük az adatokat, ilyenkor sűrűbben finomítok",
+          "Folyamatos optimalizálás és havi riport: mindig látod, mire ment el a pénz és mit hozott",
         ],
       },
       {
         h2: "Hirdetéskezelés árak",
-        body: "Hirdetéskezelés 9999 Ft/hó-tól + a hirdetési keret, amit közvetlenül a Google-nek / Metának fizetsz.",
+        body: "Hirdetéskezelés 9999 Ft/hó-tól + a hirdetési keret, amit közvetlenül a Google-nek / Metának fizetsz, így pontosan látod a hirdetésre költött összeget. A keretet te határozod meg, és bármikor módosíthatod.",
+      },
+      {
+        h2: "Hirdetés és weboldal együtt",
+        body: "A hirdetés annyit ér, amennyit az oldal, ahová a látogatók érkeznek. Ha a weboldal lassú vagy nem egyértelmű, a hirdetési pénz egy része elfolyik. Mivel weboldalakat is készítek, szükség esetén a céloldalt is rendbe teszem, hogy a kattintásokból tényleg ajánlatkérés legyen.",
+      },
+      {
+        h2: "Hirdetéskezelés Debrecenben és környékén",
+        body: "Debreceni és Hajdú-Bihar vármegyei vállalkozásokkal személyesen is szívesen egyeztetek, az ország más részeiről online dolgozunk együtt. A kampányokat pontosan arra a területre állítom be, ahol az ügyfeleid vannak, hogy ne fizess olyan kattintásért, ami nem hozhat megrendelést.",
       },
     ],
     faq: [
       { q: "Mennyibe kerül a hirdetéskezelés?", a: "A hirdetéskezelés 9999 Ft/hó-tól indul, ehhez jön a hirdetési keret, amit közvetlenül a Google-nek vagy a Metának fizetsz." },
+      { q: "Mekkora hirdetési kerettel érdemes indulni?", a: "Ez a szolgáltatásodtól és a versenytársaktól függ. Kisebb kerettel is el lehet indulni – az első egyeztetésen megbecsüljük, mekkora keret kell ahhoz, hogy érdemi adat és érdeklődő jöjjön." },
       { q: "Mikor jönnek az első eredmények?", a: "A hirdetések pár napon belül futnak. Az optimalizáláshoz általában néhány hét adatgyűjtés kell." },
+      { q: "Kié lesz a hirdetési fiók?", a: "A tiéd. A fiókot a te nevedre hozom létre (vagy a meglévőhöz kapok hozzáférést), így ha később váltanál, minden adat és beállítás nálad marad." },
+      { q: "Honnan tudom, hogy megéri?", a: "Beállítom a konverziómérést (ajánlatkérés, hívás, vásárlás), és a havi riportban látod, mennyiből hány érdeklődő lett. Így számok alapján dönthetsz a keret növeléséről vagy csökkentéséről." },
+      { q: "Weboldal nélkül is lehet hirdetni?", a: "Facebook hirdetést igen, de a Google Ads-hez és a pontos méréshez szinte mindig kell egy gyors céloldal. Ha még nincs weboldalad, azt is el tudom készíteni." },
     ],
     cta: { text: "Nézzük meg, hogyan hozhatnál több érdeklődőt.", button: "Ingyenes konzultáció" },
   },
@@ -273,29 +344,52 @@ export const pagesHu: Record<ServiceKey, PageContent> = {
       "Havidíjas weboldal üzemeltetés és karbantartás 9999 Ft/hó-tól: tárhely, domain, mentés, frissítések, szerver- és felhőüzemeltetés kis- és középvállalkozásoknak.",
     h1: "Weboldal üzemeltetés és IT támogatás vállalkozásoknak",
     intro:
-      "Hogy a weboldalad és a rendszereid mindig működjenek – és ne neked kelljen tárhellyel, frissítésekkel és mentésekkel foglalkoznod.",
+      "Hogy a weboldalad és a rendszereid mindig működjenek – és ne neked kelljen tárhellyel, frissítésekkel és mentésekkel foglalkoznod. Ha baj van, egy embert hívsz, aki ismeri a rendszeredet.",
     sections: [
       {
         h2: "Weboldal üzemeltetés és karbantartás – mit tartalmaz?",
-        body: "",
+        body: "A havidíjas üzemeltetés minden olyan feladatot lefed, ami ahhoz kell, hogy az oldalad gyors, biztonságos és elérhető maradjon:",
         bullets: [
-          "Tárhely és domain kezelés",
-          "Rendszeres biztonsági mentés és visszaállítás",
-          "Frissítések, biztonsági javítások, SSL tanúsítvány",
+          "Tárhely és domain kezelés, a domain megújításának figyelése",
+          "Rendszeres biztonsági mentés és visszaállítás, ha valami elromlik",
+          "Frissítések, biztonsági javítások, SSL tanúsítvány (https)",
           "Folyamatos felügyelet és hibaelhárítás",
           "Szerver- és felhőüzemeltetés (AWS, Azure, Vercel, Proxmox)",
           "Adatbázis-kezelés és teljesítményoptimalizálás",
         ],
       },
       {
+        h2: "Miért kell karbantartani egy weboldalt?",
+        body: "Egy weboldal nem kész termék, amit egyszer elkészítesz és elfelejtesz. A szoftverek elavulnak, a bővítményekben biztonsági réseket találnak, a tanúsítványok és a domain lejárnak. Egy elhanyagolt oldal lelassul, feltörhetik, vagy egyik napról a másikra elérhetetlenné válik – és ezt sokszor csak akkor veszed észre, amikor egy ügyfél szól. Rendszeres karbantartással ezek a hibák vagy meg sem történnek, vagy a mentésből gyorsan helyreállíthatók.",
+      },
+      {
+        h2: "Kinek ajánlom?",
+        body: "Kis- és középvállalkozásoknak, akiknek fontos, hogy a weboldaluk, webshopjuk vagy belső rendszereik működjenek, de nincs saját informatikusuk. Akkor is, ha a weboldalt más készítette, és most nincs, aki gondozza.",
+      },
+      {
+        h2: "Más által készített oldal átvétele",
+        body: "Meglévő weboldal üzemeltetését is átveszem. Először átnézem az oldalt: milyen rendszeren fut, mennyire friss, van-e mentés, és hol vannak biztonsági kockázatok. Erről rövid, érthető összefoglalót kapsz, utána megbeszéljük, mit érdemes rendbe tenni, és onnantól én figyelek rá.",
+      },
+      {
+        h2: "Szerver- és felhőüzemeltetés",
+        body: "A weboldalakon túl szervereket és felhőrendszereket is üzemeltetek AWS, Azure, Vercel és saját szerveres (Proxmox) környezetben. Ide tartozik a szerverek beállítása és frissítése, a mentések, a felügyelet, az adatbázisok kezelése és a teljesítmény optimalizálása. Egyedi infrastruktúránál először felmérem a meglévő rendszert, és ehhez igazítom az ajánlatot.",
+      },
+      {
         h2: "Havidíjas üzemeltetés árak",
-        body: "Üzemeltetési csomag 9999 Ft/hó-tól. Egyedi infrastruktúrához egyedi ajánlatot adok.",
+        body: "Üzemeltetési csomag 9999 Ft/hó-tól. Egyedi infrastruktúrához – több szerver, felhőrendszer, belső alkalmazások – egyedi ajánlatot adok. A havidíjjal kiszámítható a költség, és nem neked kell figyelni a frissítéseket és a lejáratokat.",
+      },
+      {
+        h2: "Üzemeltetés és IT támogatás Debrecenben és környékén",
+        body: "Debrecenben és Hajdú-Bihar vármegyében személyesen is szívesen egyeztetek, a legtöbb üzemeltetési feladatot pedig távolról, gyorsan el tudom végezni. Végig egy emberrel beszélsz, aki ismeri a rendszeredet – nem kell minden alkalommal elölről elmagyarázni, mi hol van.",
       },
     ],
     faq: [
       { q: "Mennyibe kerül a weboldal üzemeltetés?", a: "Az üzemeltetési csomag 9999 Ft/hó-tól indul. Egyedi infrastruktúrához egyedi ajánlatot adok." },
-      { q: "Szervert és felhőt is üzemeltetsz?", a: "Igen, a weboldalakon túl szerver- és felhőüzemeltetést (AWS, Azure, Vercel, Proxmox) és adatbázis-kezelést is vállalok." },
+      { q: "Mi történik, ha leáll az oldal?", a: "Felügyelem az oldal elérhetőségét, így a hibát általában hamar észreveszem és elhárítom. Ha kell, a legutóbbi mentésből állítom vissza az oldalt." },
+      { q: "Milyen gyakran készül mentés?", a: "Rendszeresen és automatikusan. A gyakoriságot az oldalhoz igazítom: egy sokat változó webshopnál sűrűbben, egy bemutatkozó oldalnál ritkábban." },
       { q: "Más által készített oldalt is üzemeltetsz?", a: "Igen, átvizsgálás után átveszem a meglévő oldal üzemeltetését is." },
+      { q: "Szervert és felhőt is üzemeltetsz?", a: "Igen, a weboldalakon túl szerver- és felhőüzemeltetést (AWS, Azure, Vercel, Proxmox) és adatbázis-kezelést is vállalok." },
+      { q: "Kié marad a domain és a tárhely?", a: "A domain a te nevedre szól, és a hozzáféréseket is megkapod. Ha egyszer váltanál, mindent rendezetten átadok." },
     ],
     cta: { text: "Bízd rám a technikát, te foglalkozz a vállalkozásoddal.", button: "Ajánlatkérés" },
   },
