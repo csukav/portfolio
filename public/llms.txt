@@ -1,0 +1,18 @@
+# Csuka Viktor
+
+> Full-stack web developer based in Debrecen, Hungary. Builds websites and online stores for small businesses, manages Google and Facebook ads, and offers monthly website hosting and maintenance. Serves Debrecen and Hajdú-Bihar county in person and the rest of Hungary online. The site is mainly in Hungarian.
+
+Contact: +36 20 953 9379, csukav@gmail.com
+
+## Services (Hungarian)
+
+- [Weboldal készítés (website development)](https://www.csukaviktor.com/hu/weboldal-keszites): business websites from 19 999 Ft
+- [Webshop készítés (online store development)](https://www.csukaviktor.com/hu/webshop-keszites): custom online stores with card payment and invoicing, from 49 999 Ft
+- [Online hirdetéskezelés (ad management)](https://www.csukaviktor.com/hu/online-hirdetes): Google Ads and Facebook/Instagram ads, from 9 999 Ft/month plus ad budget
+- [IT üzemeltetés (website operations and maintenance)](https://www.csukaviktor.com/hu/it-uzemeltetes): hosting, backups, updates, monitoring, from 9 999 Ft/month
+
+## About
+
+- [Homepage (Hungarian)](https://www.csukaviktor.com/hu): services, projects, FAQ and contact
+- [Homepage (English)](https://www.csukaviktor.com/en)
+- [Blog](https://www.csukaviktor.com/hu/blog)
