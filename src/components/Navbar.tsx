@@ -1,122 +1,112 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useLanguage } from "@/context/LanguageContext";
 import { localePath, otherLocale } from "@/lib/i18n";
+import { PHONE, PHONE_DISPLAY } from "@/lib/site";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 
-export default function Navbar() {
+/**
+ * `hasContact`: the page has its own #contact section (home, service pages).
+ * Elsewhere (blog) the quote button goes to the homepage's contact section.
+ */
+export default function Navbar({ hasContact = true }: { hasContact?: boolean }) {
   const { t, locale } = useLanguage();
-  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const home = localePath(locale);
+  // Section links work from every page: on the homepage they stay in-page.
+  const section = (id: string) => (pathname === home ? `#${id}` : `${home}#${id}`);
+  const contactHref = hasContact ? "#contact" : section("contact");
+
   const navLinks = [
-    { label: t.nav.about, href: "#about" },
-    { label: t.nav.projects, href: "#projects" },
-    { label: t.nav.skills, href: "#skills" },
-    { label: t.services.label, href: "#services" },
+    { label: t.nav.services, href: section("services") },
+    { label: t.nav.projects, href: section("projects") },
+    { label: t.nav.about, href: section("about") },
     { label: t.nav.blog, href: localePath(locale, "/blog") },
-    { label: t.nav.contact, href: "#contact" },
+    { label: t.nav.contact, href: contactHref },
   ];
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "apple-glass" : "bg-transparent"
-      }`}
-    >
-      <nav className="max-w-245 mx-auto px-6 flex items-center justify-between h-12">
-        {/* Logo */}
-        <Link
-          href={localePath(locale)}
-          className="text-[17px] font-semibold tracking-tight text-[#1d1d1f] hover:text-[#0071e3] transition-colors"
-        >
-          Csuka Viktor
+    <header className="sticky top-0 z-50 border-b border-line bg-white/95 backdrop-blur-sm">
+      <nav className="max-w-310 mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+        <Link href={home} className="flex items-center gap-2.5 text-ink shrink-0">
+          <span
+            aria-hidden="true"
+            className="size-9 rounded-lg bg-ink text-white flex items-center justify-center font-mono text-sm font-medium"
+          >
+            CV
+          </span>
+          <span className="font-semibold text-[17px] tracking-[-0.01em]">Csuka Viktor</span>
         </Link>
 
-        {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden lg:flex items-center gap-7">
           {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="text-[13px] text-[#1d1d1f] hover:text-[#0071e3] transition-colors"
-              >
+            <li key={link.label}>
+              <Link href={link.href} className="text-[15px] text-ink hover:text-brand transition-colors">
                 {link.label}
               </Link>
             </li>
           ))}
         </ul>
 
-        {/* Language + CTA */}
-        <div className="hidden md:flex items-center gap-5">
-          <LanguageSwitcher
-            locale={locale}
-            href={localePath(otherLocale(locale))}
-          />
+        <div className="hidden lg:flex items-center gap-5">
+          <a href={`tel:${PHONE}`} className="font-mono text-sm text-ink-soft hover:text-brand transition-colors">
+            {PHONE_DISPLAY}
+          </a>
+          <LanguageSwitcher locale={locale} href={localePath(otherLocale(locale))} />
           <a
-            href="#contact"
-            className="inline-flex items-center justify-center bg-[#0071e3] text-white text-[13px] font-medium px-4 py-1.5 rounded-full hover:bg-[#0077ed] transition-colors"
+            href={contactHref}
+            className="inline-flex items-center min-h-11 px-4.5 rounded-lg bg-brand text-white text-[15px] font-medium hover:bg-brand-dark transition-colors"
           >
             {t.nav.cta}
           </a>
         </div>
 
-        {/* Mobile menu button */}
         <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
+          type="button"
+          className="lg:hidden size-11 flex items-center justify-center rounded-[10px] border border-line"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={t.nav.menuLabel}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
         >
-          <span
-            className={`block w-5 h-0.5 bg-[#1d1d1f] transition-all duration-300 ${
-              menuOpen ? "rotate-45 translate-y-2" : ""
-            }`}
-          />
-          <span
-            className={`block w-5 h-0.5 bg-[#1d1d1f] transition-all duration-300 ${
-              menuOpen ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`block w-5 h-0.5 bg-[#1d1d1f] transition-all duration-300 ${
-              menuOpen ? "-rotate-45 -translate-y-2" : ""
-            }`}
-          />
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            {menuOpen ? (
+              <>
+                <path d="M6 6l12 12" />
+                <path d="M18 6L6 18" />
+              </>
+            ) : (
+              <>
+                <path d="M4 7h16" />
+                <path d="M4 12h16" />
+                <path d="M4 17h16" />
+              </>
+            )}
+          </svg>
         </button>
       </nav>
 
-      {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden apple-glass border-t border-black/5 px-6 py-4 flex flex-col gap-4">
+        <div id="mobile-menu" className="lg:hidden border-t border-line bg-white px-4 py-3 flex flex-col">
           {navLinks.map((link) => (
             <Link
-              key={link.href}
+              key={link.label}
               href={link.href}
-              className="text-[17px] text-[#1d1d1f] hover:text-[#0071e3] transition-colors"
+              className="py-3 text-[17px] text-ink border-b border-line last:border-0"
               onClick={() => setMenuOpen(false)}
             >
               {link.label}
             </Link>
           ))}
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center bg-[#0071e3] text-white text-[15px] font-medium px-5 py-2.5 rounded-full mt-2 hover:bg-[#0077ed] transition-colors"
-            onClick={() => setMenuOpen(false)}
-          >
-            {t.nav.cta}
-          </a>
           <LanguageSwitcher
             locale={locale}
             href={localePath(otherLocale(locale))}
-            className="text-[17px]"
+            className="py-3 text-[17px]"
           />
         </div>
       )}

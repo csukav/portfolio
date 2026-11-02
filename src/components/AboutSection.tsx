@@ -1,58 +1,37 @@
-import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
+import { GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
 import type { Translations } from "@/lib/translations";
 
 export default function AboutSection({ t }: { t: Translations }) {
-  const { stats, values } = t.about;
+  const { about } = t;
 
   return (
-    <section id="about" aria-label={t.nav.about} className="py-32 bg-[#f5f5f7]">
-      <div className="max-w-245 mx-auto px-6">
-        {/* Section label */}
-        <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">
-          {t.about.label}
-        </p>
-
-        <div className="grid md:grid-cols-2 gap-16 items-start">
-          {/* Left: text */}
-          <div>
-            <h2 className="section-headline mb-6">{t.about.headline}</h2>
-            <p className="section-subheadline mb-6">{t.about.subheadline}</p>
-            <p className="text-[17px] text-[#6e6e73] leading-[1.7]">
-              {t.about.body}
-            </p>
-          </div>
-
-          {/* Right: stats */}
-          <div className="grid grid-cols-2 gap-px bg-[#d2d2d7] rounded-2xl overflow-hidden">
-            {stats.map((stat, i) => (
-              <div
-                key={i}
-                className="bg-[#f5f5f7] hover:bg-white transition-colors duration-200 p-8 flex flex-col gap-1"
-              >
-                <span className="text-[48px] font-bold tracking-tight text-[#1d1d1f] leading-none">
-                  {stat.value}
-                </span>
-                <span className="text-[15px] text-[#6e6e73]">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <Separator className="mt-20 bg-[#d2d2d7]" />
-
-        {/* Values row */}
-        <div className="grid md:grid-cols-3 gap-12 pt-16">
-          {values.map((item) => (
-            <div key={item.title}>
-              <div className="text-3xl mb-4 text-[#0071e3]">{item.icon}</div>
-              <h3 className="text-[19px] font-semibold text-[#1d1d1f] mb-2">
-                {item.title}
-              </h3>
-              <p className="text-[15px] text-[#6e6e73] leading-[1.6]">
-                {item.desc}
-              </p>
+    <section id="about" aria-labelledby="about-heading" className="max-w-310 mx-auto px-4 sm:px-6 py-16 md:py-18 scroll-mt-16">
+      <div className="flex flex-wrap gap-10 md:gap-14 items-center">
+        <div className="relative flex-[1_1_280px] max-w-60 sm:max-w-[440px] aspect-4/5 rounded-2xl overflow-hidden bg-ink">
+          {about.photo ? (
+            <Image src={about.photo} alt="Csuka Viktor" fill sizes="(min-width: 768px) 440px, 100vw" className="object-cover" />
+          ) : (
+            // Placeholder until a real portrait is added (homeHu.about.photo).
+            <div aria-hidden="true" className="absolute inset-0 flex items-center justify-center font-mono text-[96px] text-brand-bright">
+              CV
             </div>
-          ))}
+          )}
+        </div>
+        <div className="flex-[999_1_480px] min-w-0">
+          <p className="eyebrow mb-3">{about.eyebrow}</p>
+          <h2 id="about-heading" className="section-title">
+            {about.h2}
+          </h2>
+          <p className="mt-6 text-lg leading-[1.65] text-ink-soft max-w-170">{about.text}</p>
+          <div className="mt-7 flex flex-wrap gap-5 text-base font-medium">
+            <a href={LINKEDIN_URL} target="_blank" rel="me noopener noreferrer" className="text-ink hover:text-brand">
+              LinkedIn ↗
+            </a>
+            <a href={GITHUB_URL} target="_blank" rel="me noopener noreferrer" className="text-ink hover:text-brand">
+              GitHub ↗
+            </a>
+          </div>
         </div>
       </div>
     </section>

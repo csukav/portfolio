@@ -1,11 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import ParticlesBackground from "@/components/ParticlesBackground";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { useLanguage } from "@/context/LanguageContext";
-import { EMAIL, GITHUB_URL, LINKEDIN_URL, PHONE, PHONE_DISPLAY } from "@/lib/site";
+import { EMAIL, PHONE, PHONE_DISPLAY } from "@/lib/site";
 
 declare global {
   interface Window {
@@ -13,11 +10,15 @@ declare global {
   }
 }
 
-export default function ContactSection() {
-  const { t, locale } = useLanguage();
-  const f = t.contact.form;
+const inputClass =
+  "w-full rounded-lg border border-line-strong bg-white px-3.5 text-base text-ink placeholder:text-ink-soft/70 focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-1";
 
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+export default function ContactSection() {
+  const { t } = useLanguage();
+  const c = t.contact;
+  const f = c.form;
+
+  const [form, setForm] = useState({ name: "", email: "", topic: f.topics[0] as string, message: "" });
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -31,7 +32,12 @@ export default function ContactSection() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          // The API takes a plain message; the topic goes in its first line.
+          message: `${f.topicLabel} ${form.topic}\n\n${form.message}`,
+        }),
       });
 
       if (!res.ok) throw new Error("Error");
@@ -44,7 +50,7 @@ export default function ContactSection() {
       window.gtag?.("event", "generate_lead");
 
       setSent(true);
-      setForm({ name: "", email: "", message: "" });
+      setForm({ name: "", email: "", topic: f.topics[0], message: "" });
     } catch {
       setError(f.errorMsg);
     } finally {
@@ -53,148 +59,134 @@ export default function ContactSection() {
   };
 
   return (
-    <section
-      id="contact"
-      aria-label={t.nav.contact}
-      className="relative py-32 bg-[#f5f5f7] overflow-hidden"
-    >
-      <ParticlesBackground id="tsparticles-contact" />
-      <div className="relative z-10 max-w-245 mx-auto px-6">
-        <p className="text-[13px] uppercase tracking-[0.12em] text-[#0071e3] font-semibold mb-4">
-          {t.contact.label}
-        </p>
+    <section id="contact" aria-labelledby="contact-heading" className="max-w-310 mx-auto px-4 sm:px-6 pt-16 pb-20 md:pt-18 md:pb-26 scroll-mt-16">
+      <div className="bg-white border border-line rounded-[20px] p-6 sm:p-8 md:p-12 flex flex-wrap gap-10 md:gap-14">
+        <div className="flex-[1_1_320px] min-w-0">
+          <p className="eyebrow mb-3">{c.eyebrow}</p>
+          <h2 id="contact-heading" className="section-title">
+            {c.h2}
+          </h2>
+          <p className="mt-5 text-[17px] leading-relaxed text-ink-soft">{c.text}</p>
+          <dl className="mt-9 grid grid-cols-[auto_1fr] gap-x-6 gap-y-3.5 text-base">
+            <dt className="font-mono text-sm text-ink-soft pt-0.5">{c.phoneLabel}</dt>
+            <dd>
+              <a href={`tel:${PHONE}`} className="text-brand hover:text-brand-dark font-medium">
+                {PHONE_DISPLAY}
+              </a>
+            </dd>
+            <dt className="font-mono text-sm text-ink-soft pt-0.5">{c.emailLabel}</dt>
+            <dd>
+              <a href={`mailto:${EMAIL}`} className="text-brand hover:text-brand-dark font-medium break-all">
+                {EMAIL}
+              </a>
+            </dd>
+            <dt className="font-mono text-sm text-ink-soft pt-0.5">{c.areaLabel}</dt>
+            <dd>{c.area}</dd>
+          </dl>
+        </div>
 
-        <div className="grid md:grid-cols-2 gap-20 items-start">
-          {/* Left */}
-          <div>
-            <h2 className="section-headline mb-6">
-              {t.contact.headline1}
-              <br />
-              {t.contact.headline2}
-            </h2>
-            <p className="section-subheadline mb-10">{t.contact.subheadline}</p>
-
-            <div className="flex flex-col gap-4">
-              {[
-                {
-                  label: locale === "hu" ? "Telefon" : "Phone",
-                  value: PHONE_DISPLAY,
-                  href: `tel:${PHONE}`,
-                },
-                {
-                  label: "Email",
-                  value: EMAIL,
-                  href: `mailto:${EMAIL}`,
-                },
-                {
-                  label: "LinkedIn",
-                  value: "linkedin.com/in/csukaviktor",
-                  href: LINKEDIN_URL,
-                },
-                {
-                  label: "GitHub",
-                  value: "github.com/csukav",
-                  href: GITHUB_URL,
-                },
-              ].map((item) => (
-                <div key={item.label} className="flex flex-col gap-0.5">
-                  <span className="text-[11px] uppercase tracking-widest text-[#6e6e73] font-medium">
-                    {item.label}
-                  </span>
-                  <a
-                    href={item.href}
-                    className="text-[17px] text-[#0071e3] hover:underline"
-                    {...(item.href.startsWith("http") && {
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                    })}
-                  >
-                    {item.value}
-                  </a>
-                </div>
-              ))}
+        <div className="flex-[1_1_420px] min-w-0">
+          {sent ? (
+            <div role="status" className="h-full min-h-64 flex flex-col items-start justify-center gap-3">
+              <span className="size-12 rounded-full bg-brand-tint flex items-center justify-center text-brand">
+                <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12l5 5L20 7" />
+                </svg>
+              </span>
+              <p className="text-[22px] font-semibold">{f.successTitle}</p>
+              <p className="text-base text-ink-soft">{f.successBody}</p>
+              <button type="button" onClick={() => setSent(false)} className="mt-2 font-medium text-brand hover:text-brand-dark">
+                {f.newMessage}
+              </button>
             </div>
-          </div>
-
-          {/* Right: form */}
-          <div className="bg-white rounded-2xl p-10 shadow-sm">
-            {sent ? (
-              <div className="flex flex-col items-center justify-center h-64 gap-4">
-                <div className="text-5xl">✅</div>
-                <p className="text-[22px] font-semibold text-[#1d1d1f] text-center">
-                  {f.successTitle}
-                </p>
-                <p className="text-[15px] text-[#6e6e73] text-center">
-                  {f.successBody}
-                </p>
-                <button
-                  onClick={() => setSent(false)}
-                  className="mt-4 text-[#0071e3] text-[15px] hover:underline"
-                >
-                  {f.newMessage}
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          ) : (
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4.5">
+              <div className="grid sm:grid-cols-2 gap-4.5">
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[13px] font-medium text-[#1d1d1f]">
+                  <label htmlFor="contact-name" className="text-[15px] font-medium">
                     {f.nameLabel}
                   </label>
-                  <Input
+                  <input
+                    id="contact-name"
+                    name="name"
+                    autoComplete="name"
                     placeholder={f.namePlaceholder}
                     value={form.name}
-                    onChange={(e) =>
-                      setForm((prev) => ({ ...prev, name: e.target.value }))
-                    }
+                    onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
                     required
-                    className="rounded-xl border-[#d2d2d7] bg-[#f5f5f7] focus-visible:ring-[#0071e3] text-[15px] py-3 px-4 h-auto"
+                    className={`${inputClass} h-12`}
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[13px] font-medium text-[#1d1d1f]">
+                  <label htmlFor="contact-email" className="text-[15px] font-medium">
                     {f.emailLabel}
                   </label>
-                  <Input
+                  <input
+                    id="contact-email"
+                    name="email"
                     type="email"
+                    autoComplete="email"
                     placeholder={f.emailPlaceholder}
                     value={form.email}
-                    onChange={(e) =>
-                      setForm((prev) => ({ ...prev, email: e.target.value }))
-                    }
+                    onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
                     required
-                    className="rounded-xl border-[#d2d2d7] bg-[#f5f5f7] focus-visible:ring-[#0071e3] text-[15px] py-3 px-4 h-auto"
+                    className={`${inputClass} h-12`}
                   />
                 </div>
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[13px] font-medium text-[#1d1d1f]">
-                    {f.messageLabel}
-                  </label>
-                  <Textarea
-                    placeholder={f.messagePlaceholder}
-                    value={form.message}
-                    onChange={(e) =>
-                      setForm((prev) => ({ ...prev, message: e.target.value }))
-                    }
-                    required
-                    rows={5}
-                    className="rounded-xl border-[#d2d2d7] bg-[#f5f5f7] focus-visible:ring-[#0071e3] text-[15px] px-4 resize-none"
-                  />
+              </div>
+
+              <fieldset>
+                <legend className="text-[15px] font-medium mb-2.5">{f.topicLabel}</legend>
+                <div className="flex flex-wrap gap-2">
+                  {f.topics.map((topic) => (
+                    <label
+                      key={topic}
+                      className="inline-flex items-center gap-2 min-h-11 px-4 rounded-full border border-line-strong text-[15px] cursor-pointer has-checked:border-brand has-checked:bg-brand-tint has-focus-visible:outline-2 has-focus-visible:outline-brand"
+                    >
+                      <input
+                        type="radio"
+                        name="topic"
+                        value={topic}
+                        checked={form.topic === topic}
+                        onChange={() => setForm((prev) => ({ ...prev, topic }))}
+                        className="accent-brand"
+                      />
+                      {topic}
+                    </label>
+                  ))}
                 </div>
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="mt-2 w-full bg-[#0071e3] text-white text-[17px] font-normal py-3.5 rounded-full hover:bg-[#0077ed] transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
-                >
-                  {loading ? f.sending : f.submit}
-                </button>
-                {error && (
-                  <p className="text-red-500 text-[13px] text-center">
-                    {error}
-                  </p>
-                )}
-              </form>
-            )}
-          </div>
+              </fieldset>
+
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="contact-message" className="text-[15px] font-medium">
+                  {f.messageLabel}
+                </label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  placeholder={f.messagePlaceholder}
+                  value={form.message}
+                  onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))}
+                  required
+                  rows={4}
+                  className={`${inputClass} py-3 resize-y`}
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="self-start inline-flex items-center justify-center min-h-13 px-7 rounded-[10px] bg-brand text-white text-[17px] font-medium hover:bg-brand-dark transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {loading ? f.sending : f.submit}
+              </button>
+              {error && (
+                <p role="alert" className="text-[15px] text-red-700">
+                  {error}
+                </p>
+              )}
+            </form>
+          )}
         </div>
       </div>
     </section>

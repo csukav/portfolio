@@ -10,12 +10,9 @@ export function LanguageProvider({
   children: React.ReactNode;
   initialLocale: Locale;
 }) {
-  const { nav, contact, services } = translations[initialLocale];
+  const { nav, contact } = translations[initialLocale];
   return (
-    <LanguageContextProvider
-      locale={initialLocale}
-      t={{ nav, contact, services: { label: services.label } }}
-    >
+    <LanguageContextProvider locale={initialLocale} t={{ nav, contact }}>
       {children}
     </LanguageContextProvider>
   );

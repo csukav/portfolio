@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 import "../globals.css";
@@ -21,11 +21,17 @@ import {
   type Locale,
 } from "@/lib/i18n";
 import { translations } from "@/lib/translations";
+import { homeHu } from "@/content/content-hu";
 
-// Inter is a variable font: one file covers every weight.
+// Geist and Geist Mono are variable fonts: one file covers every weight.
 // latin-ext is required for Hungarian characters (ő, ű).
-const inter = Inter({
-  variable: "--font-inter",
+const geist = Geist({
+  variable: "--font-geist",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+});
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin", "latin-ext"],
   display: "swap",
 });
@@ -43,10 +49,9 @@ const META: Record<
   }
 > = {
   hu: {
-    title: `${FULL_NAME} — Webfejlesztő és IT szolgáltatások kkv-knak`,
-    // ~150 characters, ends with a CTA (same text for og:description).
-    description:
-      "Full-stack webfejlesztő – React, Next.js, TypeScript. Gyors weboldalak, szerver- és felhőüzemeltetés kis- és középvállalkozásoknak. Kérj ajánlatot!",
+    // Homepage title/description come from homeHu (content-hu.ts).
+    title: homeHu.title,
+    description: homeHu.description,
     jobTitle: "Full-Stack webfejlesztő",
     personDescription:
       "Full-stack webfejlesztő és informatikai szolgáltató, aki React, Next.js, TypeScript és Node.js technológiákkal, valamint szerver-, cloud- és rendszergazdai szolgáltatásokkal dolgozik.",
@@ -75,7 +80,7 @@ export function generateStaticParams() {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#f6f7f8",
   width: "device-width",
   initialScale: 1,
 };
@@ -184,7 +189,7 @@ function buildJsonLd(lang: Locale) {
           { "@type": "AdministrativeArea", name: "Hajdú-Bihar" },
           { "@type": "Country", name: "Hungary" },
         ],
-        priceRange: lang === "hu" ? "19 999 Ft-tól" : "From HUF 19,999",
+        priceRange: lang === "hu" ? "9 999 – 49 999 Ft-tól" : "From HUF 19,999",
         knowsLanguage: ["hu", "en"],
         hasOfferCatalog: {
           "@type": "OfferCatalog",
@@ -218,7 +223,7 @@ export default async function RootLayout({ children, params }: Props) {
   return (
     <html lang={lang} className="scroll-smooth">
       <body
-        className={`${inter.variable} font-sans antialiased bg-white text-gray-900`}
+        className={`${geist.variable} ${geistMono.variable} font-sans antialiased bg-paper text-ink`}
       >
         <script
           type="application/ld+json"

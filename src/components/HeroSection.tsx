@@ -1,72 +1,76 @@
-import { Badge } from "@/components/ui/badge";
-import ParticlesBackground from "@/components/ParticlesBackground";
 import type { Translations } from "@/lib/translations";
 
 export default function HeroSection({ t }: { t: Translations }) {
+  const { hero, proof } = t;
+
   return (
-    <section
-      id="hero"
-      aria-label={t.hero.badge}
-      className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden bg-white px-6"
-    >
-      {/* Interactive particle canvas */}
-      <ParticlesBackground />
-
-      {/* Subtle background gradient */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,113,227,0.08) 0%, transparent 70%)",
-        }}
-      />
-
-      <div className="relative z-10 w-full max-w-195 mx-auto animate-fade-up">
-        <Badge
-          variant="secondary"
-          className="justify-center max-w-full whitespace-normal sm:whitespace-nowrap text-center leading-snug mb-6 px-3 py-1 text-[13px] font-medium bg-[#f5f5f7] text-[#6e6e73] border-0 rounded-full"
-        >
-          {t.hero.badge}
-        </Badge>
-
-        <h1 className="text-[40px] md:text-[64px] font-bold leading-[1.06] tracking-[-0.025em] text-[#1d1d1f] mb-5">
-          {t.hero.title1}{" "}
-          <span className="apple-blue-gradient-text">{t.hero.title2}</span>
-        </h1>
-
-        <p className="text-[24px] md:text-[32px] font-semibold leading-[1.15] tracking-[-0.015em] text-[#1d1d1f] mb-6">
-          {t.hero.headline1}{" "}
-          <span className="apple-blue-gradient-text">{t.hero.headline2}</span>
-        </p>
-
-        <p className="text-[19px] md:text-[21px] leading-normal text-[#6e6e73] font-light max-w-145 mx-auto mb-10">
-          {t.hero.subheadline}
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 items-center justify-center w-full">
-          <a
-            href="#projects"
-            className="inline-flex w-full max-w-70 sm:w-auto sm:max-w-none items-center justify-center bg-[#0071e3] text-white text-[17px] font-normal px-6 py-3.5 rounded-full hover:bg-[#0077ed] transition-all duration-200 hover:scale-[1.02]"
+    <>
+      <section
+        id="hero"
+        aria-labelledby="hero-heading"
+        className="max-w-310 mx-auto px-4 sm:px-6 pt-14 pb-16 md:pt-22 md:pb-18 flex flex-wrap gap-10 md:gap-14 items-center"
+      >
+        <div className="flex-[999_1_560px] min-w-0 animate-fade-up">
+          <p className="mb-5 font-mono text-sm text-ink-soft">{hero.eyebrow}</p>
+          <h1
+            id="hero-heading"
+            className="text-[38px] sm:text-[52px] lg:text-[66px] leading-[1.05] tracking-[-0.035em] font-semibold"
           >
-            {t.hero.cta1}
-          </a>
-          <a
-            href="#contact"
-            className="inline-flex w-full max-w-70 sm:w-auto sm:max-w-none items-center justify-center text-[#0071e3] text-[17px] font-normal px-6 py-3.5 rounded-full border border-[#0071e3]/30 hover:bg-[#f5f5f7] transition-all duration-200 hover:scale-[1.02]"
-          >
-            {t.hero.cta2}
-          </a>
+            {hero.h1}
+          </h1>
+          <p className="mt-6 md:mt-7 text-[17px] md:text-xl leading-[1.55] text-ink-soft max-w-150">
+            {hero.intro}
+          </p>
+          <div className="mt-8 md:mt-9 flex flex-col sm:flex-row gap-3">
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center min-h-13 px-6 rounded-[10px] bg-brand text-white text-[17px] font-medium hover:bg-brand-dark transition-colors"
+            >
+              {hero.primaryCta}
+            </a>
+            <a
+              href="#projects"
+              className="inline-flex items-center justify-center min-h-13 px-6 rounded-[10px] bg-white border border-line-strong text-ink text-[17px] font-medium hover:border-ink transition-colors"
+            >
+              {hero.secondaryCta}
+            </a>
+          </div>
+          <p className="mt-6 text-[15px] text-ink-soft">{hero.area}</p>
         </div>
-      </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
-        <span className="text-[11px] tracking-widest uppercase text-[#6e6e73]">
-          {t.hero.scroll}
-        </span>
-        <div className="w-px h-12 bg-linear-to-b from-[#6e6e73] to-transparent" />
-      </div>
-    </section>
+        {/* Measured handover values – the page's signature element. */}
+        <div className="flex-[1_1_360px] min-w-0 rounded-2xl bg-ink text-night-text p-6 md:p-7 font-mono">
+          <div className="flex items-center justify-between gap-3 pb-4 border-b border-night-line">
+            <span className="text-[13px] text-night-muted">{proof.file}</span>
+            <span className="text-xs font-medium text-ink bg-brand-bright px-2.5 py-1 rounded-full">
+              {proof.badge}
+            </span>
+          </div>
+          <dl className="text-[15px]">
+            {proof.rows.map((row, i) => (
+              <div
+                key={row.label}
+                className={`flex justify-between gap-3 py-4 ${i < proof.rows.length - 1 ? "border-b border-night-row" : ""}`}
+              >
+                <dt className="text-night-muted">{row.label}</dt>
+                <dd className="text-brand-bright text-right">{row.value}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-2 text-[13px] leading-normal text-night-muted">{proof.note}</p>
+        </div>
+      </section>
+
+      <section aria-label={t.trustLabel} className="border-y border-line bg-white">
+        <div className="max-w-310 mx-auto px-4 sm:px-6 py-7 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {t.trust.map((item) => (
+            <div key={item.value}>
+              <p className="text-[21px] font-semibold tracking-[-0.02em]">{item.value}</p>
+              <p className="mt-1 text-[15px] text-ink-soft">{item.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

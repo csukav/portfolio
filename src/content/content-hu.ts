@@ -23,12 +23,128 @@ export const homeHu = {
   title: "Weboldal és webshop készítés Debrecenben | Csuka Viktor",
   description:
     "Gyors, mobilbarát weboldalak és webshopok kis- és középvállalkozásoknak Debrecenben és Hajdú-Biharban. Hirdetéskezelés és üzemeltetés is. Kérj ajánlatot!",
-  eyebrow: "Webfejlesztő • Debrecen és Hajdú-Bihar",
-  h1: "Weboldal és webshop készítés vállalkozásoknak Debrecenben és környékén",
+  eyebrow: "Webfejlesztő és rendszergazda · Debrecen",
+  h1: "Gyors weboldal és IT-háttér debreceni kisvállalkozásoknak – egy kézből.",
   intro:
-    "Olyan weboldalt készítek, ami nemcsak jól néz ki, hanem ügyfelet is hoz: gyorsan betölt mobilon, megtalálható a Google-ben, és világosan elmondja, miért téged válasszanak. Egy emberrel beszélsz végig – az első egyeztetéstől az átadás utáni támogatásig.",
+    "Megtervezem, megépítem és üzemeltetem a weboldaladat, a tárhelyet, a céges e-mailt és a mentéseket. Nincs ügyintéző és nincs lassú sablon: egy ember, akit közvetlenül felhívhatsz.",
   primaryCta: "Kérj ingyenes ajánlatot",
   secondaryCta: "Nézd meg a munkáimat",
+  area: "Személyes egyeztetés Debrecenben és Hajdú-Biharban · online az egész országban",
+
+  // A hero melletti mérési panel. Csak olyan érték maradjon, amit minden átadásnál tényleg teljesítesz.
+  proof: {
+    file: "atadas-ellenorzes.txt",
+    badge: "minden oldalnál",
+    rows: [
+      { label: "PageSpeed, mobil", value: "90+" },
+      { label: "Betöltés (LCP)", value: "< 2,0 mp" },
+      { label: "Elugrás (CLS)", value: "< 0,05" },
+      { label: "Biztonsági mentés", value: "naponta" },
+      { label: "Bővítmény, amit frissíteni kell", value: "0 db" },
+    ],
+    note: "Az átadáskor mért értékeket a szerződéshez csatolom.",
+  },
+
+  // Valós, ellenőrizhető állítások – kitalált ügyfélszám helyett.
+  trust: [
+    { value: "2+ év", label: "full-stack fejlesztői tapasztalat" },
+    { value: "Next.js · React · TypeScript", label: "modern, gyors technológia" },
+    { value: "1 munkanap", label: "alatt válaszolok minden megkeresésre" },
+    { value: "Fix ár", label: "írásos ajánlat, rejtett költség nélkül" },
+  ],
+
+  pillars: {
+    eyebrow: "01 / Szolgáltatások",
+    h2: "Két terület, amihez egy kisvállalkozásnak értenie kellene – de nem kell.",
+    items: [
+      {
+        icon: "web",
+        h3: "Weboldal és webshop",
+        text: "Egyedi kódból épülő, gyors oldal, amit nem kell havonta frissítgetni. A Google is gyorsabbnak látja, a látogatód is.",
+        bullets: [
+          "Céges bemutatkozó oldal",
+          "Webshop bankkártyás fizetéssel és számlázással",
+          "Más által készített oldal átvétele",
+          "Lassú vagy elavult oldal megújítása",
+        ],
+        price: "19 999 Ft-tól, egyszeri díj",
+        links: ["webdev", "webshop"],
+      },
+      {
+        icon: "it",
+        h3: "IT-üzemeltetés kkv-knak",
+        text: "Havidíjas rendszergazdai háttér kis- és középvállalkozásoknak. Akkor is működik minden, amikor nem gondolsz rá.",
+        bullets: [
+          "Tárhely, domain, SSL – egy kézben",
+          "Biztonsági mentés és visszaállítás",
+          "Frissítések, felügyelet, hibaelhárítás",
+          "Szerver és felhő: AWS, Azure, Vercel, Proxmox",
+        ],
+        price: "9 999 Ft/hó-tól",
+        links: ["it"],
+      },
+    ] as { icon: "web" | "it"; h3: string; text: string; bullets: string[]; price: string; links: ServiceKey[] }[],
+    extra: { text: "Kiegészítő szolgáltatás:", route: "ads" as ServiceKey },
+  },
+
+  why: {
+    eyebrow: "02 / Miért egy kézből",
+    h2: "Ha leáll az oldal, nem kell kitalálnod, kit hívj. Engem hívsz.",
+    items: [
+      { tag: "fejlesztés", h3: "Megépítem", text: "Terv, szövegstruktúra, fejlesztés, keresőoptimalizálás. Menet közben végig látod, hol tartunk." },
+      { tag: "üzemeltetés", h3: "Életben tartom", text: "Tárhely, mentés, frissítések, felügyelet. A szervert ugyanaz kezeli, aki a kódot írta." },
+      { tag: "támogatás", h3: "Elérhető vagyok", text: "Közvetlen telefonszám, egy kapcsolattartó. Nem kell minden alkalommal elölről elmagyarázni, mi hol van." },
+    ],
+  },
+
+  projects: {
+    eyebrow: "03 / Munkáim",
+    h2: "Projektek, amiket kívül-belül ismerek.",
+    // tag: őszinte címke – „saját projekt” / „ügyfélprojekt”.
+    items: [
+      {
+        title: "Hoodini – streetwear webshop",
+        tag: "saját webshop",
+        text: "Teljes webáruház online fizetéssel és saját admin felülettel – fejlesztem és üzemeltetem is.",
+        tags: ["Next.js", "Stripe", "Prisma"],
+        url: "https://www.hoodini.hu/",
+        image: "/projects/hoodini.jpg",
+        alt: "Hoodini webshop – Next.js e-commerce oldal",
+      },
+      {
+        title: "közös – eseményplatform",
+        tag: "saját projekt",
+        text: "Kis létszámú gasztro-, workshop-, kulturális és sportprogramok böngészése, jelentkezés és saját esemény szervezése.",
+        tags: ["Next.js", "TypeScript", "Vercel"],
+        url: "https://kozoselmeny.vercel.app/",
+        image: "/projects/kozos.jpg",
+        alt: "közös – közösségi eseményplatform Next.js alapokon",
+      },
+    ],
+    next: {
+      tag: "következő projekt",
+      h3: "Itt lehet a te vállalkozásod esettanulmánya.",
+      text: "Mérhető eredménnyel: betöltési idő, ajánlatkérések, megtakarított órák.",
+      link: "Beszéljünk róla →",
+    },
+  },
+
+  // Induló ajánlat. Írd át a számokat, és állítsd az enabled értékét true-ra, ha élesíteni szeretnéd.
+  offer: {
+    enabled: false,
+    eyebrow: "induló ajánlat · még [N] hely",
+    h2: "Most indítom a vállalkozásomat – és ezt nem titkolom.",
+    text: "Az első három ügyfelem [X]% kedvezményt kap a teljes árból. Cserébe egy őszinte Google-véleményt és egy rövid esettanulmányt kérek a közös munkáról.",
+    button: "Lefoglalom az egyik helyet",
+  },
+
+  about: {
+    eyebrow: "05 / Rólam",
+    h2: "Szia, Csuka Viktor vagyok.",
+    text: "Debreceni full-stack fejlesztő és rendszergazda. React, Next.js, TypeScript és Node.js eszközökkel dolgozom, és a szervereket is magam üzemeltetem. Nem ügynökség vagyok: amikor velem dolgozol, a kódot, a szervert és a telefont is én kezelem.",
+    // Valódi portré a /public mappában (pl. "/viktor.jpg"); null esetén monogram jelenik meg.
+    photo: null as string | null,
+  },
 
   services: {
     h2: "Szolgáltatások",
@@ -37,59 +153,41 @@ export const homeHu = {
         route: "webdev",
         h3: "Weboldal készítés",
         text: "Bemutatkozó oldal vállalkozásoknak, amit a Google is megtalál. Mobilbarát, gyors, könnyen frissíthető.",
-        price: "19999 Ft-tól",
+        price: "19 999 Ft-tól",
+        minPrice: 19999,
       },
       {
         route: "webshop",
         h3: "Webshop készítés",
         text: "Online bolt bankkártyás fizetéssel, számlázással és egyszerű termékkezeléssel.",
-        price: "49999 Ft-tól",
+        price: "49 999 Ft-tól",
+        minPrice: 49999,
       },
       {
         route: "ads",
         h3: "Google és Facebook hirdetések",
         text: "Hirdetések beállítása és kezelése, hogy a weboldalad mielőbb érdeklődőket hozzon.",
-        price: "9999 Ft/hó-tól",
+        price: "9 999 Ft/hó-tól",
+        minPrice: 9999,
       },
       {
         route: "it",
         h3: "Üzemeltetés és karbantartás",
         text: "Tárhely, domain, biztonsági mentés, frissítések – hogy ne neked kelljen ezzel foglalkoznod.",
-        price: "9999 Ft/hó-tól",
+        price: "9 999 Ft/hó-tól",
+        minPrice: 9999,
       },
-    ],
-  },
-
-  references: {
-    h2: "Referenciák",
-    intro: "Néhány projekt, amin dolgoztam – rövid leírással, hogy mi volt a cél és mi lett az eredmény.",
-    // Csak valós projekt kerüljön ide, működő linkkel.
-    items: [
-      {
-        name: "Hoodini – streetwear webshop",
-        url: "https://www.hoodini.hu/",
-        text: "Teljes webshop fejlesztés Next.js-sel, online fizetéssel és saját admin felülettel. [Eredmény: pl. 20% gyorsabb betöltés / 20-25 rendelés havonta – ha van mérhető adat.]",
-      },
-    ],
+    ] as { route: ServiceKey; h3: string; text: string; price: string; minPrice: number }[],
   },
 
   process: {
-    h2: "Így dolgozom",
+    eyebrow: "04 / Hogyan dolgozom",
+    h2: "Négy lépés, meglepetés nélkül.",
     steps: [
-      { h3: "1. Egyeztetés", text: "Megbeszéljük, mit szeretnél elérni, kik az ügyfeleid, és mire van szükséged. Ingyenes." },
-      { h3: "2. Ajánlat", text: "Fix árajánlatot és határidőt kapsz, rejtett költségek nélkül." },
-      { h3: "3. Tervezés és fejlesztés", text: "Menet közben látod, hogyan halad az oldal, és bármikor jelezhetsz." },
-      { h3: "4. Átadás és támogatás", text: "Megmutatom, hogyan frissítheted, és az átadás után is elérsz, ha kérdésed van." },
-    ],
-  },
-
-  why: {
-    h2: "Miért velem dolgozz?",
-    bullets: [
-      "Egy kapcsolattartó: azzal beszélsz, aki az oldalt építi",
-      "Gyors, modern technológia – jobb helyezés a Google-ben, kevesebb lemorzsolódó látogató",
-      "Webshop-üzemeltetési tapasztalat: saját webáruházat is működtetek",
-      "Helyi vagyok: személyesen is találkozhatunk Debrecenben és környékén",
+      { h3: "Egyeztetés", text: "Megbeszéljük, mit szeretnél elérni, kik az ügyfeleid, és mire van szükséged. Ingyenes." },
+      { h3: "Ajánlat", text: "Fix árajánlatot és határidőt kapsz, rejtett költségek nélkül." },
+      { h3: "Tervezés és fejlesztés", text: "Menet közben látod, hogyan halad az oldal, és bármikor jelezhetsz." },
+      { h3: "Átadás és támogatás", text: "Megmutatom, hogyan frissítheted, és az átadás után is elérsz, ha kérdésed van." },
     ],
   },
 
@@ -117,8 +215,8 @@ export const homeHu = {
   ] as Faq[],
 
   contact: {
-    h2: "Kérj ingyenes ajánlatot",
-    text: "Írd meg röviden, milyen oldalt szeretnél – 1 munkanapon belül válaszolok.",
+    h2: "Kezdjük egy 30 perces beszélgetéssel.",
+    text: "Ingyenes, és semmire nem kötelez. Írd meg röviden, miben segíthetek – 1 munkanapon belül válaszolok.",
   },
 };
 
@@ -196,10 +294,10 @@ export const pagesHu: Record<ServiceKey, PageContent> = {
   webshop: {
     slug: "/webshop-keszites",
     label: "Webshop készítés",
-    title: "Webshop készítés kis- és középvállalkozásoknak | Csuka Viktor",
+    title: "Webshop készítés Debrecenben, vállalkozásoknak | Csuka Viktor",
     description:
       "Webshop készítés 49999 Ft-tól: egyedi webáruház bankkártyás fizetéssel, számlázással és könnyű termékkezeléssel. Debrecen és Hajdú-Bihar. Kérj ajánlatot!",
-    h1: "Webshop és webáruház készítés kis- és középvállalkozásoknak",
+    h1: "Webshop és webáruház készítés vállalkozásoknak Debrecenben",
     intro:
       "Nemcsak fejlesztek webshopot, hanem üzemeltetek is egyet – ezért tudom, mi kell ahhoz, hogy a látogatóból vásárló legyen: gyors oldal, egyszerű kosár, megbízható fizetés.",
     sections: [

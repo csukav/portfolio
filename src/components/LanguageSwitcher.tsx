@@ -28,7 +28,7 @@ export default function LanguageSwitcher({
       lang={target}
       aria-label={LABELS[target].full}
       title={LABELS[target].full}
-      className={`text-[13px] font-medium text-[#1d1d1f] hover:text-[#0071e3] transition-colors ${className}`}
+      className={`font-mono text-sm text-ink hover:text-brand transition-colors ${className}`}
     >
       {LABELS[target].short}
     </a>

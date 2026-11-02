@@ -4,9 +4,7 @@ import { createContext, useContext } from "react";
 import type { Locale, Translations } from "@/lib/translations";
 
 /** Only the strings the client components (Navbar, ContactSection) render. */
-export type ClientTranslations = Pick<Translations, "nav" | "contact"> & {
-  services: Pick<Translations["services"], "label">;
-};
+export type ClientTranslations = Pick<Translations, "nav" | "contact">;
 
 interface LanguageContextType {
   locale: Locale;
