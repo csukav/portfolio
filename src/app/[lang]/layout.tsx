@@ -150,7 +150,8 @@ function buildJsonLd(lang: Locale) {
         url: `${SITE_URL}${localePath(lang)}`,
         email: `mailto:${EMAIL}`,
         telephone: PHONE,
-        image: `${SITE_URL}${OG_IMAGE.url}`,
+        // Real photo (the About section portrait), not the OG banner.
+        image: `${SITE_URL}${homeHu.about.photo ?? OG_IMAGE.url}`,
         jobTitle: m.jobTitle,
         description: m.personDescription,
         knowsAbout: [

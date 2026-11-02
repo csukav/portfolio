@@ -1,39 +1,49 @@
-# Technical SEO findings — www.csukaviktor.com
+# Technical SEO findings - www.csukaviktor.com (re-audit 2026-11-02)
 
-## Technical SEO — 88/100
+## Technical SEO - 95/100 (previous: 88)
+
+**Status vs previous audit (2026-10-28)**
+
+| Previous issue | Status |
+|---|---|
+| Low: 404 page emits two conflicting robots meta tags | PARTIALLY FIXED / STILL OPEN (Low) - see below |
+| Low: sitemap lastmod = build timestamp | FIXED - lastmod is now fixed per group (2026-10-26 for home/services, 2026-02-10 for blog); src/app/sitemap.ts uses PAGES_UPDATED and latest post date |
+| Low: missing security headers | FIXED - X-Content-Type-Options, Referrer-Policy, X-Frame-Options, Permissions-Policy now sent (next.config.ts) |
+| Low: apex takes two redirect hops | STILL OPEN (Low) - csukaviktor.com 301 -> www/ 308 -> /hu |
+| New regressions | None |
 
 **What works**
 
-- Server-side rendered (Next.js prerender) - full content present without JavaScript
-- Self-referencing canonicals on all 14 pages; reciprocal hreflang hu-HU/en-US/x-default on bilingual pages
-- robots.txt allows crawling, blocks /api/, references sitemap
-- XML sitemap with 14 URLs and xhtml:link alternates
-- HTTPS + HSTS (2 years); apex and http redirect to https://www
-- Unknown URLs return a real 404 with noindex; preview domain csukaviktor.vercel.app/hu returns 404 noindex (no duplicate)
-- Edge-cached HTML, TTFB ~115 ms warm
+- Sitemap: 10 URLs, all 200, canonical www host, hu/en xhtml:link alternates on bilingual pages, accurate lastmod. Previous 14-URL sitemap shrank to 10 since the two removed posts now 301 to the blog index (next.config.ts redirects()).
+- robots.txt: allow all, disallow /api/, sitemap declared (src/app/robots.ts).
+- Self-referencing canonicals on all sampled pages; hu/en hreflang pairs + x-default reciprocal and match the sitemap.
+- Robots meta allows max-snippet/large image previews.
+- HTTPS + HSTS; http/apex redirect to https://www. Unknown URLs return a true 404 (also /nincs-ilyen -> 308 /hu/nincs-ilyen -> 404) with noindex.
+- Vercel preview domain csukaviktor.vercel.app returns 404, no duplicate content.
+- Prerendered/SSR HTML (X-Nextjs-Prerender, Vercel edge HIT); no JS needed for content.
+- Unique titles and descriptions per page.
 
 **Findings**
 
-### [Low] 404 page emits two conflicting robots meta tags
+### [Low] 404 page still emits two robots meta tags and duplicates homepage title/description
+/hu/nincs-ilyen returns 404 with `<meta name="robots" content="noindex">` followed by the layout's `max-video-preview:-1, max-image-preview:large, max-snippet:-1` tag (no explicit "index" anymore, so there is no direct conflict; Google takes the most restrictive = noindex). The 404 also inherits the homepage title and description.
+**Fix:** in src/app/[lang]/not-found.tsx export `metadata = { title: "404 | Csuka Viktor", robots: { index: false, follow: false } }`.
 
-/hu/nonexistent-xyz returns 404 with both <meta name=robots content=noindex> and <meta name=robots content='index, follow'> (layout metadata in src/app/[lang]/layout.tsx:149 is not overridden by not-found).
+### [Low] Apex domain two redirect hops
+https://csukaviktor.com -> 301 https://www.csukaviktor.com/ -> 308 /hu.
+**Fix:** optional - add a redirect in next.config.ts/Vercel so `/` goes straight to /hu, or accept; links to the apex are rare.
 
-**Fix:** Export metadata { robots: { index: false } } from src/app/[lang]/not-found.tsx so only one tag is emitted.
+### [Low] HSTS lacks includeSubDomains/preload
+Header is `max-age=63072000` only (Vercel default).
+**Fix:** add `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload` to securityHeaders in next.config.ts only if all subdomains are HTTPS-ready, then submit to hstspreload.org.
 
-### [Low] Sitemap lastmod is the build timestamp for all static pages
+### [Low] No Content-Security-Policy
+Other headers are in place; CSP is absent.
+**Fix:** add a report-only CSP first via next.config.ts headers().
 
-Homepages and all 4 service pages share lastmod 2026-10-18T21:48:40Z, i.e. new Date() at build. Google ignores lastmod that is not consistently accurate.
+### [Low] Stale blog index description
+/hu/blog meta description still mentions Supabase and React Native, topics of the removed posts (only the Next.js/Stripe post remains).
+**Fix:** update the blog index description (src/app/[lang]/blog/page.tsx generateMetadata or the content file) to match current content.
 
-**Fix:** Use a real per-page content date (hard-coded or from git) instead of build time.
-
-### [Low] Missing security headers
-
-Only Strict-Transport-Security is sent. No Content-Security-Policy, X-Content-Type-Options, Referrer-Policy, Permissions-Policy or X-Frame-Options.
-
-**Fix:** Add headers() in next.config.ts with X-Content-Type-Options: nosniff, Referrer-Policy: strict-origin-when-cross-origin, X-Frame-Options: DENY (or frame-ancestors), Permissions-Policy.
-
-### [Low] Apex domain takes two redirect hops
-
-https://csukaviktor.com -> 301 https://www.csukaviktor.com/ -> 308 /hu. Acceptable, but each hop costs latency for links pointing at the apex.
-
-**Fix:** Optional: point the apex redirect directly to https://www.csukaviktor.com/hu in Vercel domain settings.
+### [Info] Blog sitemap changefreq "weekly" with a single, Feb-2026 post
+Google ignores changefreq/priority; harmless. Consider removing both fields.

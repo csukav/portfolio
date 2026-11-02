@@ -143,7 +143,7 @@ export const homeHu = {
     h2: "Szia, Csuka Viktor vagyok.",
     text: "Debreceni full-stack fejlesztő és rendszergazda. React, Next.js, TypeScript és Node.js eszközökkel dolgozom, és a szervereket is magam üzemeltetem. Nem ügynökség vagyok: amikor velem dolgozol, a kódot, a szervert és a telefont is én kezelem.",
     // Valódi portré a /public mappában (pl. "/viktor.jpg"); null esetén monogram jelenik meg.
-    photo: null as string | null,
+    photo: "/viktor.jpg" as string | null,
   },
 
   services: {

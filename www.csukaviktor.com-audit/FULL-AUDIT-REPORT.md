@@ -1,285 +1,98 @@
 # SEO Audit — www.csukaviktor.com
 
-Date: 2026-10-26 · Pages crawled: 14 (all sitemap URLs)
+Date: 2026-11-02 · Pages crawled: 10 (all sitemap URLs) · Previous audit: 2026-10-28 (73/100)
 
-## Executive summary
+## Executive Summary
 
-**SEO Health Score: 73/100**
+**SEO Health Score: 80/100** (+7)
 
-**Business type:** Freelance web developer / IT service provider (hybrid: portfolio + local service-area business targeting Debrecen & Hajdú-Bihar)
+Business type: freelance web developer, service-area business in Debrecen, Hungary. Sells website, webshop, online advertising and IT operations services.
 
-| Category | Weight | Score |
-|---|---|---|
-| Technical SEO | 22% | 88 |
-| Content Quality | 23% | 55 |
-| On-Page SEO | 20% | 75 |
-| Schema / Structured Data | 10% | 78 |
-| Performance (CWV) | 10% | 80 |
-| AI Search Readiness | 10% | 65 |
-| Images | 5% | 70 |
+| Category | Weight | Score | Previous |
+|---|---|---|---|
+| Technical SEO | 22% | 95 | 88 |
+| Content Quality | 23% | 66 | 55 |
+| On-Page SEO | 20% | 80 | 75 |
+| Schema / Structured Data | 10% | 84 | 78 |
+| Performance (CWV, lab) | 10% | 88 | — |
+| AI Search Readiness (GEO 66 + agentic 78) | 10% | 70 | 65 |
+| Images | 5% | 82 | — |
+
+Supplementary (not weighted): Local SEO 58, SXO gap 51, Visual 80, Backlinks not measured.
 
 ### Top 5 issues
-
-1. Blog post 'Offline-First ... 10 000+ felhasználó' (and the EN projects copy) claims a 10,000+ user app that the uncommitted change removes from the portfolio - unverifiable experience claims hurt E-E-A-T
-2. Thin service pages: /hu/online-hirdetes (~200 words) and /hu/it-uzemeltetes (~210 words incl. nav/footer) target commercial keywords with almost no unique content
-3. No trust proof anywhere: no testimonials, reviews, client logos, case-study numbers, phone number or photo of you
-4. Local targeting (Debrecen) without local signals: ProfessionalService schema has no address/telephone/geo, no Google Business Profile link
-5. Blog topics (developer case studies) do not match the buyer audience (small businesses) and blog posts never link to the service pages
+1. **The new homepage was never wired in.** `homeHu` in `src/content/content-hu.ts:22` (Debrecen title/H1, service cards with prices, FAQ) is not imported anywhere. `/hu` still renders the old copy from `src/lib/translations.ts`, with no visible "Debrecen".
+2. **Price conflict.** The homepage and the site-wide ProfessionalService schema list IT operations at 90 000–180 000 Ft; `/hu/it-uzemeltetes` says 9 999 Ft/hó-tól.
+3. **No social proof.** No testimonials, reviews, headshot or numeric case study. "10+ Elégedett ügyfél" and "24/7 monitoring" claims are not backed.
+4. **No Google Business Profile**, so no local pack presence and no reviews.
+5. **`/hu/it-uzemeltetes` mismatches search intent.** Searchers want office IT; the page sells website hosting and maintenance.
 
 ### Top 5 quick wins
+1. Import `homeHu` into `src/app/[lang]/page.tsx` (fixes issues 1 and most of 2).
+2. Fix the typo "együttműközésről" (`src/lib/translations.ts:147`).
+3. Add "Debrecen" to the `/hu/webshop-keszites` title and H1.
+4. Update the `/hu/blog` meta description (still mentions removed Supabase/React Native posts).
+5. Ask hoodini.hu for a "Készítette: Csuka Viktor" footer link (it currently has none).
 
-1. Shorten 3 blog <title>s (79-100 chars) to under 60 chars
-2. Add contextual links from each blog post to /hu/weboldal-keszites and /hu/webshop-keszites
-3. Add telephone, address/areaServed Debrecen, priceRange and a real headshot to Person/ProfessionalService JSON-LD
-4. Remove the site-wide identical <meta name=keywords> (ignored by Google, leaks keyword strategy)
-5. Remove the duplicate 'index, follow' robots meta on the 404 page
+## Progress since 2026-10-28
 
-### Data limitations
+Fixed: unverifiable blog posts removed; service pages expanded to 512–598 unique words; CTA "Kérj ajánlatot"; first-person voice; phone on every page; blog title length; blog-to-service link (HU); meta keywords removed; local schema properties; real sitemap lastmod; security headers; gtag no longer preloaded; local project images instead of microlink; particles lazy and skipped on mobile; JS 215 → 163 KB; favicon 1 MB → 8 KB.
 
-- PageSpeed Insights API daily quota exhausted - performance scored from lab proxies (JS weight, TTFB, resource audit), not Lighthouse/CrUX.
-- No Google Search Console / GA4 credentials configured - no indexation or traffic data.
-- No backlink API credentials - backlink profile not assessed.
+Still open: social proof, headshot, stale blog, Spotify clone, shared OG image, EN service path, 404 metadata, apex double redirect, llms.txt.
 
+## Technical SEO — 95
+Crawlability and indexability are solid: robots.txt allows all but `/api/`, all 10 sitemap URLs return 200, self-canonicals and reciprocal hreflang with x-default, server-rendered HTML, real 404s, removed posts 301 to the blog index, the Vercel preview domain returns 404.
+Low issues: 404 page has two robots tags and inherits homepage title; apex takes two redirects; HSTS lacks includeSubDomains/preload; no CSP. Detail: `findings/technical.md`.
 
-## Technical SEO — 88/100
+## Content Quality — 66
+E-E-A-T: Experience 60, Expertise 70, Authoritativeness 45, Trust 62.
+High: price conflict; unbacked "10+ ügyfél" / "24/7" claims; no testimonials, reviews, headshot or Hoodini numbers.
+Medium: one ~300-word developer blog post from February ("Next.js 14", "8 perc olvasás"); service pages still under ~800 words with an identical template and no case study; portfolio-style homepage (skill bars, "kávés csevej").
+Low: Spotify clone in projects; typo. Detail: `findings/content.md`.
 
-**What works**
+## On-Page SEO — 80
+Titles 53–65 chars, service descriptions 145–160, one H1 per page, keyword anchors from homepage to all 4 service pages.
+High: homepage title/H1 lack the money keyword because `homeHu` is not rendered.
+Medium: homepage services H2 shows only the IT block; `/hu/blog` ~54 words with a 19-char title.
+Low: EN post has no CTA; service pages don't link back to the blog; same OG image everywhere; EN has no services path. Detail: `findings/onpage.md`.
 
-- Server-side rendered (Next.js prerender) - full content present without JavaScript
-- Self-referencing canonicals on all 14 pages; reciprocal hreflang hu-HU/en-US/x-default on bilingual pages
-- robots.txt allows crawling, blocks /api/, references sitemap
-- XML sitemap with 14 URLs and xhtml:link alternates
-- HTTPS + HSTS (2 years); apex and http redirect to https://www
-- Unknown URLs return a real 404 with noindex; preview domain csukaviktor.vercel.app/hu returns 404 noindex (no duplicate)
-- Edge-cached HTML, TTFB ~115 ms warm
+## Schema & Structured Data — 84
+WebSite, Person, ProfessionalService on every page (confirmed in live HTML); Service, FAQPage, BreadcrumbList on service pages; BlogPosting and BreadcrumbList on posts. No validation errors.
+Gaps: all images are the OG banner; ProfessionalService has no sameAs/geo/logo/GBP link; priceRange "19 999 Ft-tól" is not a range and conflicts with the catalog; BlogPosting dateModified = datePublished; `<` not escaped in JSON-LD on service/blog pages. FAQPage no longer earns rich results (Google retired them 2026-05-07) — harmless, but don't expand it. Ready-to-paste JSON-LD in `findings/schema.md`.
 
-**Findings**
+## Performance — 88 (lab only)
+| Page | Device | Perf | LCP | TBT | CLS | JS |
+|---|---|---|---|---|---|---|
+| /hu | mobile | 86 | 2.8 s | 360 ms | 0 | 163 KB |
+| /hu | desktop | 100 | 0.6 s | 30 ms | 0 | 167 KB |
+| /hu/weboldal-keszites | mobile | 83 | 3.1 s | 410 ms | 0 | 172 KB |
+| /hu/blog/nextjs-stripe-ecommerce | mobile | 93 | 2.7 s | 200 ms | 0 | 160 KB |
 
-### [Low] 404 page emits two conflicting robots meta tags
+Lighthouse 12.8.2 local run (PageSpeed API was rate-limited; no CrUX field data). LCP is text; delay is render work, not network. Fix: remove `animate-fade-up` from above-the-fold text, dynamic-import the contact form, bundle-analyze the 71 KB chunk. Detail: `findings/performance.md`.
 
-/hu/nonexistent-xyz returns 404 with both <meta name=robots content=noindex> and <meta name=robots content='index, follow'> (layout metadata in src/app/[lang]/layout.tsx:149 is not overridden by not-found).
+## Images — 82
+Local project screenshots through next/image with srcset and AVIF/WebP; descriptive localized alt text; CLS-safe wrappers.
+Gaps: no headshot; service pages have zero images; source JPGs oversized (hoodini 490 KB). Detail: `findings/images.md`.
 
-**Fix:** Export metadata { robots: { index: false } } from src/app/[lang]/not-found.tsx so only one tag is emitted.
+## AI Search Readiness — 70
+GEO 66: all AI crawlers allowed, server-rendered, service pages have question-style H2s with direct answers. Weak: no About/entity page, few third-party mentions, LinkedIn "Frontend" vs site "Full-Stack", a same-name tattoo artist competes in results, no visuals or dates on service pages, no llms.txt.
+Agentic 78 (estimate; Lighthouse Agentic Browsing not measured due to PSI quota): accessibility tree fully named except the contact form (labels without `htmlFor`, inputs without `id`/`name`, status messages without `aria-live`). Detail: `findings/geo.md`, `findings/agentic.md`.
 
-### [Low] Sitemap lastmod is the build timestamp for all static pages
+## Local SEO — 58 (supplementary)
+Good locality-only address, areaServed, telephone, priceRange; NAP from one source file; strong Debrecen wording on service pages. Missing: Google Business Profile, reviews, `sameAs` on the business node, visible service-area line in footer/contact, `geo`/`logo`, Hungarian directory citations, one exact business name. Code review only — verify GBP and citations by hand. Detail: `findings/local.md`.
 
-Homepages and all 4 service pages share lastmod 2026-10-18T21:48:40Z, i.e. new Date() at build. Google ignores lastmod that is not consistently accurate.
+## Search Experience (SXO) — 51 (supplementary)
+weboldal-keszites 55 (matches intent, lacks proof), webshop-keszites 54 (no Debrecen in title/H1), online-hirdetes 51 (SERP is mostly informational), it-uzemeltetes 43 (wrong topic). Personas: IT-support seeker 39, hiring a developer 44, price-shopper 56, local owner 65. SERP data was inferred (no live google.hu results). Detail: `findings/sxo.md`.
 
-**Fix:** Use a real per-page content date (hard-coded or from git) instead of build time.
+## Backlinks — not measured
+No Moz/Bing keys and the Common Crawl lookup timed out. Likely a very thin profile; hoodini.hu does not link back. Link-building plan in `findings/backlinks.md`.
 
-### [Low] Missing security headers
+## Visual — 80 (supplementary)
+H1 and both CTAs above the fold on all devices, no horizontal scroll observed. Hero lacks Debrecen and proof, low-contrast paragraph, primary CTA goes to About instead of the quote. Screenshots in `screenshots/` and `screenshots/svc/`.
 
-Only Strict-Transport-Security is sent. No Content-Security-Policy, X-Content-Type-Options, Referrer-Policy, Permissions-Policy or X-Frame-Options.
+## Data limitations
+- No Google Search Console, GA4, CrUX, Matomo or Moz credentials: no field CWV, indexation, traffic or backlink data.
+- PageSpeed Insights API returned 429; Lighthouse was run locally.
+- SERP analysis is inferred; local citations and GBP were not looked up live.
 
-**Fix:** Add headers() in next.config.ts with X-Content-Type-Options: nosniff, Referrer-Policy: strict-origin-when-cross-origin, X-Frame-Options: DENY (or frame-ancestors), Permissions-Policy.
-
-### [Low] Apex domain takes two redirect hops
-
-https://csukaviktor.com -> 301 https://www.csukaviktor.com/ -> 308 /hu. Acceptable, but each hop costs latency for links pointing at the apex.
-
-**Fix:** Optional: point the apex redirect directly to https://www.csukaviktor.com/hu in Vercel domain settings.
-
-
-## Content Quality — 55/100
-
-**What works**
-
-- Service pages have clear pricing (19 999 Ft-tól, 49 999 Ft-tól, 9 999 Ft/hó) and FAQ sections - strong intent match
-- /hu/weboldal-keszites (~460 words) has a good structure: what's included, pricing, process, local section, FAQ
-- One real, verifiable reference project (hoodini.hu webshop)
-
-**Findings**
-
-### [High] Unverifiable experience claims in blog and EN copy
-
-The uncommitted change in src/lib/translations.ts removes the 'Mobile Companion App - 10 000+ active users' and 'SaaS Dashboard' projects from the HU portfolio, but the blog still publishes 'Offline-First architektúra React Native alkalmazásban: 10 000+ felhasználó tanulságai' (src/lib/blog.ts:165-219) and 'Valós idejű Task Manager SaaS' and the EN projects copy still says '10,000+ active users' (translations.ts:233). Experience claims with no matching project are a trust/E-E-A-T risk with both readers and Google's quality raters.
-
-**Fix:** Either back these posts with a real project (link, screenshots, repo) or rewrite/remove them. Sync the EN translations with the HU removal.
-
-### [High] Thin commercial service pages
-
-/hu/online-hirdetes ~198 words and /hu/it-uzemeltetes ~209 words total, of which ~150 are shared nav/footer/contact boilerplate. /hu/webshop-keszites ~355. These pages target competitive commercial keywords (Google Ads kezelés, weboldal üzemeltetés) where ranking pages typically have 800-1500 words.
-
-**Fix:** Expand each to 700+ words of unique content: who it is for, what is included in each price tier, process, a mini case study, 5-8 FAQs, local section (Debrecen).
-
-### [High] No social proof or trust signals
-
-No testimonials, Google reviews, client logos, measurable results, years of experience, phone number or photo. For a local service provider these are the main conversion and E-E-A-T signals.
-
-**Fix:** Add 2-4 client testimonials with names/company, a hoodini.hu case study with numbers, a real headshot, and an 'About' block with experience and credentials.
-
-### [Medium] Blog targets developers, not buyers; blog is stale
-
-3 posts, newest 2026-02-10 (8+ months), all developer case studies (Next.js 14, Supabase, React Native) at ~300 words. The site sells websites to small businesses; none of the posts answer buyer questions. 'Next.js 14' is also dated (site runs Next 16).
-
-**Fix:** Publish buyer-intent articles: 'Mennyibe kerül egy weboldal 2026-ban?', 'Weboldal vs. Facebook oldal kisvállalkozásnak', 'Google Cégprofil beállítása lépésről lépésre', 'Webshop indítás: Shopify vs egyedi'. Link each to the matching service page.
-
-### [Medium] Mixed positioning: job-seeker vs service provider
-
-The header CTA 'Felveszel?' (hire me as an employee) and portfolio framing sit next to 'kkv-knak' agency-style service offers and a 'we' voice in schema/service copy ('Informatikai szolgáltatásunk'). Mixed signals dilute the topical focus and confuse visitors.
-
-**Fix:** Decide the primary audience. If clients: change CTA to 'Kérj ajánlatot', use consistent first-person singular voice, move job-seeking to a secondary /rolam section.
-
-### [Low] Projects section contains a tutorial-style clone
-
-'Spotify Clone' is one of three showcased projects. Clones read as learning projects to business buyers.
-
-**Fix:** Replace with client work or a business-relevant demo (e.g. a sample local business site).
-
-
-## On-Page SEO — 75/100
-
-**What works**
-
-- Unique, keyword-led titles and descriptions on all service pages (53-65 chars titles, 145-160 chars descriptions)
-- Exactly one H1 per page, logical H2/H3 hierarchy
-- Homepage links to all 4 service pages and the 3 blog posts
-- Service pages cross-link to each other ('Kapcsolódó szolgáltatások')
-
-**Findings**
-
-### [Medium] Blog post titles too long
-
-Titles are 79, 84 and 100 characters (e.g. 'Offline-First architektúra React Native alkalmazásban: 10 000+ felhasználó tanulságai | Csuka Viktor'). Google truncates around 60 chars.
-
-**Fix:** Use a shorter SEO title (metadata.title) separate from the on-page H1, under 60 chars.
-
-### [Medium] Blog posts do not link to service pages
-
-Blog posts only link to home, blog index and their language alternate. The Next.js+Stripe post is a natural link source for /hu/webshop-keszites.
-
-**Fix:** Add an in-content link and an end-of-post CTA to the relevant service page.
-
-### [Medium] Homepage H1 does not contain the main money keyword
-
-H1 'Webfejlesztő és IT szolgáltatások kkv-knak.' Search demand is on 'weboldal készítés' (+ Debrecen). The homepage and /hu/weboldal-keszites compete with each other for generic queries.
-
-**Fix:** Keep the homepage as the brand/overview page but add 'weboldal készítés' and Debrecen to the homepage title/intro, and make sure the homepage links to /hu/weboldal-keszites with that exact anchor.
-
-### [Low] Identical meta keywords and OG image site-wide
-
-Every HU page carries the same 15-keyword <meta name=keywords> (ignored by Google, visible to competitors). Every page shares /og-image.jpg, so social shares of services and posts look identical.
-
-**Fix:** Remove meta keywords. Generate per-page OG images (Next.js opengraph-image.tsx).
-
-### [Low] English homepage has no path to services
-
-/en links only to the blog; the 4 service pages exist only in Hungarian, so English visitors cannot see offers or prices.
-
-**Fix:** Acceptable if the market is Hungary-only. Otherwise add at least an English 'Web development services' page.
-
-
-## Schema / Structured Data — 78/100
-
-**What works**
-
-- Valid JSON-LD @graph on every page: WebSite, Person, ProfessionalService with stable @ids
-- Service + BreadcrumbList + FAQPage on service pages; BlogPosting + BreadcrumbList on posts; Blog on index
-- Person.sameAs links GitHub and LinkedIn; BlogPosting author linked by @id
-
-**Findings**
-
-### [Medium] ProfessionalService lacks local business properties
-
-Service pages target Debrecen/Hajdú-Bihar, but the ProfessionalService node has only areaServed: Hungary - no address (addressLocality Debrecen), telephone, geo, priceRange or openingHours.
-
-**Fix:** Add address (PostalAddress with addressLocality Debrecen, addressRegion Hajdú-Bihar, addressCountry HU - street can be omitted for a service-area business), telephone, priceRange '19 999 Ft - ', and areaServed Debrecen. Add the Google Business Profile URL to sameAs once it exists.
-
-### [Low] Person.image is the OG banner, not a photo
-
-Person.image and ProfessionalService.image both point to og-image.jpg, and BlogPosting.image uses the same banner for every post.
-
-**Fix:** Use a real headshot for Person.image and per-post images for BlogPosting.
-
-### [Low] Service descriptions use plural 'we' voice
-
-OfferCatalog item: 'Informatikai szolgáltatásunk része...' while the site presents one person.
-
-**Fix:** Use consistent first-person singular copy.
-
-### [Info] FAQPage will not produce rich results
-
-Since 2023 Google shows FAQ rich results only for authoritative government/health sites. The markup is harmless and still helps AI engines parse Q&A.
-
-**Fix:** Keep it; just do not expect FAQ snippets in Google.
-
-
-## Performance (CWV) — 80/100
-
-**What works**
-
-- Static prerendered HTML from Vercel edge (TTFB ~115 ms warm, ~1.1 s cold)
-- LCP element is text (H1), fonts are self-hosted woff2 with preload
-- Project images lazy-loaded; Vercel Speed Insights installed for field data
-
-**Findings**
-
-### [Info] Lab/field CWV not measured (PSI quota exhausted)
-
-PageSpeed Insights API returned a daily-quota error. Score is an estimate from resource analysis.
-
-**Fix:** Check the Vercel Speed Insights dashboard (already installed) for real LCP/INP/CLS, or rerun PSI tomorrow.
-
-### [Medium] ~215 KB (brotli) JavaScript on the homepage, incl. particle animation
-
-8+ JS chunks totalling ~215 KB compressed; largest 71 KB. @tsparticles runs a canvas animation behind the hero, which costs main-thread time on low-end phones (INP/TBT risk).
-
-**Fix:** Load the particles component with next/dynamic { ssr: false } after idle, and skip it on mobile/prefers-reduced-motion.
-
-### [Low] Google Ads gtag preloaded with high priority
-
-<link rel=preload as=script href=googletagmanager.com/gtag/js?id=AW-...> competes with critical resources during initial load.
-
-**Fix:** Load via next/script strategy='afterInteractive' or 'lazyOnload' without a preload.
-
-### [Low] Project screenshots generated live by a third-party API
-
-Three project images are fetched from api.microlink.io at view time (live screenshot rendering) with no width/height attributes - slow, uncacheable by you, and dependent on an external service.
-
-**Fix:** Save the screenshots as local WebP/AVIF and render with next/image (explicit dimensions).
-
-
-## AI Search Readiness — 65/100
-
-**What works**
-
-- All content in server HTML - AI crawlers and agents read it without JS
-- robots.txt allows all agents; AI user agents get identical responses
-- Clear Q&A blocks and pricing on service pages are easy to quote
-
-**Findings**
-
-### [Medium] Little citable, entity-defining content
-
-AI answers for 'weboldal készítés Debrecen' cite pages with concrete facts (prices, timelines, process, reviews). The site has prices but no about/credentials page, no reviews and few third-party mentions of 'Csuka Viktor'.
-
-**Fix:** Add an About page with a clear entity statement (who, where, since when, what), and get listed on Hungarian directories/review sites to build third-party mentions.
-
-### [Low] No llms.txt or explicit AI crawler policy
-
-/llms.txt returns 404; robots.txt has no named groups for GPTBot, ClaudeBot, PerplexityBot, Google-Extended. Not a ranking factor, but cheap to add.
-
-**Fix:** Optionally add /llms.txt summarising services and prices with links to the service pages.
-
-
-## Images — 70/100
-
-**What works**
-
-- All 3 content images have descriptive alt text
-- OG image present (38 KB JPEG)
-
-**Findings**
-
-### [Medium] Almost no first-party imagery
-
-Service pages have 0 images; there is no photo of you or of finished client work beyond remote screenshots.
-
-**Fix:** Add a headshot, before/after or device-mockup screenshots of client sites (local WebP, next/image, descriptive Hungarian alt text).
-
-
-## Crawled URLs
-
-All 14 sitemap URLs returned 200 with self-canonicals: /hu, /en, /hu/weboldal-keszites, /hu/webshop-keszites, /hu/online-hirdetes, /hu/it-uzemeltetes, /hu/blog, /en/blog, and 3 posts × 2 languages.
-
-Screenshots: `screenshots/` (desktop, laptop, tablet, mobile).
+See `ACTION-PLAN.md` for the prioritized checklist.
